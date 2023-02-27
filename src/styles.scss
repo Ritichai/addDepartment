@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+@import "/node_modules/bootstrap/scss/bootstrap.scss";
+@import 'material-icons/iconfont/material-icons.css';
+
+$general-font-size : 16px;
+@font-face {
+    font-family: mainFont;
+    src: url('./assets/fonts/IBM_Plex_Sans_Thai/IBMPlexSansThai-Light.ttf') format('truetype');
+    unicode-range: "U+0E00–U+0E7F";
+}
+
+.card{
+    box-shadow: 0 1px 4px 0 rgb(0 0 0 / 14%);
+    background-color: white;
+}
+
+$bg-main-color: #3f51b5;
+
+.main-background-color {
+    background-color: $bg-main-color;
+}
+
+* {
+    font-family: mainFont;
+    font-size: $general-font-size;
+    font-weight: 300;
+}
