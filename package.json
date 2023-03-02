@@ -24,6 +24,7 @@
     "bootstrap": "^5.2.3",
     "datatables.net-bs4": "^1.13.2",
     "material-icons": "^1.13.1",
+    "moment": "^2.29.4",
     "perfect-scrollbar": "^1.5.5",
     "rxjs": "~7.8.0",
     "sweetalert2": "^11.7.2",

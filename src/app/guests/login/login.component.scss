@@ -1,0 +1,20 @@
+.card-login{
+    background-color: white;
+    padding: 2rem;
+    border: 0px;
+    min-width: 400px;
+    max-width: 450px;
+    box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(60 72 88 / 40%);
+}
+
+mat-form-field{
+    width: 100%;
+}
+
+.bg-login-page{
+    background-image: url("../../../assets/images/woman-plant-vegetables-small.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    padding-right: 15rem;
+}

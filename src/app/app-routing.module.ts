@@ -4,6 +4,8 @@ import { GuestLayoutComponent } from './layouts/guest-layout/guest-layout.compon
 import { MemberLayoutComponent } from './layouts/member-layout/member-layout.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
+import { memberGuard  } from './guards/member.guard';
+
 const routes: Routes = [
   {
     path: '',
@@ -12,8 +14,16 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: MemberLayoutComponent,
+    component: GuestLayoutComponent,
     loadChildren: () => import('./guests/guests.module').then(m => m.GuestsModule)
+  },
+  {
+    path: '',
+    component: MemberLayoutComponent,
+    canActivateChild: [
+      memberGuard
+    ],
+    loadChildren: () => import('./user/user.module').then(m => m.UserModule)
   },
   {
     path: 'page-not-found',
