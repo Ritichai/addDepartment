@@ -51,7 +51,7 @@ export class UserAccountsDashboardComponent implements OnInit {
   }
 
   gotoCreateNewAccountPage() {
-    this.router.navigateByUrl('/user-accounts/create-new-account');
+    this.router.navigateByUrl('/users-account-management/create-new-account');
   }
 
   /* Event when edit button was clicked. */

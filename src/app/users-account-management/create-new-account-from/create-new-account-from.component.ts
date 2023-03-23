@@ -26,7 +26,7 @@ export class CreateNewAccountFromComponent {
   ngOnInit() {}
 
   cancel() {
-    this.router.navigateByUrl('user-profile');
+    this.router.navigateByUrl('users-account-management');
   }
 
   createNewAccount(form: NgForm) {
@@ -59,7 +59,7 @@ export class CreateNewAccountFromComponent {
             icon: 'success',
             confirmButtonAriaLabel: 'OK',
           }).then(() => {
-            this.router.navigateByUrl('user-profile');
+            this.router.navigateByUrl('users-account-management');
           });
         }
       );
