@@ -5,14 +5,13 @@ $menu-padding-left: 5px;
 $menu-padding-right: 5px;
 
 .ibe-menu {
-
-
     ul {
         padding: 0px;
         margin: 0px;
 
-        li.ibe-menu-item {
+        .ibe-menu-item {
             padding-top: 5px;
+            color: black !important;
             i.material-icons {
                 font-size: 30px;
                 float: left;
@@ -24,8 +23,18 @@ $menu-padding-right: 5px;
             }
         }
 
-        li.ibe-menu-sub {
-            color: white;
+        .active {
+            font-weight: bold;
+            // background-color: #3f51b5;
+            color: #3f51b5 !important;
+            cursor: pointer;
+            // opacity: 0.2;
+            border: 0px;
+            // box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(60 72 88 / 40%);
+        }
+
+        .ibe-menu-sub {
+            color: darkgray;
             list-style: none;
             text-align: left;
             height: auto;
@@ -37,13 +46,24 @@ $menu-padding-right: 5px;
             font-weight: 300;
             margin-left: $menu-padding-left;
             margin-right: $menu-padding-right;
-
+            // border: solid 1px black;
+            display: block;
             &:hover {
                 font-weight: 400;
                 background-color: white;
                 color: black;
                 cursor: pointer;
                 opacity: 0.2;
+                border: 0px;
+                box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(60 72 88 / 40%);
+            }
+
+            .active {
+                font-weight: 400;
+                background-color: #3f51b5;
+                color: $grey-800 !important;
+                cursor: pointer;
+                // opacity: 0.2;
                 border: 0px;
                 box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(60 72 88 / 40%);
             }
@@ -67,7 +87,7 @@ $menu-padding-right: 5px;
         .sub-menu {
             ul {
                 li {
-                    color: white;
+                    color: darkgray;
                     list-style: none;
                     text-align: left;
                     height: auto;
@@ -82,10 +102,10 @@ $menu-padding-right: 5px;
 
                     &:hover {
                         font-weight: 400;
-                        background-color: white;
-                        color: $grey-800;
+                        background-color: darkgray !important;
+                        color: white !important;
                         cursor: pointer;
-                        opacity: 0.7;
+                        opacity: 0.65;
                         border: 0px;
                         box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(60 72 88 / 40%);
                     }
@@ -112,10 +132,10 @@ $menu-padding-right: 5px;
 
             &:hover {
                 font-weight: 400;
-                background-color: white;
-                color: $grey-800;
+                background-color: darkgray;
+                color: white !important;
                 cursor: pointer;
-                // opacity: 0.2;
+                opacity: 0.85;
                 border: 0px;
                 box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(60 72 88 / 40%);
             }

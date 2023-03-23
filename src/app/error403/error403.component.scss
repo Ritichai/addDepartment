@@ -1,0 +1,17 @@
+.page-not-found {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    background-image: url(../../assets/images/error-403.png);
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  
+  .btn {
+    //   margin-right: 10rem;
+    margin-bottom: 3rem;
+  }

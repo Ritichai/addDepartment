@@ -4,7 +4,7 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
 
 export const UserRoutes: Routes = [
     {
-        path: 'dashboard',
+        path: 'user-profile',
         component: UserDashboardComponent
     }
 ];

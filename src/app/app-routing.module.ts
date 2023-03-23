@@ -3,8 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { GuestLayoutComponent } from './layouts/guest-layout/guest-layout.component';
 import { MemberLayoutComponent } from './layouts/member-layout/member-layout.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { Error403Component } from './error403/error403.component';
 
-import { memberGuard  } from './guards/member.guard';
+import { MemberGuard } from './guards/member.guard';
 
 const routes: Routes = [
   {
@@ -20,14 +21,27 @@ const routes: Routes = [
   {
     path: '',
     component: MemberLayoutComponent,
-    canActivateChild: [
-      memberGuard
+    canActivate: [
+      MemberGuard
     ],
-    loadChildren: () => import('./user/user.module').then(m => m.UserModule)
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./user/user.module').then(m => m.UserModule)
+      },
+      {
+        path: 'users-account-management',
+        loadChildren: () => import('./users-account-management/users-account-management.module').then(m => m.UsersAccountManagementModule)
+      }
+    ]
   },
   {
     path: 'page-not-found',
     component: PageNotFoundComponent
+  },
+  {
+    path: 'error-403',
+    component: Error403Component
   },
   {
     path: '**',

@@ -11,7 +11,6 @@ import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap'
     NgbAlertModule
   ],
   declarations: [
-    
   ]
 })
 export class NgBootstrapModule { }
@@ -43,6 +42,7 @@ import { GuestLayoutComponent } from './layouts/guest-layout/guest-layout.compon
 import { MemberLayoutComponent } from './layouts/member-layout/member-layout.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Error403Component } from './error403/error403.component';
 
 
 @NgModule({
@@ -50,7 +50,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppComponent,
     GuestLayoutComponent,
     MemberLayoutComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    Error403Component
   ],
   imports: [
     BrowserModule,
@@ -62,7 +63,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HttpClientModule
   ],
   providers: [
-    
   ],
   bootstrap: [AppComponent]
 })
