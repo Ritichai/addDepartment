@@ -1,0 +1,94 @@
+<div class="main-content">
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-md-8 ml-auto mr-auto">
+
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <h3 class="card-title">
+              ฟอร์มสำหรับแก้ไขข้อมูลบัญชีผู้ใช้
+            </h3>
+            <p class="card-contegory">
+              ที่แบบฟอร์มจะปรากฎข้อมูลเดิม ให้แก้ไขหัวข้อต่าง ๆ และตรวจสอบความถูกต้องก่อนกดบันทึก
+            </p>
+          </div>
+          <div class="card-body">
+            <form #createNewUserAccount="ngForm" (onSubmit)="createNewAccount(createNewUserAccount)">
+
+              <div class="row">
+                <div class="col-sm-2 col-md-2 col-2">
+                  <label for="titleName" class="form-label">Title Name</label>
+                  <input type="text" class="form-control" name="titleName" ngModel [(ngModel)]="user_info.titlename" id="titleName">
+                </div>
+                <div class="col-sm-5 col-md-5 col-5">
+                  <label for="firstName" class="form-label">First Name</label>
+                  <input type="text" class="form-control" name="firstName" [(ngModel)]="user_info.firstname" id="firstName">
+                </div>
+                <div class="col-sm-5 col-md-5 col-5">
+                  <label for="lastName" class="form-label">Last Name</label>
+                  <input type="text" class="form-control" ngModel name="lastName" [(ngModel)]="user_info.lastname" id="lastName">
+                </div>
+              </div>
+
+              <div class="row mt-3">
+                <div class="col-md-4">
+                  <label for="employee_code" class="form-label">Employee Code</label>
+                  <input type="text" class="form-control" ngModel name="employee_code" [(ngModel)]="user_info.employee_code" id="employee_code">
+                </div>
+                <div class="col-md-4">
+                  <label for="employee_position" class="form-label">Positions</label>
+                  <input type="text" name="employee_position" id="employee_position" ngModel [(ngModel)]="user_info.employee_position" class="form-control">
+                </div>
+                <div class="col-md-4">
+                  <label for="user_role" class="form-label">User Role</label>
+                  <mat-select placeholder="โปรดเลือก" name="user_role" id="user_role" [(ngModel)]="user_info.role_id" ngModel>
+                    <mat-option *ngFor="let role of userRoles" [value]="role.id">
+                      {{ role.value }}
+                    </mat-option>
+                  </mat-select>
+                </div>
+              </div>
+
+              <div class="row mt-3">
+                <div class="col-md-6">
+                  <label for="email" class="form-label">e-Mail</label>
+                  <input type="text" class="form-control" ngModel name="email" [(ngModel)]="user_info.email" id="email">
+                </div>
+                <div class="col-md-6">
+                  <label for="phone_number" class="form-label">Phone Number</label>
+                  <input type="text" class="form-control" ngModel name="phone_number" [(ngModel)]="user_info.phone_number" id="phone_number">
+                </div>
+              </div>
+
+              <div class="row mt-3">
+                <div class="col-md-6">
+                  <label for="username" class="form-label">Username</label>
+                  <input type="text" class="form-control" ngModel name="username" [(ngModel)]="user_info.username" id="username">
+                </div>
+                <div class="col-md-6">
+                </div>
+              </div>
+
+              <hr>
+              <div class="d-flex justify-content-between">
+                <span>เมื่อตรวจสอบข้อมูลแล้วเห็นว่าถูกต้อง ให้กดปุ่มสร้างบัญชีผู้ใช้</span>
+                <div>
+                  <button (click)="cancel()" class="btn btn-danger">ยกเลิก</button>
+                  <button type="submit" (click)="createNewAccount(createNewUserAccount)" class="btn btn-primary">แก้ไขข้อมูล</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+
+        </div>
+
+      </div>
+      <!-- <div class="col-md-4">
+        Upload Image Profile
+      </div> -->
+    </div>
+
+  </div>
+</div>

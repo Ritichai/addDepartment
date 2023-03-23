@@ -1,0 +1,96 @@
+<div class="main-content">
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-md-8 ml-auto mr-auto">
+
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <h3 class="card-title">
+              ฟอร์มสำหรับสร้างบัญชีผู้ใช้ใหม่
+            </h3>
+            <p class="card-contegory">
+              กรุณาระบุข้อมูลต่าง ๆ ให้ครบถ้วน และตรวจสอบความถูกต้องก่อนกดปุ่มสร้างบัญชีผู้ใช้
+            </p>
+          </div>
+          <div class="card-body">
+            <form #createNewUserAccount="ngForm" (onSubmit)="createNewAccount(createNewUserAccount)">
+
+              <div class="row">
+                <div class="col-sm-2 col-md-2 col-2">
+                  <label for="titleName" class="form-label">Title Name</label>
+                  <input type="text" class="form-control" name="titleName" ngModel id="titleName">
+                </div>
+                <div class="col-sm-5 col-md-5 col-5">
+                  <label for="firstName" class="form-label">First Name</label>
+                  <input type="text" class="form-control" name="firstName" ngModel id="firstName">
+                </div>
+                <div class="col-sm-5 col-md-5 col-5">
+                  <label for="lastName" class="form-label">Last Name</label>
+                  <input type="text" class="form-control" ngModel name="lastName" id="lastName">
+                </div>
+              </div>
+
+              <div class="row mt-3">
+                <div class="col-md-4">
+                  <label for="employee_code" class="form-label">Employee Code</label>
+                  <input type="text" class="form-control" ngModel name="employee_code" id="employee_code">
+                </div>
+                <div class="col-md-4">
+                  <label for="employee_position" class="form-label">Positions</label>
+                  <input type="text" name="employee_position" id="employee_position" ngModel class="form-control">
+                </div>
+                <div class="col-md-4">
+                  <label for="user_role" class="form-label">User Role</label>
+                  <mat-select placeholder="โปรดเลือก" name="user_role" id="user_role" ngModel>
+                    <mat-option *ngFor="let role of userRoles" [value]="role.id">
+                      {{ role.value }}
+                    </mat-option>
+                  </mat-select>
+                </div>
+              </div>
+
+              <div class="row mt-3">
+                <div class="col-md-6">
+                  <label for="email" class="form-label">e-Mail</label>
+                  <input type="text" class="form-control" ngModel name="email" id="email">
+                </div>
+                <div class="col-md-6">
+                  <label for="phone_number" class="form-label">Phone Number</label>
+                  <input type="text" class="form-control" ngModel name="phone_number" id="phone_number">
+                </div>
+              </div>
+
+              <div class="row mt-3">
+                <div class="col-md-6">
+                  <label for="username" class="form-label">Username</label>
+                  <input type="text" class="form-control" ngModel name="username" id="username">
+                </div>
+                <div class="col-md-6">
+                  <label for="password" class="form-label">Password</label>
+                  <input type="password" class="form-control" ngModel name="password" id="password">
+                </div>
+              </div>
+
+              <hr>
+              <div class="d-flex justify-content-between">
+                <span>เมื่อตรวจสอบข้อมูลแล้วเห็นว่าถูกต้อง ให้กดปุ่มสร้างบัญชีผู้ใช้</span>
+                <div>
+                  <button (click)="cancel()" class="btn btn-danger">ยกเลิก</button>
+                  <button type="submit" (click)="createNewAccount(createNewUserAccount)" class="btn btn-primary">สร้างบัญชีผู้ใช้</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+
+        </div>
+
+      </div>
+      <!-- <div class="col-md-4">
+        Upload Image Profile
+      </div> -->
+    </div>
+
+  </div>
+</div>
