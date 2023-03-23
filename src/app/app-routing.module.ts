@@ -49,6 +49,10 @@ const routes: Routes = [
       {
         path: 'users-account-management',
         loadChildren: () => import('./users-account-management/users-account-management.module').then(m => m.UsersAccountManagementModule)
+      },
+      {
+        path:'user-profile',
+        loadChildren: () => import('./user-profile/user-profile.module').then(m => m.UserProfileModule)
       }
     ]
   },

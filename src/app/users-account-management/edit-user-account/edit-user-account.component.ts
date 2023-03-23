@@ -61,7 +61,7 @@ export class EditUserAccountComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigateByUrl('user-profile');
+    this.router.navigateByUrl('users-account-management');
   }
 
   createNewAccount(form: NgForm) {
@@ -101,7 +101,7 @@ export class EditUserAccountComponent implements OnInit {
         icon: 'success',
         confirmButtonAriaLabel: 'OK'
       }).then(() => {
-        this.router.navigateByUrl('user-profile')
+        this.router.navigateByUrl('users-account-management')
       })
     })
   }
