@@ -15,11 +15,10 @@ declare var $: any;
   styleUrls: ['./users-account-dashboard.component.scss']
 })
 export class UserAccountsDashboardComponent implements OnInit {
-
   columnsUserAccountsManagementTable: string[] = ['username', 'firstname', 'surname', 'employee_code', 'employee_position', 'user_role', 'reset_password', 'edit', 'remove', 'info'];
   dataSourceOfUserAccountsManagementTable = new MatTableDataSource<UserAccountsManagementModel>();
-  @ViewChild(MatPaginator) MatPaginator!: MatPaginator;
-  @ViewChild(MatSort) MatSort!: MatSort;
+  @ViewChild(MatPaginator, {static: true}) MatPaginator!: MatPaginator;
+  @ViewChild(MatSort, {static: true}) MatSort!: MatSort;
 
   constructor(
     private router: Router,
@@ -41,6 +40,8 @@ export class UserAccountsDashboardComponent implements OnInit {
           m['user_role'] = m['role_id'];
           return m;
         })
+        this.dataSourceOfUserAccountsManagementTable.paginator = this.MatPaginator;
+        this.dataSourceOfUserAccountsManagementTable.sort = this.MatSort;
       }
     }, (err) => {
       console.log('get all user fail ', err);
