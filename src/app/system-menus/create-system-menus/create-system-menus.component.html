@@ -1,1 +1,64 @@
-<p>create-system-menus works!</p>
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8 ml-auto mr-auto">
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <h3 class="card-title">
+              ฟอร์มสำหรับสร้างเมนูใหม่
+            </h3>
+
+            <p class="card-contegory">
+              กรุณาระบุข้อมูลต่าง ๆ ให้ครบถ้วน และตรวจสอบความถูกต้องก่อนกดปุ่มบันทึก
+            </p>
+          </div>
+          <div class="card-body">
+            <form #createNewMenu="ngForm" (onSubmit)="createSystemMenus(createNewMenu)">
+              <div class="form-group row">
+
+                <div class="col-sm-6 col-md-4">
+                  <label for="menu_path" class="form-label">Menu Path</label>
+                  <input type="text" class="form-control" id="menu_path" name="menu_path" [(ngModel)]="menu_path" required>
+
+                </div>
+                <div class="col-sm-6 col-md-4">
+                  <label for="menu_title" class="form-label">Menu Title</label>
+                  <input type="text" class="form-control" id="menu_title" name="menu_title" [(ngModel)]="menu_title" required>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                  <label for="menu_type" class="form-label">Menu Type</label>
+                  <mat-select placeholder="โปรดเลือก" name="menu_type" id="menu_type" ngModel required>
+                    <mat-option *ngFor="let menuTypes of menuType" [value]="menuTypes.value">
+                      {{ menuTypes.value }}
+                    </mat-option>
+                  </mat-select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-6 col-md-4">
+                  <label for="menu_icontype" class="form-label">Menu Icon Type</label>
+                  <input type="text" class="form-control" id="menu_icontype" name="menu_icontype"
+                    [(ngModel)]="menu_icontype" required>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                  <label for="menu_collapse" class="form-label">Menu Collapse</label>
+                  <input type="text" class="form-control" id="menu_collapse" name="menu_collapse"
+                    [(ngModel)]="menu_collapse">
+                </div>
+              </div>
+              <hr>
+              <div class="d-flex justify-content-between">
+                <span>เมื่อตรวจสอบข้อมูลแล้วเห็นว่าถูกต้อง ให้กดปุ่มบันทึก</span>
+                <div>
+                  <button (click)="cancel()" class="btn btn-danger">ยกเลิก</button>
+                  <button type="submit" (click)="createSystemMenus(createNewMenu)"
+                    class="btn btn-primary">บันทึก</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
