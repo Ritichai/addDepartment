@@ -10,12 +10,14 @@ import { EditUserAccountComponent } from './edit-user-account/edit-user-account.
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
     UserAccountsDashboardComponent,
     CreateNewAccountFromComponent,
     EditUserAccountComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     CommonModule,

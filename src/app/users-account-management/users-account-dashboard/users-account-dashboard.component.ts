@@ -58,7 +58,9 @@ export class UserAccountsDashboardComponent implements OnInit {
   editItem(item: UserAccountsManagementModel) {
     this.router.navigateByUrl('/users-account-management/edit/' + item['id']);
   }
-
+  resetPassword(item: UserAccountsManagementModel) {
+    this.router.navigateByUrl('/users-account-management/reset-password/' + item['id']);
+  }
   /* Event when delete button was clicked. */
   deleteAnItem(item: UserAccountsManagementModel) {
     swal.fire({
@@ -97,9 +99,7 @@ export class UserAccountsDashboardComponent implements OnInit {
     console.log('The info button was clicked.', item)
   }
 
-  resetPassword(item: UserAccountsDashboardComponent) {
 
-  }
 
 
 }

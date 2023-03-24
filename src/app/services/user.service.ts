@@ -98,17 +98,19 @@ export class UsersService {
     });
   }
 
-  resetPassword(username :string, password : string) {
-    return this.http.post(
-      this.host + this.partUsers + "reset-password",
+
+  resetPassword(id : number, password: string, confirm_password: string) {
+    return this.http.put(
+      this.host + this.partUsers + "reset-password/"+id,
       {
-        username: username,
         password: password,
+        confirm_password: confirm_password
       },
       {
         headers: new HttpHeaders()
           .append("ContentType", "application/json")
-          .append("Authorization", localStorage.getItem("token")||'TokenNotFound'),
+          .append("Authorization", 'Bearer ' + localStorage.getItem("token")),
+          observe: "response",
       }
     );
   }
