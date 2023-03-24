@@ -32,6 +32,10 @@ const routes: Routes = [
       {
         path: 'users-account-management',
         loadChildren: () => import('./users-account-management/users-account-management.module').then(m => m.UsersAccountManagementModule)
+      },
+      {
+        path:'system-menus',
+        loadChildren: () => import('./system-menus/system-menus.module').then(m => m.SystemMenusModule)
       }
     ]
   },
