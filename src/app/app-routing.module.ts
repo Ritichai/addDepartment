@@ -36,6 +36,10 @@ const routes: Routes = [
       {
         path:'system-menus',
         loadChildren: () => import('./system-menus/system-menus.module').then(m => m.SystemMenusModule)
+      },
+      {
+        path:'user-roles',
+        loadChildren: () => import('./user-roles/user-roles.module').then(m => m.UserRolesModule)
       }
     ]
   },
