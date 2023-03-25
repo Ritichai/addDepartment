@@ -1,4 +1,4 @@
-import { CreateSystemMenuPermissionComponent } from './create-system-menu-permission/create-system-menu-permission.component';
+
 import { SystemMenuPermissionAllComponent } from './system-menu-permission-all/system-menu-permission-all.component';
 import { SystemSubmenusAllComponent } from './system-submenus-all/system-submenus-all.component';
 import { Component } from '@angular/core';
@@ -33,9 +33,6 @@ export const SystemMenusRoutes: Routes = [
     path: 'system-menu-permissions',
     component: SystemMenuPermissionAllComponent
   },
-  {
-    path: 'system-menu-permissions/set-menu-permissions/:id',
-    component: CreateSystemMenuPermissionComponent
-  },
+
 
 ];

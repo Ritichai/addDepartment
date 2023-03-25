@@ -3,6 +3,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import {MatListModule} from '@angular/material/list';
+import {MatCardModule} from '@angular/material/card';
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -18,7 +19,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SystemMenusRoutes } from './system-menus.routing';
 import { CreateSubMenuFormComponent } from './create-sub-menu-form/create-sub-menu-form.component';
-import { CreateSystemMenuPermissionComponent } from './create-system-menu-permission/create-system-menu-permission.component';
 import { CreateSystemMenusComponent } from './create-system-menus/create-system-menus.component';
 import { EditSystemMenusComponent } from './edit-system-menus/edit-system-menus.component';
 import { SystemMenuPermissionAllComponent } from './system-menu-permission-all/system-menu-permission-all.component';
@@ -29,7 +29,6 @@ import { SystemSubmenusAllComponent } from './system-submenus-all/system-submenu
 @NgModule({
   declarations: [
     CreateSubMenuFormComponent,
-    CreateSystemMenuPermissionComponent,
     CreateSystemMenusComponent,
     EditSystemMenusComponent,
     SystemMenuPermissionAllComponent,
@@ -50,7 +49,8 @@ import { SystemSubmenusAllComponent } from './system-submenus-all/system-submenu
     MatPaginatorModule,
     MatSortModule,
     MatTableModule,
-    MatListModule
+    MatListModule,
+    MatCardModule
   ]
 })
 export class SystemMenusModule { }

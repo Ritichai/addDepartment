@@ -14,7 +14,6 @@ export class SystemMenuPermissionAllComponent implements OnInit {
 
   columnsSystemMenuPermissionTable: string[] = [
     "role_id",
-   //"view_list_menu_permission",
     "set_permission",
   ];
 
@@ -102,6 +101,7 @@ export class SystemMenuPermissionAllComponent implements OnInit {
       this.unSetPermissionMenu(role_id, system_menu_id);
     }
   }
+
 
 
   setPermissionSubMenu(role_id:number,system_sub_menu_id:number) {
