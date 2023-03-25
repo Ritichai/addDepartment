@@ -68,7 +68,7 @@ export class MemberLayoutComponent implements OnInit {
 
   ngOnInit() {
     this.userSidebarService.getMySidebarMenu().subscribe((res: any) => {
-      console.log(res);
+     // console.log(res);
       if (res.status == 200) {
         this.menuItems = res.body.data.map((item: any) => {
           return {

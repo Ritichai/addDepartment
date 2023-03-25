@@ -1,1 +1,85 @@
-<p>system-submenus-all works!</p>
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 col-12">
+        <div class="card">
+
+          <div class="card-header card-header-primary">
+            <h3 class="card-title">การจัดการเมนูใน ระบบซัพเมนูของ {{menu_path}} {{id}}</h3>
+            <p class="card-category">คุณสามารถเพิ่ม รายการซัพเมนูได้</p>
+            <div class="card-heder-btn col-md-12">
+
+              <button mat-raised-button style="margin-right: .3em" (click)="clickCreateNewSubMenu()" mat-min-fab
+                class="btn btn-info btn-round btn-fab">
+                <i class="material-icons">add</i>
+              </button>
+
+              <button mat-raised-button style="margin-right: .3em" [disabled]="true" class="btn btn-success btn-round">
+                <i class="material-icons">arrow_downward</i> Excel
+              </button>
+
+            </div>
+          </div>
+
+
+
+          <div class="card-body">
+            <div class="table-search-input ml-auto">
+              <i class="material-icons">search</i>
+              <!-- <mat-form-field>
+                <mat-label> Search</mat-label>
+                <input matInput autocomplete="0" autocomplete="off"
+                  (input)="dataSourceOfSubSystemMenuTable.filter = $event.target.value.trim();" type="text" />
+              </mat-form-field> -->
+            </div>
+            <!-- End input element for table searching -->
+
+            <!-- UserAccountsManagement Table -->
+            <table mat-table [dataSource]="dataSourceOfSubSystemMenuTable" matSort style="width: 100%;"
+              class="table-striped table-hover">
+
+              <ng-container matColumnDef="sub_parent_id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> sub_parent_id </th>
+                <td mat-cell *matCellDef="let element"> {{ element.sub_parent_id }} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="sub_sequence">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> sub_sequence </th>
+                <td mat-cell *matCellDef="let element"> {{ element.sub_sequence }} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="sub_path">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> sub_path </th>
+                <td mat-cell *matCellDef="let element"> {{ element.sub_path }} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="sub_title">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> sub_title </th>
+                <td mat-cell *matCellDef="let element"> {{ element.sub_title }} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="sub_ab">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> sub_ab </th>
+                <td mat-cell *matCellDef="let element"> {{ element.sub_ab }} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="sub_enabled">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> sub_enabled </th>
+                <td mat-cell *matCellDef="let element">
+                  <mat-slide-toggle color="primary" [checked]="element.sub_enabled === 1 ? true : false"
+                    (change)="onChangeDisableAndEnable(element.sub_enabled, element.id)">
+                    {{element.sub_enabled === 1 ? 'Enable' : 'Disable'}}
+                  </mat-slide-toggle>
+                </td>
+              </ng-container>
+
+
+              <tr mat-header-row class="text-center" *matHeaderRowDef="columnsSubSystemMenuTable"></tr>
+              <tr mat-row *matRowDef="let row; columns: columnsSubSystemMenuTable;"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

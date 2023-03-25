@@ -28,6 +28,17 @@ export class SystemMenusService {
         observe: 'response',
       });
   }
+  setSubMenuDisable(enable:number,id: number) {
+    return this.http.put(
+      this.host + this.partSystemMenus + 'set-sub-menu-disabled/' + id,
+      { sub_enabled: enable },
+      {
+        headers: new HttpHeaders()
+        .set('Authorization', 'Bearer ' + localStorage.getItem('token'))
+        .set('Content-Type', 'application/json'),
+        observe: 'response',
+      });
+  }
 
   getSubMenuALL() {
     return this.http.get(this.host + this.partSystemMenus + '/subMenu/parent/', {
