@@ -1,3 +1,4 @@
+import { ImageManagementSystemModule } from './image-management-system/image-management-system.module';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { GuestLayoutComponent } from './layouts/guest-layout/guest-layout.component';
@@ -40,6 +41,10 @@ const routes: Routes = [
       {
         path:'user-roles',
         loadChildren: () => import('./user-roles/user-roles.module').then(m => m.UserRolesModule)
+      },
+      {
+        path:'images-management',
+        loadChildren: () => import('./image-management-system/image-management-system.module').then(m => m.ImageManagementSystemModule)
       }
     ]
   },
