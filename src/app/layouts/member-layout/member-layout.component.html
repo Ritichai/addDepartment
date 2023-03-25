@@ -19,7 +19,7 @@
                         </a>
                         <div *ngIf="menu['type'] == 'sub'" class="sub-menu collapse" id="{{menu.collapse}}">
                             <ul>
-                                <li *ngFor="let subItem of menu['sub']">{{ subItem.name }}</li>
+                                <li *ngFor="let subItem of menu['sub']" (click)="gotoPage(menu.link,subItem.link)">{{ subItem.name }}</li>
                             </ul>
                         </div>
                     </ng-container>

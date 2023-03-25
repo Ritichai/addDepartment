@@ -1,1 +1,7 @@
-<p>user-dashboard works!</p>
+<div *ngFor="let userData of dataUsers">
+  name : {{userData.firstname}} {{userData.lastname}}
+  email : {{userData.email}}
+  employee_code : {{userData.employee_code}}
+  employee_position : {{userData.employee_position}}
+  phone_number : {{userData.phone_number}}
+</div>
