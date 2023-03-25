@@ -1,1 +1,29 @@
-<p>upload-multiple-images works!</p>
+{{uploadStatus}}
+
+
+<input type="file"  class="file-input" enctype="multipart/form-data" name="images"  multiple (change)="onFileSelectedArray($event)" #fileUpload>
+<div class="file-upload">
+    <button mat-mini-fab color="primary" class="upload-btn"
+      (click)="checkInputFile()">
+        <mat-icon>upload</mat-icon>
+    </button>
+</div>
+
+<div class="progress">
+  <mat-progress-bar class="progress-bar" mode="determinate" [value]="progress" *ngIf="progress">
+  </mat-progress-bar>
+</div>
+
+<div class="mt-5">
+  <div class="row">
+    <mat-grid-list cols="4" rowHeight="1:1">
+      <mat-grid-tile *ngFor="let file of filesToUpload">
+        <div style="position: relative;">
+          <img *ngIf="file && file.type.startsWith('image/')" [src]="getImgUrl(file)" alt="Selected Image" width="100%" height="100%">
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</div>
+
+

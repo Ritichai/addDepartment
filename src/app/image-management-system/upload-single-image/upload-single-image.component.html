@@ -1,1 +1,29 @@
-<p>upload-single-image works!</p>
+
+<input type="file" class="file-input" enctype="multipart/form-data"name="image"(change)="onFileSelected($event)" #fileUpload>
+
+<div class="file-upload" style="margin-top: 20px;">
+    <button mat-mini-fab color="primary" class="upload-btn"
+      (click)="checkInputSelect()">
+      <mat-icon>upload</mat-icon>
+    </button>
+</div>
+
+<div style="margin-top: 10px;">
+  {{file?.name || 'No file selected'}}
+</div>
+<div class="progress">
+  <mat-progress-bar class="progress-bar" mode="determinate" [value]="progress" *ngIf="progress">
+  </mat-progress-bar>
+</div>
+
+<div class="mt-5">
+  <div class="row" style="width: 500px; height: 400px;">
+        <div style="position: relative;">
+          <img *ngIf="file && file.type.startsWith('image/')" [src]="getImgUrl(file)" alt="Selected Image" width="100%" height="100%">
+        </div>
+  </div>
+</div>
+
+
+
+
