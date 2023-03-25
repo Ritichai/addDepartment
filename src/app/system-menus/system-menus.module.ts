@@ -2,6 +2,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
+import {MatListModule} from '@angular/material/list';
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -48,6 +50,7 @@ import { SystemSubmenusAllComponent } from './system-submenus-all/system-submenu
     MatPaginatorModule,
     MatSortModule,
     MatTableModule,
+    MatListModule
   ]
 })
 export class SystemMenusModule { }

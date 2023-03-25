@@ -1,1 +1,82 @@
-<p>system-menu-permission-all works!</p>
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-7 col-7">
+        <div class="card">
+
+          <div class="card-header card-header-primary">
+            <h3 class="card-title">การจัดการ role และ router </h3>
+            <p class="card-category">คุณสามารถกำหนด role ให้กับ router ได้</p>
+          </div>
+          <div class="card-body">
+            <table mat-table [dataSource]="dataSourceOfSystemMenuPermissionTable" matSort style="width: 100%;"
+              class="table-striped table-hover">
+
+              <ng-container matColumnDef="role_id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> สิทธิ์ </th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.role_name}}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="set_permission">
+                <th style="width:100px;" mat-header-cell *matHeaderCellDef mat-sort-header>SetPermission</th>
+                <td mat-cell *matCellDef="let element">
+                  <button mat-raised-button mat-min-fab (click)="viewMenuByRoleID(element)"
+                    class="btn btn-sm btn-primary btn-round btn-fab">
+                    <i class="material-icons">list</i>
+                  </button>
+                </td>
+              </ng-container>
+
+
+
+              <tr mat-header-row class="text-center" *matHeaderRowDef="columnsSystemMenuPermissionTable"></tr>
+              <tr mat-row *matRowDef="let row; columns: columnsSystemMenuPermissionTable;"
+                [ngClass]="{'active-row': activeElementId === row.role_id}"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5 col-5">
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <h3 class="card-title">รายการ เมนูที่แต่ละสิทธิ์ สามารถใช้งานได้</h3>
+            <p class="card-category"></p>
+            <div class="card-heder-btn col-md-12">
+            </div>
+          </div>
+          <div class="card-body">
+            <table mat-table [dataSource]="dataMenuByRoleID" matSort style="width: 100%;"
+              class="table-striped table-hover">
+
+              <ng-container matColumnDef="menu_path">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> เมนู </th>
+                <td mat-cell *matCellDef="let element">
+                  <mat-list class="system-main-menu">
+                    <mat-list-item  class="mat-list-item">
+                      <span class="sub-menu-title-left">{{ element.menu_title}}</span>
+                      <mat-slide-toggle color="primary"  [checked]="element.check_permission_menu === true"
+                      (change)="systemCheckPermissionMenuByToggle($event.checked, role_id, element.system_menu_id)">
+                      </mat-slide-toggle>
+                    </mat-list-item>
+                  </mat-list>
+                  <mat-list>
+                    <mat-list-item *ngFor="let submenus of element.subMenus" class="mat-list-item">
+                      <span class="sub-menu-title-left"> - {{ submenus.menu_path}}</span>
+                      <mat-slide-toggle color="primary" [checked]="submenus.check_permission_menu === true"
+                      (change)="systemCheckPermissionSubMenuByToggle($event.checked, role_id, submenus.system_sub_menu_id)">
+                      </mat-slide-toggle>
+                    </mat-list-item>
+
+                  </mat-list>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row class="text-center" *matHeaderRowDef="columnsSystemMenuTable"></tr>
+              <tr mat-row *matRowDef="let row; columns: columnsSystemMenuTable;"></tr>
+            </table>
+
+          </div>
+        </div>
+      </div>
