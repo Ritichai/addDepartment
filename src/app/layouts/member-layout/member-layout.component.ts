@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDrawer } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
+import { UsersService } from 'src/app/services/user.service';
 import { UserSidebarService } from '../../services/user-sidebar.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { UserSidebarService } from '../../services/user-sidebar.service';
   styleUrls: ['./member-layout.component.scss']
 })
 export class MemberLayoutComponent implements OnInit {
-
+  dataUsers: any[] = []
   showFiller = false;
   options = this._formBuilder.group({
     bottom: 0,
@@ -61,7 +62,8 @@ export class MemberLayoutComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private router: Router,
-    private userSidebarService: UserSidebarService
+    private userSidebarService: UserSidebarService,
+    private userService: UsersService,
   ) {
 
   }
@@ -100,7 +102,11 @@ export class MemberLayoutComponent implements OnInit {
       if (val['url'] != undefined) {
         console.log(val['url'].split('/')[1]);
       }
-
+    });
+    this.userService.getMyUserinfo().subscribe((response: any) => {
+      const data = response.data;
+      this.dataUsers.push(data);
+      console.log(this.dataUsers);
     });
   }
 
