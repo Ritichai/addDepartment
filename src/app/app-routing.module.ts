@@ -46,6 +46,10 @@ const routes: Routes = [
         path:'images-management',
         loadChildren: () => import('./image-management-system/image-management-system.module').then(m => m.ImageManagementSystemModule)
       },
+      {
+        path:'devices',
+        loadChildren: () => import('./devices/devices.module').then(m => m.DevicesModule)
+      },
     ]
   },
   {

@@ -73,7 +73,7 @@ export class MemberLayoutComponent implements OnInit {
      // console.log(res);
       if (res.status == 200) {
         this.menuItems = res.body.data
-        .filter((item: any) => item.menu_disable === 0)
+        //.filter((item: any) => item.menu_disable === 0)
         .map((item: any) => {
           return {
             name: item.menu_title,
