@@ -245,6 +245,7 @@ export class UsersService {
   }
 
   editUserAccountInfoByUsername(
+    id:number,
     username: string,
     titlename : string,
     firstname:string,
@@ -256,6 +257,7 @@ export class UsersService {
 
     ) {
     const data = {
+      username: username,
       titlename: titlename,
       firstname:firstname,
       lastname: lastname,
@@ -264,7 +266,7 @@ export class UsersService {
       employee_code: employee_code,
       employee_position: employee_position,
     };
-    return this.http.put(this.host + this.partUsers + username, data, {
+    return this.http.put(this.host + this.partUsers + id, data, {
       headers: new HttpHeaders()
         .set("Authorization", "Bearer " + localStorage.getItem("token"))
         .set("Content-Type", "application/json"),

@@ -72,7 +72,9 @@ export class MemberLayoutComponent implements OnInit {
     this.userSidebarService.getMySidebarMenu().subscribe((res: any) => {
      // console.log(res);
       if (res.status == 200) {
-        this.menuItems = res.body.data.map((item: any) => {
+        this.menuItems = res.body.data
+        .filter((item: any) => item.menu_disable === 0)
+        .map((item: any) => {
           return {
             name: item.menu_title,
             icon: item.menu_icontype,
@@ -82,13 +84,14 @@ export class MemberLayoutComponent implements OnInit {
             sub: item.system_sub_menus.map((subItem: any) => {
               return {
                 name: subItem.sub_title,
-                icon: subItem.menu_icontype,
-                type: subItem.menu_type,
-                link: subItem.menu_path
+                //icon: subItem.sub_sequence,
+                //type: subItem.sub_parent_id,
+                link: subItem.sub_path
               }
             })
           }
         });
+        console.log(this.menuItems);
       }
     },
       (err: any) => {
@@ -119,7 +122,7 @@ export class MemberLayoutComponent implements OnInit {
   // opened: boolean = true;
 
   gotoPage(menuLink:any,subItemLink:any){
-    console.log(menuLink,subItemLink);
+    console.log("ssss",menuLink,subItemLink);
     this.router.navigate([menuLink,subItemLink]);
   }
 

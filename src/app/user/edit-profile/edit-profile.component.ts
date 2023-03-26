@@ -10,6 +10,7 @@ import swal from 'sweetalert2';
 })
 export class EditProfileComponent {
   username: string = '';
+  id: number = 0;
   dataUsers: any[] = []
   constructor(
     private userService: UsersService,
@@ -19,8 +20,11 @@ export class EditProfileComponent {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params) => {
-      const username = params['username'];
-      this.username = username;
+      //const username = params['username'];
+      //this.username = username;
+      const id = params['id'];
+      this.id = id;
+
     });
     this.userService.getMyUserinfo().subscribe((response: any) => {
       const data = response.data;
@@ -32,7 +36,8 @@ export class EditProfileComponent {
      console.log(form.value)
     this.userService
       .editUserAccountInfoByUsername(
-        this.username,
+        this.id,
+        form.value['username'],
         form.value['titlename'],
         form.value['firstname'],
         form.value['lastname'],

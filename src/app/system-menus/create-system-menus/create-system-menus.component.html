@@ -17,16 +17,16 @@
               <div class="form-group row">
 
                 <div class="col-sm-6 col-md-4">
-                  <label for="menu_path" class="form-label">Menu Path</label>
+                  <label for="menu_path" class="form-label">เมนู</label>
                   <input type="text" class="form-control" id="menu_path" name="menu_path" [(ngModel)]="menu_path" required>
 
                 </div>
                 <div class="col-sm-6 col-md-4">
-                  <label for="menu_title" class="form-label">Menu Title</label>
+                  <label for="menu_title" class="form-label">ชื่อเมนู</label>
                   <input type="text" class="form-control" id="menu_title" name="menu_title" [(ngModel)]="menu_title" required>
                 </div>
                 <div class="col-sm-6 col-md-4">
-                  <label for="menu_type" class="form-label">Menu Type</label>
+                  <label for="menu_type" class="form-label">ประเภทเมนู</label>
                   <mat-select placeholder="โปรดเลือก" name="menu_type" id="menu_type" ngModel required>
                     <mat-option *ngFor="let menuTypes of menuType" [value]="menuTypes.value">
                       {{ menuTypes.value }}
@@ -36,12 +36,12 @@
               </div>
               <div class="form-group row">
                 <div class="col-sm-6 col-md-4">
-                  <label for="menu_icontype" class="form-label">Menu Icon Type</label>
+                  <label for="menu_icontype" class="form-label">ไอคอน</label>
                   <input type="text" class="form-control" id="menu_icontype" name="menu_icontype"
                     [(ngModel)]="menu_icontype" required>
                 </div>
                 <div class="col-sm-6 col-md-4">
-                  <label for="menu_collapse" class="form-label">Menu Collapse</label>
+                  <label for="menu_collapse" class="form-label">เมนูย้อย</label>
                   <input type="text" class="form-control" id="menu_collapse" name="menu_collapse"
                     [(ngModel)]="menu_collapse">
                 </div>
