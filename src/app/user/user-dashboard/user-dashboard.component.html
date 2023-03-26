@@ -1,7 +1,26 @@
-<div *ngFor="let userData of dataUsers">
-  name : {{userData.firstname}} {{userData.lastname}}
+<!-- <div *ngFor="let userData of dataUsers">
+
   email : {{userData.email}}
   employee_code : {{userData.employee_code}}
   employee_position : {{userData.employee_position}}
   phone_number : {{userData.phone_number}}
+</div> -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let userData of dataUsers" >
+      <div class="our-team">
+        <div class="picture">
+          <img class="img-fluid" src="https://picsum.photos/130/130?image=1027">
+        </div>
+        <div class="team-content">
+          <h3 class="name">{{userData.titlename}} {{userData.firstname}} {{userData.lastname}}</h3>
+          <h4 class="title">employee_code :{{userData.employee_code}}</h4>
+          <h4 class="title">employee_position :{{userData.employee_position}}</h4>
+          <h4 class="title">phone_number :{{userData.phone_number}}</h4>
+        </div>
+        <button mat-raised-button color="primary" (click)="editProfile(userData.username)">Edit</button>
+      </div>
+    </div>
+  </div>
 </div>

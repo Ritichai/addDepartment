@@ -45,7 +45,7 @@ const routes: Routes = [
       {
         path:'images-management',
         loadChildren: () => import('./image-management-system/image-management-system.module').then(m => m.ImageManagementSystemModule)
-      }
+      },
     ]
   },
   {

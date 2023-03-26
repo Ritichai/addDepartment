@@ -1,0 +1,73 @@
+<div class="main-content">
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-md-8 ml-auto mr-auto">
+
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <h3 class="card-title">
+              ฟอร์มสำหรับแก้ไขข้อมูลบัญชีผู้ใช้
+            </h3>
+            <p class="card-contegory">
+              ที่แบบฟอร์มจะปรากฎข้อมูลเดิม ให้แก้ไขหัวข้อต่าง ๆ และตรวจสอบความถูกต้องก่อนกดบันทึก
+            </p>
+          </div>
+          <div class="card-body" *ngFor="let userData of dataUsers">
+            <form #editProfile="ngForm" (onSubmit)="editMyProfile(editProfile)">
+
+              <div class="row">
+                <div class="col-sm-2 col-md-2 col-2">
+                  <label for="titlename" class="form-label">Title Name</label>
+                  <input type="text" class="form-control" name="titlename" [(ngModel)]="userData.titlename" id="titlename">
+                </div>
+                <div class="col-sm-5 col-md-5 col-5">
+                  <label for="firstname" class="form-label">First Name</label>
+                  <input type="text" class="form-control" name="firstname" [(ngModel)]="userData.firstname" id="firstname">
+                </div>
+                <div class="col-sm-5 col-md-5 col-5">
+                  <label for="lastname" class="form-label">Last Name</label>
+                  <input type="text" class="form-control"  name="lastname" [(ngModel)]="userData.lastname" id="lastname">
+                </div>
+              </div>
+
+              <div class="row mt-3">
+                <div class="col-md-4">
+                  <label for="employee_code" class="form-label">Employee Code</label>
+                  <input type="text" class="form-control" ngModel name="employee_code" [(ngModel)]="userData.employee_code" id="employee_code">
+                </div>
+                <div class="col-md-4">
+                  <label for="employee_position" class="form-label">Positions</label>
+                  <input type="text" name="employee_position" id="employee_position" ngModel [(ngModel)]="userData.employee_position" class="form-control">
+                </div>
+
+              </div>
+              <div class="row mt-3">
+                <div class="col-md-6">
+                  <label for="email" class="form-label">e-Mail</label>
+                  <input type="text" class="form-control" ngModel name="email" [(ngModel)]="userData.email" id="email">
+                </div>
+                <div class="col-md-6">
+                  <label for="phone_number" class="form-label">Phone Number</label>
+                  <input type="text" class="form-control" ngModel name="phone_number" [(ngModel)]="userData.phone_number" id="phone_number">
+                </div>
+              </div>
+              <hr>
+              <div class="d-flex justify-content-between">
+                <span>เมื่อตรวจสอบข้อมูลแล้วเห็นว่าถูกต้อง ให้กดปุ่มสร้างบัญชีผู้ใช้</span>
+                <div>
+                  <!-- <button (click)="cancel()" class="btn btn-danger">ยกเลิก</button> -->
+                  <button type="submit" (click)="editMyProfile(editProfile)" class="btn btn-primary">แก้ไขข้อมูล</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

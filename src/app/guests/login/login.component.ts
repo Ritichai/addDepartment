@@ -55,7 +55,7 @@ export class LoginComponent {
       localStorage.clear();
     }, () => {
       console.log("completed");
-      
+
     });
 
   }

@@ -209,9 +209,6 @@ export class UsersService {
     });
   }
 
-
-
-
   getUserlog(username : string) {
     return this.http.get(this.host + this.partUsers + "login_log/" + username, {
       headers: new HttpHeaders()
@@ -220,8 +217,6 @@ export class UsersService {
     });
 
   }
-
-
 
   getMySidebarMenu() {
     return this.http.get(this.host + this.partUsers + "my-sidebar-menu",{
@@ -241,12 +236,39 @@ export class UsersService {
     });
   }
 
-
   getmenuPermissionBy(id : number) {
     return this.http.get(this.host + '/system-menu/menuPermission/forUser/'+id, {
       headers: new HttpHeaders()
         .set("Authorization", "Bearer " + localStorage.getItem("token"))
         .set("Content-Type", "application/json"),
+    });
+  }
+
+  editUserAccountInfoByUsername(
+    username: string,
+    titlename : string,
+    firstname:string,
+    lastname: string,
+    email:string,
+    phone_number:string,
+    employee_code:string,
+    employee_position:string,
+
+    ) {
+    const data = {
+      titlename: titlename,
+      firstname:firstname,
+      lastname: lastname,
+      email: email,
+      phone_number: phone_number,
+      employee_code: employee_code,
+      employee_position: employee_position,
+    };
+    return this.http.put(this.host + this.partUsers + username, data, {
+      headers: new HttpHeaders()
+        .set("Authorization", "Bearer " + localStorage.getItem("token"))
+        .set("Content-Type", "application/json"),
+        observe: "response",
     });
   }
 }
