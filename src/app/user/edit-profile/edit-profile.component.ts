@@ -20,11 +20,8 @@ export class EditProfileComponent {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params) => {
-      //const username = params['username'];
-      //this.username = username;
       const id = params['id'];
       this.id = id;
-
     });
     this.userService.getMyUserinfo().subscribe((response: any) => {
       const data = response.data;
@@ -35,7 +32,7 @@ export class EditProfileComponent {
   editMyProfile(form: NgForm) {
      console.log(form.value)
     this.userService
-      .editUserAccountInfoByUsername(
+      .editUserAccountInfoByID(
         this.id,
         form.value['username'],
         form.value['titlename'],

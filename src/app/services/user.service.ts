@@ -244,7 +244,7 @@ export class UsersService {
     });
   }
 
-  editUserAccountInfoByUsername(
+  editUserAccountInfoByID(
     id:number,
     username: string,
     titlename : string,

@@ -77,7 +77,7 @@ export class EditDeviceFormComponent implements OnInit {
       this.deviceInfo.brand_name,
       this.deviceInfo.model_name,
       this.deviceInfo.os_name,
-      this.deviceInfo.color,
+      this.deviceInfo.color_name,
       this.deviceInfo.start_date,
       this.deviceInfo.end_date,
     ).subscribe((response) => {
