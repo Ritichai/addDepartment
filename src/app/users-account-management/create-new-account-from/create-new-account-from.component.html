@@ -14,70 +14,157 @@
             </p>
           </div>
           <div class="card-body">
-            <form #createNewUserAccount="ngForm" (onSubmit)="createNewAccount(createNewUserAccount)">
+            <form [formGroup]="form" (ngSubmit)="createNewAccount()">
 
-              <div class="row">
-                <div class="col-sm-2 col-md-2 col-2">
-                  <label for="titleName" class="form-label">Title Name</label>
-                  <input type="text" class="form-control" name="titleName" ngModel id="titleName">
-                </div>
-                <div class="col-sm-5 col-md-5 col-5">
-                  <label for="firstName" class="form-label">First Name</label>
-                  <input type="text" class="form-control" name="firstName" ngModel id="firstName">
-                </div>
-                <div class="col-sm-5 col-md-5 col-5">
-                  <label for="lastName" class="form-label">Last Name</label>
-                  <input type="text" class="form-control" ngModel name="lastName" id="lastName">
+              <div class="form-group">
+                <label>คำนำหน้า</label>
+                <input
+                  type="text"
+                  formControlName="titleName"
+                  class="form-control"
+                  name="titleName"
+                  id="titleName"
+                  [ngClass]="{ 'is-invalid': submitted && f['titleName'].errors }"
+                />
+                <div *ngIf="submitted && f['titleName'].errors" class="invalid-feedback">
+                  <div *ngIf="f['titleName'].errors['required']">กรุณากรอกคำนำหน้า</div>
                 </div>
               </div>
-
-              <div class="row mt-3">
-                <div class="col-md-4">
-                  <label for="employee_code" class="form-label">Employee Code</label>
-                  <input type="text" class="form-control" ngModel name="employee_code" id="employee_code">
-                </div>
-                <div class="col-md-4">
-                  <label for="employee_position" class="form-label">Positions</label>
-                  <input type="text" name="employee_position" id="employee_position" ngModel class="form-control">
-                </div>
-                <div class="col-md-4">
-                  <label for="user_role" class="form-label">User Role</label>
-                  <mat-select placeholder="โปรดเลือก" name="user_role" id="user_role" ngModel>
-                    <mat-option *ngFor="let role of userRoles" [value]="role.id">
-                      {{ role.value }}
-                    </mat-option>
-                  </mat-select>
-                </div>
+            <div ckass="form-group">
+              <label>ชื่อจริง</label>
+              <input
+                type="text"
+                formControlName="firstName"
+                class="form-control"
+                name="firstName"
+                id="firstName"
+                [ngClass]="{ 'is-invalid': submitted && f['firstName'].errors }"
+              />
+              <div *ngIf="submitted && f['firstName'].errors" class="invalid-feedback">
+                <div *ngIf="f['firstName'].errors['required']">กรุณากรอกชื่อ</div>
               </div>
-
-              <div class="row mt-3">
-                <div class="col-md-6">
-                  <label for="email" class="form-label">e-Mail</label>
-                  <input type="text" class="form-control" ngModel name="email" id="email">
-                </div>
-                <div class="col-md-6">
-                  <label for="phone_number" class="form-label">Phone Number</label>
-                  <input type="text" class="form-control" ngModel name="phone_number" id="phone_number">
-                </div>
+            </div>
+            <div class="form-group">
+              <label>นามสกุล</label>
+              <input
+                type="text"
+                formControlName="lastName"
+                class="form-control"
+                name="lastName"
+                id="lastName"
+                [ngClass]="{ 'is-invalid': submitted && f['lastName'].errors }"
+              />
+              <div *ngIf="submitted && f['lastName'].errors" class="invalid-feedback">
+                <div *ngIf="f['lastName'].errors['required']">กรุณากรอกนามสกุล</div>
               </div>
-
-              <div class="row mt-3">
-                <div class="col-md-6">
-                  <label for="username" class="form-label">Username</label>
-                  <input type="text" class="form-control" ngModel name="username" id="username">
-                </div>
-                <div class="col-md-6">
-                  <label for="password" class="form-label">Password</label>
-                  <input type="password" class="form-control" ngModel name="password" id="password">
-                </div>
+            </div>
+            <div class="form-group">
+              <label>รหัสพนักงาน</label>
+              <input
+                type="text"
+                formControlName="employee_code"
+                class="form-control"
+                name="employee_code"
+                id="employee_code"
+                [ngClass]="{ 'is-invalid': submitted && f['employee_code'].errors }"
+              />
+              <div *ngIf="submitted && f['employee_code'].errors" class="invalid-feedback">
+                <div *ngIf="f['employee_code'].errors['required']">กรุณากรอกรหัสพนักงาน</div>
               </div>
+            </div>
+            <div class="form-group">
+              <label>ตำแหน่ง</label>
+              <input
+                type="text"
+                formControlName="employee_position"
+                class="form-control"
+                name="employee_position"
+                id="employee_position"
+                [ngClass]="{ 'is-invalid': submitted && f['employee_position'].errors }"
+              />
+              <div *ngIf="submitted && f['employee_position'].errors" class="invalid-feedback">
+                <div *ngIf="f['employee_position'].errors['required']">กรุณากรอกตำแหน่ง</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>ตำแหน่ง</label>
+                <mat-select formControlName="user_role" name="user_role" id="user_role"
+                class="form-control" [ngClass]="{ 'is-invalid': submitted && f['user_role'].errors }">
+                  <mat-option value="">None</mat-option>
+                  <mat-option *ngFor="let userRole of userRoles" [value]="userRole.id">{{userRole.value}}</mat-option>
+                </mat-select>
+              <div *ngIf="submitted && f['user_role'].errors" class="invalid-feedback">
+                <div *ngIf="f['user_role'].errors['required']">กรุณากเลือกสิทธิ์</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>อีเมล</label>
+              <input
+                type="text"
+                formControlName="email"
+                class="form-control"
+                name="email"
+                id="email"
+                [ngClass]="{ 'is-invalid': submitted && f['email'].errors }"
+              />
+              <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                <div *ngIf="f['email'].errors['required']">กรุณากรอกตำแหน่ง</div>
+                <div *ngIf="f['email'].errors['email']">รูปแบบไม่ถูก</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>เบอร์โทร</label>
+              <input
+                type="text"
+                formControlName="phone_number"
+                class="form-control"
+                maxlength="10"
+                [ngClass]="{ 'is-invalid': submitted && f['phone_number'].errors }"
+              />
+              <div *ngIf="submitted && f['phone_number'].errors" class="invalid-feedback">
+                <div *ngIf="f['phone_number'].errors['required']">กรุณากรอกเบอร์โทร</div>
+                <div *ngIf="f['phone_number'].errors['minlength']">กรุณากรอกหมายเลขโทรศัพท์ให้ครบ 10 หลัก</div>
+                <div *ngIf="f['phone_number'].errors['pattern']">หมายเลขโทรศัพท์ต้องเป็นตัวเลขเท่านั้น</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Username</label>
+              <input
+                type="text"
+                formControlName="username"
+                class="form-control"
+                name="username"
+                id="username"
+                [ngClass]="{ 'is-invalid': submitted && f['username'].errors }"
+              />
+              <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
+                <div *ngIf="f['username'].errors['required']">กรุณากรอก Username</div>
+                <div *ngIf="f['username'].errors['minlength']">กรุณากรอก Username อย่างน้อย 8 ตัวอักษร</div>
 
+              </div>
+            </div>
+            <div class="form-group">
+              <label>รหัสผ่าน</label>
+              <input
+                type="text"
+                formControlName="password"
+                class="form-control"
+                name="password"
+                id="password"
+                [ngClass]="{ 'is-invalid': submitted && f['password'].errors }"
+              />
+              <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                <div *ngIf="f['password'].errors['required']">กรุณากรอก password</div>
+                <div *ngIf="f['password'].errors['minlength']">กรุณากรอก password อย่างน้อย 8 ตัวอักษร</div>
+
+              </div>
+            </div>
               <hr>
               <div class="d-flex justify-content-between">
                 <span>เมื่อตรวจสอบข้อมูลแล้วเห็นว่าถูกต้อง ให้กดปุ่มสร้างบัญชีผู้ใช้</span>
                 <div>
                   <button (click)="cancel()" class="btn btn-danger">ยกเลิก</button>
-                  <button type="submit" (click)="createNewAccount(createNewUserAccount)" class="btn btn-primary">สร้างบัญชีผู้ใช้</button>
+                  <button type="submit" (click)="createNewAccount()" class="btn btn-primary">สร้างบัญชีผู้ใช้</button>
                 </div>
               </div>
             </form>
