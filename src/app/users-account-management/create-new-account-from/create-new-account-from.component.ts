@@ -25,8 +25,6 @@ export class CreateNewAccountFromComponent {
     password: new FormControl('')
   });
   submitted = false;
-
-
   userRoles = [
     {
       id: 1,
@@ -97,7 +95,6 @@ export class CreateNewAccountFromComponent {
   //       }
   //     );
   // }
-
 
   createNewAccount() {
     this.submitted = true;

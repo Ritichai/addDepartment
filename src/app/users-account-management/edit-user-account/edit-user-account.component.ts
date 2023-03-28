@@ -1,5 +1,7 @@
+import { AbstractControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormBuilder, FormGroup } from '@angular/forms';
 import { UsersService } from '../../services/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import swal from 'sweetalert2';
@@ -37,11 +39,42 @@ export class EditUserAccountComponent implements OnInit {
     password: ''
   };
 
+  form: FormGroup = new FormGroup({
+    titleName: new FormControl(''),
+    firstName: new FormControl(''),
+    lastName: new FormControl(''),
+    employee_code: new FormControl(''),
+    employee_position: new FormControl(''),
+    user_role: new FormControl(''),
+    email: new FormControl(''),
+    phone_number: new FormControl(''),
+    username: new FormControl(''),
+  });
+  submitted = false;
+
   constructor(
     private userService: UsersService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
-  ) { }
+    private activatedRoute: ActivatedRoute,
+    private formBuilder: FormBuilder
+  ) {
+
+    this.form = this.formBuilder.group({
+      titleName: ['', [Validators.required]],
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      employee_code: ['', [Validators.required]],
+      employee_position: ['', [Validators.required]],
+      user_role: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      phone_number: ['', [
+        Validators.required,
+        Validators.minLength(10),
+        Validators.pattern('[0-9]*')]],
+      username: ['', [Validators.required,Validators.minLength(8)]],
+    });
+
+   }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params) => {
@@ -64,30 +97,22 @@ export class EditUserAccountComponent implements OnInit {
     this.router.navigateByUrl('users-account-management');
   }
 
-  createNewAccount(form: NgForm) {
-    /*
-     * titleName
-     * firstName
-     * lastName
-     * employee_code
-     * employee_position
-     * user_role
-     * email
-     * phone_number
-     * username
-     * password
-     */
-    console.log(form.value)
+  editAccount() {
+    this.submitted = true;
+    if (this.form.invalid) {
+      return;
+    }
+    console.log(this.form.value)
     this.userService.editUserAccount(
-      form.value['titleName'],
-      form.value['firstName'],
-      form.value['lastName'],
-      form.value['employee_code'],
-      form.value['employee_position'],
-      form.value['user_role'],
-      form.value['email'],
-      form.value['phone_number'],
-      form.value['username'],
+      this.form.value['titleName'],
+      this.form.value['firstName'],
+      this.form.value['lastName'],
+      this.form.value['employee_code'],
+      this.form.value['employee_position'],
+      this.form.value['user_role'],
+      this.form.value['email'],
+      this.form.value['phone_number'],
+      this.form.value['username'],
       this.user_id
     ).subscribe((response) => {
       console.log(response);
@@ -104,5 +129,8 @@ export class EditUserAccountComponent implements OnInit {
         this.router.navigateByUrl('users-account-management')
       })
     })
+  }
+  get f(): { [key: string]: AbstractControl } {
+    return this.form.controls;
   }
 }
