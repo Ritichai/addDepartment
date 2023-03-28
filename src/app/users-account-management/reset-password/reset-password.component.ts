@@ -1,8 +1,10 @@
-import { NgForm } from '@angular/forms';
+import { AbstractControl } from '@angular/forms';
+import { NgForm, FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UsersService } from './../../services/user.service';
 import { Component } from '@angular/core';
 import swal from 'sweetalert2';
+import Validation from './passwordmatch';
 @Component({
   selector: 'app-reset-password',
   templateUrl: './reset-password.component.html',
@@ -15,12 +17,24 @@ export class ResetPasswordComponent {
     password: '',
     confirm_password: ''
   };
-
+  form: FormGroup = new FormGroup({
+    password: new FormControl(''),
+    confirm_password: new FormControl(''),
+  });
+  submitted = false;
   constructor(
     private userService: UsersService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
-  ) { }
+    private activatedRoute: ActivatedRoute,
+    private formBuilder: FormBuilder
+  ) {
+    this.form = this.formBuilder.group({
+      password: ['',[Validators.required, Validators.minLength(8)]],
+      confirm_password: ['',[Validators.required, Validators.minLength(8)]],
+    },{
+      validators: [Validation.match('password', 'confirm_password')],
+    });
+  }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params) => {
@@ -42,12 +56,15 @@ export class ResetPasswordComponent {
   cancel() {
     this.router.navigate(['/users-account-management']);
   }
-  resetPassword(form:NgForm) {
-    console.log("sssssss",form.value);
+  resetPassword() {
+    this.submitted = true;
+    if (this.form.invalid) {
+      return;
+    }
     this.userService.resetPassword(
       this.user_id,
-      form.value['password'],
-      form.value['confirm_password']
+      this.form.value['password'],
+      this.form.value['confirm_password']
     ).subscribe((response) => {
       if(response["status"] == 200){
         swal.fire({
@@ -72,5 +89,8 @@ export class ResetPasswordComponent {
     }, () => {
       console.log('method resetPassword complete.');
     });
+  }
+  get f(): { [key: string]: AbstractControl } {
+    return this.form.controls;
   }
 }
