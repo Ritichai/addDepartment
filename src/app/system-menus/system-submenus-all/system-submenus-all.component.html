@@ -66,9 +66,9 @@
               <ng-container matColumnDef="sub_enabled">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> sub_enabled </th>
                 <td mat-cell *matCellDef="let element">
-                  <mat-slide-toggle color="primary" [checked]="element.sub_enabled === 1 ? true : false"
+                  <mat-slide-toggle color="primary" [checked]="element.sub_enabled === 0 ? true : false"
                     (change)="onChangeDisableAndEnable(element.sub_enabled, element.id)">
-                    {{element.sub_enabled === 1 ? 'Enable' : 'Disable'}}
+                    {{element.sub_enabled === 0 ? 'Enable' : 'Disable'}}
                   </mat-slide-toggle>
                 </td>
               </ng-container>

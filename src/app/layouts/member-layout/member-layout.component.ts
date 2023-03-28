@@ -73,7 +73,6 @@ export class MemberLayoutComponent implements OnInit {
      // console.log(res);
       if (res.status == 200) {
         this.menuItems = res.body.data
-        //.filter((item: any) => item.menu_disable === 0)
         .map((item: any) => {
           return {
             name: item.menu_title,
@@ -81,11 +80,11 @@ export class MemberLayoutComponent implements OnInit {
             type: item.menu_type,
             link: item.menu_path,
             collapse: item.menu_collapse,
-            sub: item.system_sub_menus.map((subItem: any) => {
+            sub: item.system_sub_menus
+            .filter((subItem: any) => subItem.sub_enabled === 0)
+            .map((subItem: any) => {
               return {
                 name: subItem.sub_title,
-                //icon: subItem.sub_sequence,
-                //type: subItem.sub_parent_id,
                 link: subItem.sub_path
               }
             })
