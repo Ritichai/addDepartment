@@ -10,26 +10,31 @@ import { FormBuilder, AbstractControl } from "@angular/forms";
   styleUrls: ["./create-system-menus.component.scss"],
 })
 export class CreateSystemMenusComponent implements OnInit {
+
+  form: FormGroup = new FormGroup({
+    menu_path: new FormControl(''),
+    menu_title: new FormControl(''),
+    menu_type: new FormControl(''),
+    menu_icontype: new FormControl(''),
+    menu_collapse: new FormControl('')
+  });
+  submitted = false;
+
   menuType = [
     { id: 1, value: "link" },
     { id: 2, value: "sub" },
   ];
-  createNewMenu;
-  menu_path: string = "";
-  menu_title: string = "";
-  menu_type: string = "";
-  menu_icontype : string = "";
-  menu_collapse : string = "";
   constructor(
     private router: Router,
     private systemMenusService: SystemMenusService,
-    private fb: FormBuilder
+    private formBuilder: FormBuilder
   ) {
-    this.createNewMenu = this.fb.group({
-      menu_path: new FormControl("", Validators.required),
-      menu_title: new FormControl("", Validators.required),
-      menu_type: new FormControl("", Validators.required),
-      menu_icontype: new FormControl("", Validators.required),
+    this.form = this.formBuilder.group({
+      menu_path: ["", Validators.required],
+      menu_title: ["", Validators.required],
+      menu_type: ["", Validators.required],
+      menu_icontype: [""],
+      menu_collapse: [""]
     });
   }
 
@@ -40,43 +45,40 @@ export class CreateSystemMenusComponent implements OnInit {
   }
 
 
-  createSystemMenus(formData: NgForm) {
-    //ตรวจสอบว่า ค่าว่าง
-    if (!formData.valid) {
+  createSystemMenus() {
+    this.submitted = true;
+    if (this.form.invalid) {
       return;
     }
-    //เพิ่มข้อมูล
     this.systemMenusService
       .createSystemMenus(
-        formData.value["menu_path"],
-        formData.value["menu_title"],
-        formData.value["menu_type"],
-        formData.value["menu_icontype"],
-        formData.value["menu_collapse"]
+        this.form.value["menu_path"],
+        this.form.value["menu_title"],
+        this.form.value["menu_type"],
+        this.form.value["menu_icontype"],
+        this.form.value["menu_collapse"]
       )
       .subscribe(
-        (res) => {
-          console.log(res);
-          swal.fire({
-            title: "สำเร็จ!",
-            text: "เพิ่มเมนูระบบใหม่เรียบร้อยแล้ว",
-            icon: "success",
-            confirmButtonText: "ตกลง",
-          }).then((result) => {
-            if (result.value) {
-              this.router.navigateByUrl("/system-menus/menu-setting");
-            }
-          });
+        (response) => {
+          console.log(response);
         },
         (err) => {
-          console.log(err);
+          console.log('Creating a new user account is an error', err);
+        },
+        () => {
+          console.log('Creating a new user account complete.');
           swal.fire({
-            title: "ผิดพลาด!",
-            text: "เพิ่มเมนูระบบใหม่ไม่สำเร็จ",
-            icon: "error",
-            confirmButtonText: "ตกลง",
+            title: 'สำเร็จ',
+            text: 'สร้างเมนูใหม่เรียบร้อยแล้ว',
+            icon: 'success',
+            confirmButtonAriaLabel: 'OK',
+          }).then(() => {
+            this.router.navigateByUrl('/system-menus/menu-setting');
           });
         }
       );
+  }
+  get f(): { [key: string]: AbstractControl } {
+    return this.form.controls;
   }
 }

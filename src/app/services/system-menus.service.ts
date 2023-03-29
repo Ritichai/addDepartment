@@ -95,14 +95,14 @@ export class SystemMenusService {
 
   createSystemMenus(
     menu_path : string,
-    meun_title : string,
+    menu_title : string,
     menu_type : string,
     menu_icontype : string,
     menu_collapse : string
   ){
     const dataSystemMenus = {
       menu_path: menu_path,
-      menu_title: meun_title,
+      menu_title: menu_title,
       menu_type: menu_type,
       menu_icontype: menu_icontype,
       menu_collapse: menu_collapse
