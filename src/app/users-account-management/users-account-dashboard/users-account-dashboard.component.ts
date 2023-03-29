@@ -54,6 +54,7 @@ export class UserAccountsDashboardComponent implements OnInit {
     this.router.navigateByUrl('/users-account-management/create-new-account');
   }
 
+
   /* Event when edit button was clicked. */
   editItem(item: UserAccountsManagementModel) {
     this.router.navigateByUrl('/users-account-management/edit/' + item['id']);
@@ -97,6 +98,7 @@ export class UserAccountsDashboardComponent implements OnInit {
   /* Event when info button was clicked. */
   routeToItemInfo(item: UserAccountsManagementModel) {
     console.log('The info button was clicked.', item)
+    this.router.navigateByUrl('/users-account-management/view/'+item['id']);
   }
 
 

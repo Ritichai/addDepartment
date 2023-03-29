@@ -11,6 +11,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ViewUserInfoComponent } from './view-user-info/view-user-info.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     CreateNewAccountFromComponent,
     EditUserAccountComponent,
     ResetPasswordComponent,
+    ViewUserInfoComponent,
   ],
   imports: [
     CommonModule,

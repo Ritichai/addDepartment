@@ -1,3 +1,4 @@
+import { ViewUserInfoComponent } from './view-user-info/view-user-info.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { EditUserAccountComponent } from './edit-user-account/edit-user-account.component';
 import { CreateNewAccountFromComponent } from './create-new-account-from/create-new-account-from.component';
@@ -21,5 +22,9 @@ export const UsersAccountManagementRoutes: Routes = [
     {
       path:'reset-password/:user_id',
       component:ResetPasswordComponent
+    },
+    {
+      path:'view/:user_id',
+      component:ViewUserInfoComponent
     }
 ];
