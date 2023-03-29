@@ -102,7 +102,7 @@ export class EditUserAccountComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-    console.log(this.form.value)
+    //console.log(this.form.value)
     this.userService.editUserAccount(
       this.form.value['titleName'],
       this.form.value['firstName'],
@@ -115,7 +115,7 @@ export class EditUserAccountComponent implements OnInit {
       this.form.value['username'],
       this.user_id
     ).subscribe((response) => {
-      console.log(response);
+      //console.log(response);
     }, (err) => {
       console.log('Creating a new user account is an error', err);
     }, () => {

@@ -14,33 +14,84 @@
             </p>
           </div>
           <div class="card-body">
-            <form #createNewMenu="ngForm" (onSubmit)="editSystemMenu(createNewMenu)">
+            <form [formGroup]="form">
               <div class="form-group row">
                 <div class="col-sm-6 col-md-4">
-                  <label for="menu_path" class="form-label">เมนู</label>
-                  <input type="text" class="form-control" id="menu_path" name="menu_path" [(ngModel)]="menu_info.menu_path">
+                  <div class="form-group">
+                    <label>เมนู Path</label>
+                    <input
+                      type="text"
+                      formControlName="menu_path"
+                      class="form-control"
+                      name="menu_path"
+                      id="menu_path"
+                      [ngClass]="{ 'is-invalid': submitted && f['menu_path'].errors }"
+                      [(ngModel)]="menu_info.menu_path"
+                    />
+                    <div *ngIf="submitted && f['menu_path'].errors" class="invalid-feedback">
+                      <div *ngIf="f['menu_path'].errors['required']">กรุณากรอกเมนู Path</div>
+                    </div>
+                  </div>
                 </div>
                 <div class="col-sm-6 col-md-4">
-                  <label for="menu_title" class="form-label">ชื่อเมนู</label>
-                  <input type="text" class="form-control" id="menu_title" name="menu_title" [(ngModel)]="menu_info.menu_title">
+                  <div class="form-group">
+                    <label>ชื่อเมนู</label>
+                    <input
+                      type="text"
+                      formControlName="menu_title"
+                      class="form-control"
+                      name="menu_title"
+                      id="menu_title"
+                      [ngClass]="{ 'is-invalid': submitted && f['menu_title'].errors }"
+                      [(ngModel)]="menu_info.menu_title"
+                    />
+                    <div *ngIf="submitted && f['menu_title'].errors" class="invalid-feedback">
+                      <div *ngIf="f['menu_title'].errors['required']">กรุณากรอกชื่อเมนู</div>
+                    </div>
+                  </div>
                 </div>
                 <div class="col-sm-6 col-md-4">
-                  <label for="menu_type" class="form-label">ประเภทเมนู</label>
-                  <mat-select placeholder="โปรดเลือก" name="menu_type" id="menu_type" [(ngModel)]="menu_info.menu_type">
-                    <mat-option *ngFor="let menuTypes of menuType" [value]="menuTypes.value">
-                      {{ menuTypes.value }}
-                    </mat-option>
-                  </mat-select>
+                  <div class="form-group">
+                    <label>ประเภทเมนู</label>
+                      <mat-select formControlName="menu_type" name="menu_type" id="menu_type"
+                      class="form-control" [ngClass]="{ 'is-invalid': submitted && f['menu_type'].errors }" [(ngModel)]="menu_info.menu_type">
+                        <mat-option value="">None</mat-option>
+                        <mat-option *ngFor="let menu_type of menuType" [value]="menu_type.value">{{menu_type.value}}</mat-option>
+                      </mat-select>
+                    <div *ngIf="submitted && f['menu_type'].errors" class="invalid-feedback">
+                      <div *ngIf="f['menu_type'].errors['required']">กรุณากเลือกประเภทเมนู</div>
+                    </div>
+                  </div>
                 </div>
               </div>
+
               <div class="form-group row">
                 <div class="col-sm-6 col-md-4">
-                  <label for="menu_icontype" class="form-label">ไอคอน</label>
-                  <input type="text" class="form-control" id="menu_icontype" name="menu_icontype" [(ngModel)]="menu_info.menu_icontype">
+                  <div class="form-group">
+                    <label>ไอคอน</label>
+                    <input
+                      type="text"
+                      formControlName="menu_icontype"
+                      class="form-control"
+                      name="menu_icontype"
+                      id="menu_icontype"
+                      [ngClass]="{ 'is-invalid': submitted && f['menu_icontype'].errors }"
+                      [(ngModel)]="menu_info.menu_icontype"
+                    />
+                  </div>
                 </div>
                 <div class="col-sm-6 col-md-4">
-                  <label for="menu_collapse" class="form-label">เมนูย้อย</label>
-                  <input type="text" class="form-control" id="menu_collapse" name="menu_collapse" [(ngModel)]="menu_info.menu_collapse">
+                  <div class="form-group">
+                    <label>กรอกเมนู collapse</label>
+                    <input
+                      type="text"
+                      formControlName="menu_collapse"
+                      class="form-control"
+                      name="menu_collapse"
+                      id="menu_collapse"
+                      [(ngModel)]="menu_info.menu_collapse"
+                    />
+                  </div>
                 </div>
               </div>
               <hr>
@@ -48,7 +99,7 @@
                 <span>เมื่อตรวจสอบข้อมูลแล้วเห็นว่าถูกต้อง ให้กดปุ่มแก้ไข</span>
                 <div>
                   <button (click)="cancel()" class="btn btn-danger">ยกเลิก</button>
-                  <button type="submit" (click)="editSystemMenu(createNewMenu)" class="btn btn-primary">บันทึก</button>
+                  <button type="submit" (click)="editSystemMenu()" [disabled]="form.pristine" class="btn btn-primary">บันทึก</button>
                 </div>
               </div>
             </form>

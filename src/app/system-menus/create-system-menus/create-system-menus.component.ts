@@ -63,10 +63,8 @@ export class CreateSystemMenusComponent implements OnInit {
           console.log(response);
         },
         (err) => {
-          console.log('Creating a new user account is an error', err);
         },
         () => {
-          console.log('Creating a new user account complete.');
           swal.fire({
             title: 'สำเร็จ',
             text: 'สร้างเมนูใหม่เรียบร้อยแล้ว',

@@ -148,7 +148,7 @@ export class UsersService {
       username: username,
       password: password
     };
-    console.log('data for createing', dataUser);
+    //console.log('data for createing', dataUser);
     return this.http.post(
       this.host + this.partUsers,
       JSON.stringify(dataUser),

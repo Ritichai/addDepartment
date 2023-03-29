@@ -121,7 +121,6 @@ export class MemberLayoutComponent implements OnInit {
   // opened: boolean = true;
 
   gotoPage(menuLink:any,subItemLink:any){
-    console.log("ssss",menuLink,subItemLink);
     this.router.navigate([menuLink,subItemLink]);
   }
 
