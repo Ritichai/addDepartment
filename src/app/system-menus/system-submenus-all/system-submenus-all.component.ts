@@ -13,16 +13,13 @@ import { SystemMenusService } from "./../../services/system-menus.service";
 export class SystemSubmenusAllComponent implements OnInit {
 
   columnsSubSystemMenuTable: string[] = [
-    "sub_parent_id",
+    //"sub_parent_id",
     "sub_sequence",
     "sub_path",
     "sub_title",
     "sub_ab",
     "sub_enabled"
   ];
-
-
-  menu_path:any;
   id:string
 
   dataSourceOfSubSystemMenuTable = new MatTableDataSource<SystemSubMenuModel>();
@@ -34,9 +31,7 @@ export class SystemSubmenusAllComponent implements OnInit {
     private systemMenusService: SystemMenusService,
     private activeRoute : ActivatedRoute
   ) {
-    this.menu_path = this.activeRoute.snapshot.queryParams['menu_path'];
     this['id']= this.activeRoute.snapshot.params['id'];
-
   }
 
   ngOnInit(): void {

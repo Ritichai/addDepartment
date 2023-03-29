@@ -23,8 +23,6 @@ export class EditSystemMenusComponent implements OnInit {
 
   menu_id: any;
   menu_info: any;
-
-
   form: FormGroup = new FormGroup({
     menu_path: new FormControl(''),
     menu_title: new FormControl(''),
@@ -88,7 +86,10 @@ export class EditSystemMenusComponent implements OnInit {
   }
 
   editSystemMenu() {
-    console.log('form55', this.form.value);
+    this.submitted = true;
+    if (this.form.invalid) {
+      return;
+    }
     this.systemMenusService
       .editSystemMenus(
         this.form.value['menu_path'],
@@ -98,23 +99,21 @@ export class EditSystemMenusComponent implements OnInit {
         this.form.value['menu_collapse'],
         this.menu_id
       )
-      .subscribe(
-        (response) => {
-          console.log(response);
-        },
-        (err) => {
-        },
-        () => {
-          swal.fire({
-            title: 'สำเร็จ',
-            text: 'แก้ไขเมนูเรียบร้อยแล้ว',
-            icon: 'success',
-            confirmButtonAriaLabel: 'OK',
-          }).then(() => {
-            this.router.navigateByUrl('/system-menus/menu-setting');
-          });
-        }
-      );
+      .subscribe((response) => {
+        //console.log(response);
+      }, (err) => {
+        console.log('Creating a new user account is an error', err);
+      }, () => {
+        console.log("Creating a new user account complete.");
+        swal.fire({
+          title: 'สำเร็จ',
+          text: 'แก้ไขข้อมูลเมนูเรียบร้อยแล้ว',
+          icon: 'success',
+          confirmButtonAriaLabel: 'OK'
+        }).then(() => {
+          this.router.navigateByUrl('/system-menus/menu-setting')
+        })
+      })
   }
   get f(): { [key: string]: AbstractControl } {
     return this.form.controls;

@@ -4,32 +4,57 @@
       <div class="col-md-8 mx-auto">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">Create New Sub Menu ID {{sub_parent_id}}</h3>
+            <h3 class="card-title">สร้างซัพเมนู</h3>
           </div>
           <div class="card-body">
-            <form #createNewMenuSub="ngForm" (onSubmit)="createSystemSubMenus(createNewMenuSub)">
-              <div class="form-group row">
+            <form [formGroup]="form">
+              <div class="row">
                 <div class="col-sm-6 col-md-4">
-                  <label for="menu_path" class="form-label">sub_sequence</label>
-                  <input type="text" class="form-control" id="sub_sequence" name="sub_sequence" [(ngModel)]="sub_sequence">
+                  <div class="form-group">
+                    <label>ลำดับ</label>
+                    <input type="text" formControlName="sub_sequence" class="form-control" name="sub_sequence" id="sub_sequence"
+                    [ngClass]="{ 'is-invalid': submitted && f['sub_sequence'].errors }" />
+                  <div *ngIf="submitted && f['sub_sequence'].errors" class="invalid-feedback">
+                    <div *ngIf="f['sub_sequence'].errors['required']">กรุณากรอกลำดับ</div>
+                    <div *ngIf="f['sub_sequence'].errors['pattern']">ลำดับต้องการเป็นตัวเลย 0-9เท่านั้น</div>
+                  </div>
+                  </div>
                 </div>
                 <div class="col-sm-6 col-md-4">
-                  <label for="menu_path" class="form-label">sub_path</label>
-                  <input type="text" class="form-control" id="sub_path" name="sub_path" [(ngModel)]="sub_path">
+                  <div class="form-group">
+                    <label>เมนูย่อย Path</label>
+                    <input type="text" formControlName="sub_path" class="form-control" name="sub_path" id="sub_path"
+                      [ngClass]="{ 'is-invalid': submitted && f['sub_path'].errors }" />
+                    <div *ngIf="submitted && f['sub_path'].errors" class="invalid-feedback">
+                      <div *ngIf="f['sub_path'].errors['required']">กรุณากรอกเมนูย่อย Path</div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="form-group row">
+              <div class="row">
                 <div class="col-sm-4 col-md-4">
-                  <label for="menu_path" class="form-label">sub_title</label>
-                  <input type="text" class="form-control" id="sub_title" name="sub_title" [(ngModel)]="sub_title">
+                  <div class="form-group">
+                    <label>เมนู Path</label>
+                    <input type="text" formControlName="sub_title" class="form-control" name="sub_title" id="sub_title"
+                      [ngClass]="{ 'is-invalid': submitted && f['sub_title'].errors }" />
+                    <div *ngIf="submitted && f['sub_title'].errors" class="invalid-feedback">
+                      <div *ngIf="f['sub_title'].errors['required']">กรุณากรอก Path ของเมนูย่อย</div>
+                    </div>
+                  </div>
                 </div>
                 <div class="col-sm-4 col-md-4">
-                  <label for="menu_path" class="form-label">sub_ab</label>
-                  <input type="text" class="form-control" id="sub_ab" name="sub_ab" [(ngModel)]="sub_ab">
+
+                  <div class="form-group">
+                    <label>ตัวย่อ</label>
+                    <input type="text" formControlName="sub_ab" class="form-control" name="sub_ab" id="sub_ab" />
+                  </div>
                 </div>
                 <div class="col-sm-4 col-md-4">
-                  <label for="menu_path" class="form-label">sub_type</label>
-                  <input type="text" class="form-control" id="sub_type" name="sub_type" [(ngModel)]="sub_type">
+
+                  <div class="form-group">
+                    <label>ประเภท</label>
+                    <input type="text" formControlName="sub_type" class="form-control" name="sub_type" id="sub_type" />
+                  </div>
                 </div>
               </div>
               <hr>
@@ -37,8 +62,7 @@
                 <span>เมื่อตรวจสอบข้อมูลแล้วเห็นว่าถูกต้อง ให้กดปุ่มบันทึก</span>
                 <div>
                   <button (click)="cancel()" class="btn btn-danger">ยกเลิก</button>
-                  <button type="submit" (click)="createSystemSubMenus(createNewMenuSub)"
-                    class="btn btn-primary">บันทึก</button>
+                  <button type="submit" (click)="createSystemSubMenus()" class="btn btn-primary">บันทึก</button>
                 </div>
               </div>
             </form>
