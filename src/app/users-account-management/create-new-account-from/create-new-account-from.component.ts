@@ -53,8 +53,7 @@ export class CreateNewAccountFromComponent {
         Validators.minLength(10),
         Validators.pattern('[0-9]*')]],
       username: ['', [Validators.required,Validators.minLength(8)]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-      usernameExists: [false],
+      password: ['', [Validators.required, Validators.minLength(8)]]
     });
 
   }
@@ -121,10 +120,6 @@ export class CreateNewAccountFromComponent {
         },
         (err) => {
           console.log('Creating a new user account is an error', err);
-          if (err.status == 409 && err.error.message == 'Duplicate Username') {
-            this.form.controls['username'].setErrors({ 'usernameExists': true });
-            this.form.patchValue({ usernameExists: true });
-          }
         },
         () => {
           console.log('Creating a new user account complete.');

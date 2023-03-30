@@ -23,7 +23,7 @@
                       class="form-control"
                       name="titleName"
                       id="titleName"
-                      [ngClass]="{ 'is-invalid': submitted && f['titleName'].errors }"
+                      [ngClass]="{ 'is-invalid': submitted && f['titleName'].errors,'is-valid': submitted && !f['titleName'].errors  }"
                     />
                     <div *ngIf="submitted && f['titleName'].errors" class="invalid-feedback">
                       <div *ngIf="f['titleName'].errors['required']">กรุณากรอกคำนำหน้า</div>
