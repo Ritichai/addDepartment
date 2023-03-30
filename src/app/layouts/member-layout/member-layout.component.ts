@@ -70,7 +70,7 @@ export class MemberLayoutComponent implements OnInit {
 
   ngOnInit() {
     this.userSidebarService.getMySidebarMenu().subscribe((res: any) => {
-     // console.log(res);
+      console.log(res);
       if (res.status == 200) {
         this.menuItems = res.body.data
         .map((item: any) => {
@@ -102,7 +102,7 @@ export class MemberLayoutComponent implements OnInit {
     console.log();
     this.router.events.subscribe((val: any) => {
       if (val['url'] != undefined) {
-        console.log(val['url'].split('/')[1]);
+        //console.log(val['url'].split('/')[1]);
       }
     });
     this.userService.getMyUserinfo().subscribe((response: any) => {

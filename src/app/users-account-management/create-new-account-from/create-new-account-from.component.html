@@ -162,7 +162,7 @@
               <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
                 <div *ngIf="f['username'].errors['required']">กรุณากรอก Username</div>
                 <div *ngIf="f['username'].errors['minlength']">กรุณากรอก Username อย่างน้อย 8 ตัวอักษร</div>
-
+                <div *ngIf="form.controls['username'].errors?.['usernameExists']">Username นี้มีในระบบแล้ว</div>
               </div>
             </div>
                 </div>
