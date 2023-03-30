@@ -1,4 +1,4 @@
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup, FormControl, FormBuilder, ValidatorFn, Validators, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UsersService } from './../../services/user.service';
 import { Component } from '@angular/core';
@@ -12,11 +12,40 @@ export class EditProfileComponent {
   username: string = '';
   id: number = 0;
   dataUsers: any[] = []
+
+  form: FormGroup = new FormGroup({
+    username: new FormControl(''),
+    titlename: new FormControl(''),
+    firstname: new FormControl(''),
+    lastname: new FormControl(''),
+    employee_code: new FormControl(''),
+    employee_position: new FormControl(''),
+    email: new FormControl(''),
+    phone_number: new FormControl(''),
+  });
+  submitted = false;
+
   constructor(
     private userService: UsersService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
-  ) {}
+    private activatedRoute: ActivatedRoute,
+    private formBuilder: FormBuilder
+  ) {
+    this.form = this.formBuilder.group({
+      username: ['', [Validators.required,Validators.minLength(8)]],
+      titlename: ['', [Validators.required]],
+      firstname: ['', [Validators.required]],
+      lastname: ['', [Validators.required]],
+      employee_code: ['', [Validators.required]],
+      employee_position: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      phone_number: ['', [
+        Validators.required,
+        Validators.minLength(10),
+        Validators.pattern('[0-9]*')]],
+
+    });
+  }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params) => {
@@ -29,19 +58,22 @@ export class EditProfileComponent {
       console.log(this.dataUsers);
     });
   }
-  editMyProfile(form: NgForm) {
-     console.log(form.value)
+  editMyProfile() {
+     this.submitted = true;
+     if (this.form.invalid) {
+       return;
+     }
     this.userService
       .editUserAccountInfoByID(
         this.id,
-        form.value['username'],
-        form.value['titlename'],
-        form.value['firstname'],
-        form.value['lastname'],
-        form.value['email'],
-        form.value['phone_number'],
-        form.value['employee_code'],
-        form.value['employee_position'],
+        this.form.value['username'],
+        this.form.value['titlename'],
+        this.form.value['firstname'],
+        this.form.value['lastname'],
+        this.form.value['email'],
+        this.form.value['phone_number'],
+        this.form.value['employee_code'],
+        this.form.value['employee_position'],
       )
       .subscribe(
         (response: any) => {},
@@ -62,5 +94,8 @@ export class EditProfileComponent {
             });
         }
       );
+  }
+  get f(): { [key: string]: AbstractControl } {
+    return this.form.controls;
   }
 }
