@@ -1,0 +1,80 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8 ml-auto mr-auto">
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <h3 class="card-title">ฟอร์มสำหรับสร้างสินค้าใหม่</h3>
+            <p class="card-contegory">
+              กรุณาระบุข้อมูลต่าง ๆ ให้ครบถ้วน และตรวจสอบความถูกต้องก่อนกดปุ่มสร้างสินค้า
+            </p>
+          </div>
+          <div class="card-body">
+            <form #createNewProductForm="ngForm" (submit)="addNewProduct(createNewProductForm)">
+              <div class="form-group row mt-3">
+                <div class="col-md-4 col-6">
+                  <label for="category" class="col-form-label">Category</label>
+                  <input type="text" class="form-control" name="category" ngModel id="category">
+                </div>
+                <div class="col-md-4 col-6">
+                  <label for="group" class="col-form-label">Group</label>
+                  <input type="text" class="form-control" name="group" ngModel id="group">
+                </div>
+                <div class="col-md-4 col-6">
+                  <label for="product_code" class="col-form-label">Product Code</label>
+                  <input type="text" class="form-control" name="product_code" ngModel id="product_code">
+                </div>
+              </div>
+
+              <div class="form-group row mt-3">
+                <div class="col-md-4 col-6">
+                  <label for="trade_name" class="col-form-label">Trade Name</label>
+                  <input type="text" class="form-control" name="trade_name" ngModel id="trade_name">
+                </div>
+                <div class="col-md-4 col-6">
+                  <label for="common_name" class="col-form-label">Common Name</label>
+                  <input type="text" class="form-control" name="common_name" ngModel id="common_name">
+                </div>
+                <div class="col-md-4 col-6">
+                  <label for="packing" class="col-form-label">Packing</label>
+                  <input type="text" class="form-control" name="packing" ngModel id="packing">
+                </div>
+              </div>
+
+              <div class="form-group row mt-3">
+                <div class="col-md-4 col-6">
+                  <label for="size" class="col-form-label">Size</label>
+                  <input type="text" class="form-control" name="size" ngModel id="size">
+                </div>
+                <div class="col-md-4 col-6">
+                  <label for="pack_qty" class="col-form-label">Pack Qty</label>
+                  <input type="text" class="form-control" name="pack_qty" ngModel id="pack_qty">
+                </div>
+                <div class="col-md-4 col-6">
+                  <label for="product_unit" class="col-form-label">Product Unit</label>
+                  <input type="text" class="form-control" name="product_unit" ngModel id="product_unit">
+                </div>
+              </div>
+
+              <div class="form-group row mt-3">
+                <div class="col-md-4 col-6">
+                  <label for="price" class="col-form-label">Price</label>
+                  <input type="number" class="form-control" name="price" ngModel id="price">
+                </div>
+              </div>
+
+              <hr>
+              <div class="d-flex justify-content-between">
+                <span>เมื่อตรวจสอบข้อมูลแล้วเห็นว่าถูกต้อง ให้กดปุ่มสร้างสินค้า</span>
+                <div>
+                  <button type="button" (click)="cancel()" class="btn btn-danger">ยกเลิก</button>
+                  <button type="submit" class="btn btn-primary">สร้างสินค้า</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
