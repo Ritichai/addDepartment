@@ -8,8 +8,8 @@
                       <p class="card-category">
                           คุณสามารถจัดการรายการอุปกรณ์ในระบบได้ที่หน้านี้
                       </p>
-                      <div class="card-heder-btn col-md-12">
-                          <button mat-raised-button style="margin-right: .3em" mat-min-fab
+                      <div class="card-header-btn col-md-12">
+                          <button mat-raised-button style="margin-right: .3em" mat-mini-fab
                                   (click)="gotoCreateNewDevicePage()"
                                   class="btn btn-info btn-round btn-fab">
                               <i class="material-icons">add</i>
@@ -73,6 +73,7 @@
                               <td mat-cell *matCellDef="let element"> {{ dateFormat(element.end_date) }} </td>
                           </ng-container>
 
+                          <!-- Edit Button Column -->
                           <ng-container matColumnDef="edit">
                               <th mat-header-cell *matHeaderCellDef mat-sort-header>Edit</th>
                               <td mat-cell *matCellDef="let element">
