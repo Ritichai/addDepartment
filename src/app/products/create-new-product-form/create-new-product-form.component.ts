@@ -9,8 +9,8 @@ import { NgForm } from "@angular/forms";
   templateUrl: './create-new-product-form.component.html',
   styleUrls: ['./create-new-product-form.component.scss']
 })
-export class CreateNewProductFormComponent implements OnInit {
 
+export class CreateNewProductFormComponent implements OnInit {
   constructor(
     private productService: ProductsService,
     private router: Router
