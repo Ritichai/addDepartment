@@ -1,0 +1,50 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8 ml-auto mr-auto">
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <h3 class="card-title">ฟอร์มสำหรับสร้างลูกค้าใหม่</h3>
+            <p class="card-contegory">
+              กรุณาระบุข้อมูลต่าง ๆ ให้ครบถ้วน และตรวจสอบความถูกต้องก่อนกดปุ่มสร้างลูกค้า
+            </p>
+          </div>
+          <div class="card-body">
+            <form #createNewCustomerForm="ngForm" (submit)="addNewCustomer(createNewCustomerForm)">
+              <div class="form-group row mt-3">
+                <div class="col-md-4 col-6">
+                  <label for="customer_code" class="col-form-label">customer code</label>
+                  <input type="text" class="form-control" name="customer_code" ngModel id="customer_code">
+                </div>
+                <div class="col-md-4 col-6">
+                  <label for="customer_name" class="col-form-label">customer name</label>
+                  <input type="text" class="form-control" name="customer_name" ngModel id="customer_name">
+                </div>
+                <div class="col-md-4 col-6">
+                  <label for="customer_province" class="col-form-label">customer province</label>
+                  <input type="text" class="form-control" name="customer_province" ngModel id="customer_province">
+                </div>
+              </div>
+
+              <div class="form-group row mt-3">
+                <div class="col-md-4 col-6">
+                  <label for="customer_group" class="col-form-label">customer group</label>
+                  <input type="text" class="form-control" name="customer_group" ngModel id="customer_group">
+                </div>
+              </div>
+
+              <hr>
+              <div class="d-flex justify-content-between">
+                <span>เมื่อตรวจสอบข้อมูลแล้วเห็นว่าถูกต้อง ให้กดปุ่มสร้างลูกค้า</span>
+                <div>
+                  <button type="button" (click)="cancel()" class="btn btn-danger">ยกเลิก</button>
+                  <button type="submit" class="btn btn-primary">สร้างลูกค้า</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

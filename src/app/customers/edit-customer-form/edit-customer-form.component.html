@@ -1,0 +1,52 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8 ml-auto mr-auto">
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <h3 class="card-title">
+              ฟอร์มสำหรับแก้ไขข้อมูลลูกค้า
+            </h3>
+            <p class="card-contegory">
+              ที่แบบฟอร์มจะปรากฎข้อมูลเดิม ให้แก้ไขหัวข้อต่าง ๆ และตรวจสอบความถูกต้องก่อนกดบันทึก
+            </p>
+          </div>
+          <div class="card-body">
+            <form #editProduct="ngForm" (ngSubmit)="onSubmit(editProduct)">
+              <div class="form-group row mt-3">
+                <div class="col-md-4 col-6">
+                  <label for="customer_code" class="col-form-label">customer code</label>
+                  <input type="text" class="form-control" name="customer_code" ngModel id="customer_code" [(ngModel)]="customerInfo.customer_code">
+                </div>
+                <div class="col-md-4 col-6">
+                  <label for="customer_name" class="col-form-label">customer name</label>
+                  <input type="text" class="form-control" name="customer_name" ngModel id="customer_name" [(ngModel)]="customerInfo.customer_name">
+                </div>
+                <div class="col-md-4 col-6">
+                  <label for="customer_province" class="col-form-label">customer province</label>
+                  <input type="text" class="form-control" name="customer_province" ngModel id="customer_province" [(ngModel)]="customerInfo.customer_province">
+                </div>
+              </div>
+
+              <div class="form-group row mt-3">
+                <div class="col-md-4 col-6">
+                  <label for="customer_group" class="col-form-label">customer group</label>
+                  <input type="text" class="form-control" name="customer_group" ngModel id="customer_group" [(ngModel)]="customerInfo.customer_group">
+                </div>
+              </div>
+
+              <hr>
+              <div class="d-flex justify-content-between">
+                <span>เมื่อตรวจสอบข้อมูลแล้วเห็นว่าถูกต้อง ให้กดปุ่มสร้างลูกค้า</span>
+                <div>
+                  <button (click)="cancel()" class="btn btn-danger" type="button">ยกเลิก</button>
+                  <button type="submit" class="btn btn-primary">แก้ไขข้อมูล</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
