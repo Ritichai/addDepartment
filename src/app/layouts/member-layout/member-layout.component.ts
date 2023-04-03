@@ -4,6 +4,7 @@ import { MatDrawer } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/user.service';
 import { UserSidebarService } from '../../services/user-sidebar.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-member-layout',
@@ -12,6 +13,7 @@ import { UserSidebarService } from '../../services/user-sidebar.service';
 })
 export class MemberLayoutComponent implements OnInit {
   dataUsers: any[] = []
+  imgUsers:any;
   showFiller = false;
   options = this._formBuilder.group({
     bottom: 0,
@@ -64,6 +66,7 @@ export class MemberLayoutComponent implements OnInit {
     private router: Router,
     private userSidebarService: UserSidebarService,
     private userService: UsersService,
+    private sanitizer: DomSanitizer,
   ) {
 
   }
@@ -110,6 +113,15 @@ export class MemberLayoutComponent implements OnInit {
       this.dataUsers.push(data);
       console.log(this.dataUsers);
     });
+    this.userService.getMyImg().subscribe(
+      (response: any) => {
+        this.imgUsers = response.image;
+        //console.log(this.imgUsers);
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
   }
 
   // @Input() opened: boolean = true;
@@ -124,4 +136,7 @@ export class MemberLayoutComponent implements OnInit {
     this.router.navigate([menuLink,subItemLink]);
   }
 
+  getImages(data: any) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'+data);
+}
 }
