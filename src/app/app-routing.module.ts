@@ -53,27 +53,6 @@ const routes: Routes = [
     ]
   },
   {
-    path: '',
-    component: MemberLayoutComponent,
-    canActivate: [
-      MemberGuard
-    ],
-    children: [
-      {
-        path: '',
-        loadChildren: () => import('./user/user.module').then(m => m.UserModule)
-      },
-      {
-        path: 'users-account-management',
-        loadChildren: () => import('./users-account-management/users-account-management.module').then(m => m.UsersAccountManagementModule)
-      },
-      {
-        path:'user-profile',
-        loadChildren: () => import('./user-profile/user-profile.module').then(m => m.UserProfileModule)
-      }
-    ]
-  },
-  {
     path: 'page-not-found',
     component: PageNotFoundComponent
   },

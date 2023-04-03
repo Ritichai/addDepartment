@@ -1,17 +1,16 @@
-<div class="d-flex justify-content-end align-items-center h-100 bg-login-page">
+<div class="d-flex justify-content-center align-items-center h-100 bg-login-page">
   <div class="card-login d-flex justify-content-center">
     
     <form [formGroup]="loginForm" (ngSubmit)="login()" class="example-form">
       <div class="row">
         <div class="col-12 text-center">
-          <p class="h1">
-            <mat-icon class="">lock_person</mat-icon>
-          </p>
-          <p class="h1 d-block mb-5">Login Form</p>
+          <img src="../../../assets/images/icpl-logo.png" alt="">
+          <p class="h3 mt-4 d-block mb-4">Warehouse Management System</p>
         </div>
       </div>
       <div class="row">
         <div class="col-12">
+          <label class="mb-2 text-secondary d-flex justify-content-center">Please login for start</label>
           <mat-form-field>
             <mat-icon matPrefix>person</mat-icon>
             <input type="text" (keydown)="inputUsername()" matInput autocomplete="off" formControlName="username" placeholder="Username">
