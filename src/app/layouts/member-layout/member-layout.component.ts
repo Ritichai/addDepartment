@@ -14,6 +14,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class MemberLayoutComponent implements OnInit {
   dataUsers: any[] = []
   imgUsers:any;
+  imgStatus: boolean = false;
   showFiller = false;
   options = this._formBuilder.group({
     bottom: 0,
@@ -115,8 +116,14 @@ export class MemberLayoutComponent implements OnInit {
     });
     this.userService.getMyImg().subscribe(
       (response: any) => {
-        this.imgUsers = response.image;
-        //console.log(this.imgUsers);
+        console.log(response);
+        if(response.message === "Image not found"){
+          this.imgUsers = "../../../assets/images/default.jpg";
+        }else if(response.message == "Image found"){
+          this.imgStatus = true;
+          this.imgUsers = response.image;
+          console.log(this.imgUsers);
+        }
       },
       (error: any) => {
         console.log(error);

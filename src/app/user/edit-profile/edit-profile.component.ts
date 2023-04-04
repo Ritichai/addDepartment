@@ -9,10 +9,12 @@ import swal from 'sweetalert2';
   styleUrls: ['./edit-profile.component.scss'],
 })
 export class EditProfileComponent {
+  file: any;
+  filename = '';
   username: string = '';
   id: number = 0;
   dataUsers: any[] = []
-
+  imageUrl = new Map();
   form: FormGroup = new FormGroup({
     username: new FormControl(''),
     titlename: new FormControl(''),
@@ -58,6 +60,7 @@ export class EditProfileComponent {
       console.log(this.dataUsers);
     });
   }
+
   editMyProfile() {
      this.submitted = true;
      if (this.form.invalid) {
@@ -97,5 +100,24 @@ export class EditProfileComponent {
   }
   get f(): { [key: string]: AbstractControl } {
     return this.form.controls;
+  }
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.file = file;
+      this.filename = file.name || '';
+      console.log(this.file);
+    }
+  }
+  getImgUrl(file: File): any {
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      this.imageUrl.set(file, e.target.result);
+    };
+    if (!this.imageUrl.has(file)) {
+      reader.readAsDataURL(file);
+    } else {
+      return this.imageUrl.get(file);
+    }
   }
 }
