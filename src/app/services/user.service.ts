@@ -1,3 +1,4 @@
+import { HttpRequest } from '@angular/common/http';
 // import { UsersLogComponent } from './../users/users-log/users-log.component';
 import { Observable } from 'rxjs';
 import { Injectable } from "@angular/core";
@@ -288,5 +289,27 @@ export class UsersService {
         .set("Content-Type", "application/json"),
         observe: "response",
     });
+  }
+
+  // editUserPictureByToken(file : File) {
+  //   let formData = new FormData();
+  //   formData.append('image', file, file.name);
+  //   return this.http.put(this.host + this.partUsers + "change-picture",formData,{
+  //     headers: new HttpHeaders()
+  //       .set("Authorization", "Bearer " + localStorage.getItem("token"))
+  //       .set("Content-Type", "application/json"),
+  //       observe: "response",
+  //   });
+  // }
+
+  editUserPictureByToken(file: File) {
+    const formData = new FormData();
+    formData.append('image',file, file.name);
+    const upload = new HttpRequest('PUT', this.host + this.partUsers+'change-picture', formData, {
+      headers: new HttpHeaders()
+      .append('Authorization', 'Bearer ' + localStorage.getItem("token")),
+      reportProgress: true
+    });
+    return this.http.request(upload);
   }
 }

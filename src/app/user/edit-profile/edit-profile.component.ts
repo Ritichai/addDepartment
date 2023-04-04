@@ -1,3 +1,4 @@
+import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { NgForm, FormGroup, FormControl, FormBuilder, ValidatorFn, Validators, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UsersService } from './../../services/user.service';
@@ -15,6 +16,7 @@ export class EditProfileComponent {
   id: number = 0;
   dataUsers: any[] = []
   imageUrl = new Map();
+  progress = 0;
   form: FormGroup = new FormGroup({
     username: new FormControl(''),
     titlename: new FormControl(''),
@@ -120,4 +122,59 @@ export class EditProfileComponent {
       return this.imageUrl.get(file);
     }
   }
+  uploadFile(){
+    this.userService.editUserPictureByToken(this.file).subscribe((event: any) => {
+      if (event.status === 200) {
+        this.uploadFail(event.body.message);
+      } else {
+        if (event.type === HttpEventType.UploadProgress) {
+          this.progress = Math.round((100 * event.loaded) / event.total);
+        } else if (event instanceof HttpResponse) {
+          this.uploadSuccess(event.body.message);
+        }
+      }
+    });
+  }
+
+  checkInputSelect() {
+    if (this.file) {
+      this.uploadFile();
+    } else {
+      swal.fire({
+        title: 'กรุณาเลือกไฟล์',
+        icon: 'warning',
+        confirmButtonText: 'ปิด',
+      });
+    }
+  }
+
+  clearFileInput() {
+    const fileInput = document.querySelector(
+      'input[type="file"]'
+    ) as HTMLInputElement;
+    fileInput.value = '';
+  }
+  async uploadSuccess(data: any) {
+    await swal.fire({
+      title: 'บันทึกสำเร็จ!',
+      text: data,
+      icon: 'success',
+      confirmButtonText: 'ปิด',
+    });
+    this.file = null;
+    this.progress = 0;
+    this.clearFileInput();
+    this.router.navigateByUrl('user-profile');
+  }
+
+  uploadFail(data: any) {
+    swal.fire({
+      title: 'บันทึกไม่สำเร็จ!',
+      text: data,
+      icon: 'error',
+      confirmButtonText: 'ปิด',
+    });
+    this.progress = 0;
+  }
 }
+
