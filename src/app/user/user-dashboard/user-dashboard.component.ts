@@ -22,27 +22,15 @@ export class UserDashboardComponent {
     this.usersService.getMyUserinfo().subscribe((response: any) => {
       const data = response.data;
       this.dataUsers.push(data);
-      console.log(this.dataUsers);
     });
 
-    // this.usersService.getMyImg().subscribe(
-    //   (response: any) => {
-    //     this.imgUsers = response.image;
-    //     //console.log(this.imgUsers);
-    //   },
-    //   (error: any) => {
-    //     console.log(error);
-    //   }
-    // );
     this.usersService.getMyImg().subscribe(
       (response: any) => {
-        console.log(response);
         if(response.message === "Image not found"){
           this.imgUsers = "../../../assets/images/default.jpg";
         }else if(response.message == "Image found"){
           this.imgStatus = true;
           this.imgUsers = response.image;
-          console.log(this.imgUsers);
         }
       },
       (error: any) => {

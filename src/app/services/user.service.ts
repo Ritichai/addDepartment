@@ -208,6 +208,13 @@ export class UsersService {
         .set("Content-Type", "application/json"),
     });
   }
+  getImgById(id : number) {
+    return this.http.get(this.host + this.partUsers + "picture/" + id, {
+      headers: new HttpHeaders()
+        .set("Authorization", 'Bearer ' + localStorage.getItem("token"))
+        .set("Content-Type", "application/json"),
+    });
+  }
 
   getUserInfoById(id : number) {
     return this.http.get(this.host + this.partUsers + id, {

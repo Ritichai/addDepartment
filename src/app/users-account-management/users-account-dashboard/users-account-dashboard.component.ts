@@ -15,7 +15,7 @@ declare var $: any;
   styleUrls: ['./users-account-dashboard.component.scss']
 })
 export class UserAccountsDashboardComponent implements OnInit {
-  columnsUserAccountsManagementTable: string[] = ['username', 'firstname', 'surname', 'employee_code', 'employee_position', 'user_role', 'reset_password', 'edit', 'remove', 'info'];
+  columnsUserAccountsManagementTable: string[] = ['username', 'firstname', 'lastname', 'employee_code', 'employee_position', 'user_role', 'reset_password', 'edit', 'remove', 'info'];
   dataSourceOfUserAccountsManagementTable = new MatTableDataSource<UserAccountsManagementModel>();
   @ViewChild(MatPaginator, {static: true}) MatPaginator!: MatPaginator;
   @ViewChild(MatSort, {static: true}) MatSort!: MatSort;
@@ -31,11 +31,10 @@ export class UserAccountsDashboardComponent implements OnInit {
     this.dataSourceOfUserAccountsManagementTable.data = [];
 
     this.userService.getUsersAll().subscribe(response => {
-      console.log(response);
       if(response['status'] == 200) {
         this.dataSourceOfUserAccountsManagementTable.data = JSON.parse(JSON.stringify(response.body)).map((m:any) => {
           m['firstname'] = m['titlename'] + m['firstname'];
-          m['surname'] = m['lastname'];
+          m['lastname'] = m['lastname'];
           m['employee_code'] = m['employee_code'];
           m['user_role'] = m['role_id'];
           return m;
@@ -111,7 +110,7 @@ export interface UserAccountsManagementModel {
   id: number;
   username: string;
   firstname: string;
-  surname: string;
+  lastname: string;
   employee_code: number;
   employee_position: string;
   user_role: string;

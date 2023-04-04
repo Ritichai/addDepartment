@@ -74,7 +74,6 @@ export class MemberLayoutComponent implements OnInit {
 
   ngOnInit() {
     this.userSidebarService.getMySidebarMenu().subscribe((res: any) => {
-      console.log(res);
       if (res.status == 200) {
         this.menuItems = res.body.data
         .map((item: any) => {
@@ -94,16 +93,14 @@ export class MemberLayoutComponent implements OnInit {
             })
           }
         });
-        console.log(this.menuItems);
       }
     },
       (err: any) => {
         console.log(err);
       },
       () => {
-        console.log('complete');
       });
-    console.log();
+
     this.router.events.subscribe((val: any) => {
       if (val['url'] != undefined) {
         //console.log(val['url'].split('/')[1]);
@@ -112,21 +109,18 @@ export class MemberLayoutComponent implements OnInit {
     this.userService.getMyUserinfo().subscribe((response: any) => {
       const data = response.data;
       this.dataUsers.push(data);
-      console.log(this.dataUsers);
     });
     this.userService.getMyImg().subscribe(
       (response: any) => {
-        console.log(response);
         if(response.message === "Image not found"){
           this.imgUsers = "../../../assets/images/default.jpg";
         }else if(response.message == "Image found"){
           this.imgStatus = true;
           this.imgUsers = response.image;
-          console.log(this.imgUsers);
         }
       },
       (error: any) => {
-        console.log(error);
+
       }
     );
   }
