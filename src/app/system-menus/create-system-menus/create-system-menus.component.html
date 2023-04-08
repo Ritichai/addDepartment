@@ -52,11 +52,25 @@
               </div>
 
               <div class="row mt-3">
-                <div class="col-md-6">
+                <!-- <div class="col-md-6">
                   <div class="form-group">
                     <label>ไอคอน</label>
                     <input type="text" formControlName="menu_icontype" class="form-control" name="menu_icontype"
                       id="menu_icontype" [ngClass]="{ 'is-invalid': submitted && f['menu_icontype'].errors }" />
+                    <div *ngIf="submitted && f['menu_icontype'].errors" class="invalid-feedback">
+                      <div *ngIf="f['menu_icontype'].errors['required']">กรุณากรอกชื่อไอคอน</div>
+                    </div>
+                  </div>
+                </div> -->
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>ไอคอน</label>
+                    <mat-select formControlName="menu_icontype" name="menu_icontype" id="menu_icontype"
+                      class="form-control" [ngClass]="{ 'is-invalid': submitted && f['menu_icontype'].errors }">
+                      <mat-option value="">None</mat-option>
+                      <mat-option *ngFor="let menu_type of IconInSelect" [value]="menu_type.icon_name">
+                        <i class="material-icons">{{menu_type.icon_name }}</i></mat-option>
+                    </mat-select>
                     <div *ngIf="submitted && f['menu_icontype'].errors" class="invalid-feedback">
                       <div *ngIf="f['menu_icontype'].errors['required']">กรุณากรอกชื่อไอคอน</div>
                     </div>

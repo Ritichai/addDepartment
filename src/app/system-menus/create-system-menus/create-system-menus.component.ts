@@ -4,6 +4,7 @@ import { SystemMenusService } from "./../../services/system-menus.service";
 import { Router } from "@angular/router";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, AbstractControl } from "@angular/forms";
+import {icons} from '../../../assets/iconfile/material_Symbols';
 @Component({
   selector: "app-create-system-menus",
   templateUrl: "./create-system-menus.component.html",
@@ -19,7 +20,7 @@ export class CreateSystemMenusComponent implements OnInit {
     menu_collapse: new FormControl('')
   });
   submitted = false;
-
+  IconInSelect = icons;
   menuType = [
     { id: 1, value: "link" },
     { id: 2, value: "sub" },
@@ -38,7 +39,9 @@ export class CreateSystemMenusComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(icons)
+  }
 
   cancel() {
     this.router.navigateByUrl("/system-menus/menu-setting");
