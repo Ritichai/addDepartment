@@ -1,0 +1,71 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 col-12">
+        <div class="card">
+
+          <div class="card-header card-header-primary">
+            <h3 class="card-title">การจัดการ leadtime ในระบบ</h3>
+            <p class="card-category">คุณสามารถจัดการ leadtime ในระบบได้ที่หน้านี้</p>
+            <div class="card-heder-btn col-md-12">
+
+              <button mat-raised-button style="margin-right:0" mat-min-fab class="btn btn-info btn-round btn-fab mr-2">
+                <i class="material-icons">add</i>
+              </button>
+
+              <button mat-raised-button style="margin-right:0" [disabled]="true" class="btn btn-success btn-round">
+                <i class="material-icons mr-1">arrow_downward</i> Excel
+              </button>
+            </div>
+          </div>
+
+
+          <div class="card-body">
+            <div class="table-search-input ml-auto">
+            </div>
+            <table mat-table [dataSource]="dataSourceOfLeadtimeProcessTable" matSort style="width: 100%;"
+              class="table-striped table-hover">
+
+              <ng-container matColumnDef="department">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> department </th>
+                <td mat-cell *matCellDef="let element"> {{ element.department }} </td>
+              </ng-container>
+
+              <!-- Firstname Column -->
+              <ng-container matColumnDef="process_group">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> process_group </th>
+                <td mat-cell *matCellDef="let element"> {{ element.process_group }} </td>
+              </ng-container>
+
+              <!-- Surname Column -->
+              <ng-container matColumnDef="process_name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> process_name </th>
+                <td mat-cell *matCellDef="let element"> {{ element.process_name }} </td>
+              </ng-container>
+
+
+              <ng-container matColumnDef="leadtime">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> leadtime </th>
+                <td mat-cell *matCellDef="let element">
+                  <div class="row"> <!-- เพิ่มคลาส "row" ให้กับคอลัมน์ -->
+                    <div class="col-md-8"> <!-- กำหนดขนาดคอลัมน์ 8 เท่ากับ input -->
+                      <input #leadtimeInput type="text"  [value]="getLeadtimeValue(element)" class="form-control" name="leadtime" id="leadtime" />
+                    </div>
+                    <div class="col-md-4"> <!-- กำหนดขนาดคอลัมน์ 4 เท่ากับ button -->
+                      <button (click)="editLeadLeadtimeByID(element.id, leadtimeInput.value)" class="btn btn-info btn-sm">
+                        <i class="material-icons">edit</i>
+                      </button>
+                    </div>
+                  </div>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row class="text-center" *matHeaderRowDef="columnsSystemMenuTable"></tr>
+              <tr mat-row *matRowDef="let row; columns: columnsSystemMenuTable;"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

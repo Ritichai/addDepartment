@@ -68,8 +68,11 @@
                     <mat-select formControlName="menu_icontype" name="menu_icontype" id="menu_icontype"
                       class="form-control" [ngClass]="{ 'is-invalid': submitted && f['menu_icontype'].errors }">
                       <mat-option value="">None</mat-option>
-                      <mat-option *ngFor="let menu_type of IconInSelect" [value]="menu_type.icon_name">
-                        <i class="material-icons">{{menu_type.icon_name }}</i></mat-option>
+                      <div class="icon-grid">
+                        <mat-option *ngFor="let menu_type of IconInSelect" [value]="menu_type.icon_name">
+                          <i class="material-icons icon-size">{{menu_type.icon_name }}</i>
+                        </mat-option>
+                      </div>
                     </mat-select>
                     <div *ngIf="submitted && f['menu_icontype'].errors" class="invalid-feedback">
                       <div *ngIf="f['menu_icontype'].errors['required']">กรุณากรอกชื่อไอคอน</div>
