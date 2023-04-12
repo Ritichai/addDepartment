@@ -19,5 +19,28 @@ export class HolidaysService {
       observe: 'response',
     });
   }
+  createHolidays(
+    holiday_date: string,
+    holiday_name: string,
+    holiday_year: Number
+  ) {
+    return this.http.post(
+      this.hostURL + '/holidays/createHolidays',
+      [
+        {
+          holiday_date: holiday_date,
+          holiday_name: holiday_name,
+          holiday_year: holiday_year,
+        }
+      ],
+      {
+        headers: new HttpHeaders()
+          .set('Authorization', 'Bearer ' + localStorage.getItem('token'))
+          .set('Content-Type', 'application/json'),
+        observe: 'response',
+      }
+    );
+  }
+
 
 }

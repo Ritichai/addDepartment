@@ -1,1 +1,65 @@
-<p>create-new-holidays works!</p>
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8 ml-auto mr-auto">
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <h3 class="card-title">
+              ฟอร์มสำหรับสร้าง วันหยุด
+            </h3>
+
+            <p class="card-contegory">
+              กรุณาระบุข้อมูลต่าง ๆ ให้ครบถ้วน และตรวจสอบความถูกต้องก่อนกดปุ่มบันทึก
+            </p>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="form">
+              <div class="row">
+                <div class="col-sm-4 col-md-4 col-4">
+                  <div class="form-group">
+                    <label>เลือกวันหยุด</label>
+                    <input type="date" formControlName="holiday_date" class="form-control" name="holiday_date" id="holiday_date"
+                    (change)="onDateChange($event)"
+                    [ngClass]="{ 'is-invalid': submitted && f['holiday_date'].errors }" />
+                    <div *ngIf="submitted && f['holiday_date'].errors" class="invalid-feedback">
+                      <div *ngIf="f['holiday_date'].errors['required']">กรุณากรอกเมนู holiday_date</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4 col-md-4 col-4">
+                  <div class="form-group">
+                    <label>ชื่อวันหยุด</label>
+                    <input type="text" formControlName="holiday_name" class="form-control" name="holiday_name"
+                      id="holiday_name" [ngClass]="{ 'is-invalid': submitted && f['holiday_name'].errors }" />
+                    <div *ngIf="submitted && f['holiday_name'].errors" class="invalid-feedback">
+                      <div *ngIf="f['holiday_name'].errors['required']">กรุณากรอกชื่อ holiday_name</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4 col-md-4 col-4">
+                  <div class="form-group">
+                    <label>ปีของวันหยุด</label>
+                    <input type="text" formControlName="holiday_year" class="form-control" name="holiday_year"
+                      id="holiday_year" [ngClass]="{ 'is-invalid': submitted && f['holiday_year'].errors }" />
+                    <div *ngIf="submitted && f['holiday_year'].errors" class="invalid-feedback">
+                      <div *ngIf="f['holiday_year'].errors['required']">กรุณากรอกชื่อ holiday_year</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <hr>
+              <div class="d-flex justify-content-between">
+                <span>เมื่อตรวจสอบข้อมูลแล้วเห็นว่าถูกต้อง ให้กดปุ่มสร้างบัญชีผู้ใช้</span>
+                <div>
+                  <button (click)="cancel()" class="btn btn-danger">ยกเลิก</button>
+                  <button type="submit" (click)="createHolidays()" class="btn btn-primary">สร้างวันหยุด</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

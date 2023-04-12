@@ -9,6 +9,8 @@ import { MatTableModule } from '@angular/material/table';
 import { CreateNewHolidaysComponent } from './create-new-holidays/create-new-holidays.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
@@ -24,7 +26,10 @@ import {MatIconModule} from '@angular/material/icon';
     MatPaginatorModule,
     MatTableModule,
     MatExpansionModule,
-    MatIconModule
+    MatIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule
+
   ]
 })
 export class HolidaysModule { }
