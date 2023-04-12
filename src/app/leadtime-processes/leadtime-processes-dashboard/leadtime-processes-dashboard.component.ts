@@ -13,7 +13,7 @@ import { LeadTimeService } from 'src/app/services/leadtime-processe.service';
 export class LeadtimeProcessesDashboardComponent {
 
   leadtimes: any;
-  columnsSystemMenuTable: string[] = [
+  columnsLeadtimeTable: string[] = [
     "department",
     "process_group",
     "process_name",

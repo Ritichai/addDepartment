@@ -9,13 +9,6 @@
             <p class="card-category">คุณสามารถจัดการ leadtime ในระบบได้ที่หน้านี้</p>
             <div class="card-heder-btn col-md-12">
 
-              <button mat-raised-button style="margin-right:0" mat-min-fab class="btn btn-info btn-round btn-fab mr-2">
-                <i class="material-icons">add</i>
-              </button>
-
-              <button mat-raised-button style="margin-right:0" [disabled]="true" class="btn btn-success btn-round">
-                <i class="material-icons mr-1">arrow_downward</i> Excel
-              </button>
             </div>
           </div>
 
@@ -60,8 +53,8 @@
                 </td>
               </ng-container>
 
-              <tr mat-header-row class="text-center" *matHeaderRowDef="columnsSystemMenuTable"></tr>
-              <tr mat-row *matRowDef="let row; columns: columnsSystemMenuTable;"></tr>
+              <tr mat-header-row class="text-center" *matHeaderRowDef="columnsLeadtimeTable"></tr>
+              <tr mat-row *matRowDef="let row; columns: columnsLeadtimeTable;"></tr>
             </table>
             <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
           </div>

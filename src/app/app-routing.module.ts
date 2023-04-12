@@ -61,6 +61,10 @@ const routes: Routes = [
       {
         path:'leadtime-processes',
         loadChildren: () => import('./leadtime-processes/leadtime-processes.module').then(m => m.LeadtimeProcessesModule)
+      },
+      {
+        path:'holidays',
+        loadChildren: () => import('./holidays/holidays.module').then(m => m.HolidaysModule)
       }
     ]
   },
