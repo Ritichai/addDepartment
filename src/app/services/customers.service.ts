@@ -86,4 +86,17 @@ export class CustomerService {
       observe: 'response'
     });
   }
+
+  uploadBatchCustomer(data: any[]): Observable<any> {
+    return this.http.post(
+      this.hostURL + '/customer/batch',
+      data,
+      {
+        headers: new HttpHeaders()
+          .set('Authorization', 'Bearer ' + localStorage.getItem('token'))
+          .set('Content-Type', 'application/json'),
+        observe: 'response'
+      }
+    );
+  }
 }

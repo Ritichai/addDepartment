@@ -16,6 +16,8 @@
               <button mat-raised-button style="margin-right: .3em" [disabled]="true" class="btn btn-success btn-round">
                 <i class="material-icons">arrow_downward</i> Excel
               </button>
+              <input type="file" #fileInput (change)="onFileSelected($event)" />
+              <button mat-button (click)="onUpload()">Upload</button>
             </div>
           </div>
           <div class="card-body">
