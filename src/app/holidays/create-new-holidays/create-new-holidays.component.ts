@@ -48,7 +48,15 @@ export class CreateNewHolidaysComponent {
       this.form.value['holiday_name'],
       this.form.value['holiday_year']
     ).subscribe((res: any) => {
-    if(res.status === 201) {
+      console.log(res);
+      if(res.status === 200) {
+        Swal.fire({
+          title: 'Error',
+          text: res.body.message,
+          icon: 'error',
+          confirmButtonText: 'OK',
+        });
+      }else if(res.status === 201) {
         Swal.fire({
           title: 'Success',
           text: 'สร้างวันหยุดสำเร็จ',
