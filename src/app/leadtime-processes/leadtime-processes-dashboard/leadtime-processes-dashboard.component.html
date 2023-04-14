@@ -40,22 +40,25 @@
               <ng-container matColumnDef="leadtime">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> leadtime </th>
                 <td mat-cell *matCellDef="let element">
-                  <div class="row"> <!-- เพิ่มคลาส "row" ให้กับคอลัมน์ -->
-                    <div class="col-md-8"> <!-- กำหนดขนาดคอลัมน์ 8 เท่ากับ input -->
-                      <input #leadtimeInput type="text"  [value]="getLeadtimeValue(element)" class="form-control" name="leadtime" id="leadtime" />
-                    </div>
-                    <div class="col-md-4"> <!-- กำหนดขนาดคอลัมน์ 4 เท่ากับ button -->
-                      <button (click)="editLeadLeadtimeByID(element.id, leadtimeInput.value)" class="btn btn-info btn-sm">
-                        <i class="material-icons">edit</i>
-                      </button>
+                  <div class="row">
+                    <div class="col-md-8">
+                      <input #leadtimeInput type="text" [value]="getLeadtimeValue(element)" class="form-control"
+                        name="leadtime" id="leadtime" [attr.data-id]="element.id"/>
                     </div>
                   </div>
                 </td>
               </ng-container>
 
+
               <tr mat-header-row class="text-center" *matHeaderRowDef="columnsLeadtimeTable"></tr>
               <tr mat-row *matRowDef="let row; columns: columnsLeadtimeTable;"></tr>
             </table>
+            <div class="d-flex justify-content-between mt-5">
+              <span>เมื่อตรวจสอบข้อมูลแล้วเห็นว่าถูกต้อง ให้กดปุ่มแก้ไขข้อมูล leadtime</span>
+              <div>
+                <button type="submit"  (click)="editleadtime()"class="btn btn-primary">ปุ่มแก้ไขข้อมูล leadtime</button>
+              </div>
+            </div>
             <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
           </div>
         </div>

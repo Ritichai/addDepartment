@@ -43,17 +43,15 @@ export class CreateNewHolidaysComponent {
       return;
     }
 
-
-
     this.holidayService.createHolidays(
       this.form.value['holiday_date'],
       this.form.value['holiday_name'],
       this.form.value['holiday_year']
     ).subscribe((res: any) => {
-      if (res.status === 201) {
+    if(res.status === 201) {
         Swal.fire({
           title: 'Success',
-          text: 'Holiday created successfully',
+          text: 'สร้างวันหยุดสำเร็จ',
           icon: 'success',
           confirmButtonText: 'OK',
         }).then((result) => {
@@ -64,7 +62,7 @@ export class CreateNewHolidaysComponent {
       } else {
         Swal.fire({
           title: 'Error',
-          text: 'Holiday creation failed',
+          text: 'สร้างวันหยุดไม่สำเร็จ',
           icon: 'error',
           confirmButtonText: 'OK',
         });

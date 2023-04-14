@@ -22,8 +22,17 @@ export class LeadTimeService {
     });
   }
 
-  editLeadtimeByID(id:Number, leadtime:Number) {
-    return this.http.post(this.hostURL + '/leadtime-processes/'+'edit-leadtime/' + id, { leadtime }, {
+  // editLeadtimeByID(id:Number, leadtime:Number) {
+  //   return this.http.post(this.hostURL + '/leadtime-processes/'+'edit-leadtime/' + id, { leadtime }, {
+  //     headers: new HttpHeaders()
+  //       .set('Authorization', 'Bearer ' + localStorage.getItem('token'))
+  //       .set('Content-Type', 'application/json'),
+  //     observe: 'response',
+  //   });
+  // }
+
+  editLeadtimeByID(leadtime: {id: number, leadtime: number}[]) {
+    return this.http.put(this.hostURL + '/leadtime-processes/edit-leadtime', { leadtime }, {
       headers: new HttpHeaders()
         .set('Authorization', 'Bearer ' + localStorage.getItem('token'))
         .set('Content-Type', 'application/json'),
