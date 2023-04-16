@@ -319,4 +319,14 @@ export class UsersService {
     });
     return this.http.request(upload);
   }
+  editUserPictureByID(id:number,file: File) {
+    const formData = new FormData();
+    formData.append('image',file, file.name);
+    const upload = new HttpRequest('PUT', this.host + this.partUsers+'change-picture/'+id, formData, {
+      headers: new HttpHeaders()
+      .append('Authorization', 'Bearer ' + localStorage.getItem("token")),
+      reportProgress: true
+    });
+    return this.http.request(upload);
+  }
 }

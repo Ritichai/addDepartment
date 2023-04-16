@@ -12,6 +12,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ViewUserInfoComponent } from './view-user-info/view-user-info.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ViewUserInfoComponent } from './view-user-info/view-user-info.component
     MatPaginatorModule,
     MatSortModule,
     MatTableModule,
+    MatProgressBarModule
   ],
 })
 export class UsersAccountManagementModule {}

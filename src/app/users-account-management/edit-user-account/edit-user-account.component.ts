@@ -5,6 +5,7 @@ import { NgForm, FormBuilder, FormGroup } from '@angular/forms';
 import { UsersService } from '../../services/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import swal from 'sweetalert2';
+import { HttpEventType, HttpResponse } from '@angular/common/http';
 declare var $: any;
 
 @Component({
@@ -14,6 +15,10 @@ declare var $: any;
 })
 export class EditUserAccountComponent implements OnInit {
 
+  file: any;
+  filename = '';
+  progress = 0;
+  imageUrl = new Map();
   userRoles = [
     {
       id: 1,
@@ -132,5 +137,79 @@ export class EditUserAccountComponent implements OnInit {
   }
   get f(): { [key: string]: AbstractControl } {
     return this.form.controls;
+  }
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.file = file;
+      this.filename = file.name || '';
+      console.log(this.file);
+    }
+  }
+
+  async uploadSuccess(data: any) {
+    await swal.fire({
+      title: 'บันทึกสำเร็จ!',
+      text: data,
+      icon: 'success',
+      confirmButtonText: 'ปิด',
+    });
+    this.file = null;
+    this.progress = 0;
+    this.clearFileInput();
+    this.router.navigateByUrl('users-account-management');
+  }
+  clearFileInput() {
+    const fileInput = document.querySelector(
+      'input[type="file"]'
+    ) as HTMLInputElement;
+    fileInput.value = '';
+  }
+
+  uploadFile(){
+    this.userService.editUserPictureByID(this.user_id,this.file).subscribe((event: any) => {
+      if (event.status === 200) {
+        this.uploadFail(event.body.message);
+      } else {
+        if (event.type === HttpEventType.UploadProgress) {
+          this.progress = Math.round((100 * event.loaded) / event.total);
+        } else if (event instanceof HttpResponse) {
+          this.uploadSuccess(event.body.message);
+        }
+      }
+    });
+  }
+
+  uploadFail(data: any) {
+    swal.fire({
+      title: 'บันทึกไม่สำเร็จ!',
+      text: data,
+      icon: 'error',
+      confirmButtonText: 'ปิด',
+    });
+    this.progress = 0;
+  }
+
+  checkInputSelect() {
+    if (this.file) {
+      this.uploadFile();
+    } else {
+      swal.fire({
+        title: 'กรุณาเลือกไฟล์',
+        icon: 'warning',
+        confirmButtonText: 'ปิด',
+      });
+    }
+  }
+  getImgUrl(file: File): any {
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      this.imageUrl.set(file, e.target.result);
+    };
+    if (!this.imageUrl.has(file)) {
+      reader.readAsDataURL(file);
+    } else {
+      return this.imageUrl.get(file);
+    }
   }
 }
