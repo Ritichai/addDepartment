@@ -11,12 +11,14 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { EditHolidaysComponent } from './edit-holidays/edit-holidays.component';
 
 
 @NgModule({
   declarations: [
     HolidaysDashboardComponent,
-    CreateNewHolidaysComponent
+    CreateNewHolidaysComponent,
+    EditHolidaysComponent
   ],
   imports: [
     CommonModule,

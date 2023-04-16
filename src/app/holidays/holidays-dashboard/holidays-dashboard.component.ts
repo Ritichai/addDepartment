@@ -23,6 +23,7 @@ export class HolidaysDashboardComponent {
     "holiday_year",
     "holiday_date",
     "holiday_name",
+    "edit",
   ];
   //expandedData!: Holiday | null;
   dataSourceOfHolidayTable = new MatTableDataSource<Holiday>();
@@ -52,6 +53,9 @@ export class HolidaysDashboardComponent {
   }
   createholiday() {
     this.router.navigate(['/holidays/createholiday']);
+  }
+  editholiday(id: any) {
+    this.router.navigate(['/holidays/edit', id]);
   }
 }
 export interface Holiday {

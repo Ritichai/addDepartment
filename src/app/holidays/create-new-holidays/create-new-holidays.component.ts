@@ -42,7 +42,6 @@ export class CreateNewHolidaysComponent {
     if (this.form.invalid) {
       return;
     }
-
     this.holidayService.createHolidays(
       this.form.value['holiday_date'],
       this.form.value['holiday_name'],
@@ -77,7 +76,6 @@ export class CreateNewHolidaysComponent {
       }
     });
   }
-
   get f(): { [key: string]: AbstractControl } {
     return this.form.controls;
   }
