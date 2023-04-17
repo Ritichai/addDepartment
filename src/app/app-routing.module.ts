@@ -65,6 +65,14 @@ const routes: Routes = [
       {
         path:'holidays',
         loadChildren: () => import('./holidays/holidays.module').then(m => m.HolidaysModule)
+      },
+      {
+        path:'saleco',
+        loadChildren: () => import('./sale-co/sale-co.module').then(m => m.SaleCoModule)
+      },
+      {
+        path:'sale',
+        loadChildren: () => import('./sale/sale.module').then(m => m.SaleModule)
       }
     ]
   },
