@@ -1,8 +1,10 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ViewChildren, QueryList } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-sale-dashboard',
@@ -132,18 +134,21 @@ export class SaleDashboardComponent {
   ];
   dataSaleForeCastActive = [
     {
+      id : 1,
       list_data: "แผนการขายล่วงหน้า คร้้งที่ 1",
       status: "1",
       createAt: "",
       dueDate: "",
     },
     {
+      id : 2,
       list_data: "แผนการขายล่วงหน้า คร้้งที่ 2",
       status: "2",
       createAt: "",
       dueDate: "",
     },
     {
+      id : 3,
       list_data: "แผนการขายล่วงหน้า เดือน 8 คร้้งที่ 3",
       status: "1",
       createAt: "",
@@ -184,7 +189,11 @@ export class SaleDashboardComponent {
   // @ViewChild('SaleForeCastAllSort', { static: true }) SaleForeCastAllSort!: MatSort;
 
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private ActivatedRoute : ActivatedRoute,
+    private cd: ChangeDetectorRef
+  ) { }
 
   ngAfterViewInit(): void {
     this.dataSourceOfSaleForeCastActiveTable.paginator = this.paginator.toArray()[0];;
@@ -198,8 +207,20 @@ export class SaleDashboardComponent {
     this.dataSourceOfSaleForeCastAllTable.data = [
       ...this.dataSaleForeCastAll
     ]
+
+    this.cd.detectChanges();
   }
+
+
+  saleForCastActiveInfo(item: saleForCastActiveModel) {
+    console.log(item);
+    this.router.navigateByUrl('/sale/sale-forecast-info/' + item);
+  }
+
 }
+
+
+
 
 export interface saleForeCastAllModel {
   id: number;
@@ -213,6 +234,7 @@ export interface saleForeCastAllModel {
 }
 
 export interface saleForCastActiveModel {
+  id : number;
   list_data: string;
   status: string;
   createAt: string;

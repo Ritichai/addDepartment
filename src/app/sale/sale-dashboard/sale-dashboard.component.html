@@ -33,8 +33,14 @@
 
               <ng-container matColumnDef="view">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> view </th>
-                <td mat-cell *matCellDef="let element"> {{ element.view }} </td>
+                <td mat-cell *matCellDef="let element">
+                  <button mat-raised-button mat-min-fab (click)="saleForCastActiveInfo(element.id)"
+                    class="btn btn-sm btn-info btn-round btn-fab">
+                    <i class="material-icons">view</i>
+                  </button>
+                </td>
               </ng-container>
+
               <tr mat-header-row *matHeaderRowDef="columnsSaleForeCastActiveTable"></tr>
               <tr mat-row *matRowDef="let row; columns: columnsSaleForeCastActiveTable;"></tr>
             </table>
@@ -99,13 +105,9 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> approval_data </th>
                 <td mat-cell *matCellDef="let element"> {{ element.approval_data }} </td>
               </ng-container>
-
               <ng-container matColumnDef="action">
-                <th mat-header-cell *matHeaderCellDef>เปิด sale forecast</th>
-                <td mat-cell *matCellDef="let element">
-                  <button mat-raised-button color="primary"
-                  class="btn btn-sm btn-primary btn-round btn-fab">เปิด</button>
-                </td>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> action </th>
+                <td mat-cell *matCellDef="let element"> {{ element.action }} </td>
               </ng-container>
 
               <ng-container matColumnDef="view">

@@ -12,11 +12,13 @@ import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
+import { SaleListActiveInfoComponent } from './sale-list-active-info/sale-list-active-info.component';
 
 
 @NgModule({
   declarations: [
-    SaleDashboardComponent
+    SaleDashboardComponent,
+    SaleListActiveInfoComponent
   ],
   imports: [
     CommonModule,
