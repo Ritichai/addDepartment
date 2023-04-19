@@ -177,6 +177,7 @@ export class SaleDashboardComponent {
   ];
 
 
+
   dataSourceOfSaleForeCastActiveTable = new MatTableDataSource<saleForCastActiveModel>();
   dataSourceOfSaleForeCastAllTable = new MatTableDataSource<saleForeCastAllModel>();
   @ViewChildren(MatPaginator) paginator!: QueryList<MatPaginator>;

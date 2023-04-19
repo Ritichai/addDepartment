@@ -13,6 +13,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { SaleListActiveInfoComponent } from './sale-list-active-info/sale-list-active-info.component';
+import { MatButtonModule } from '@angular/material/button';
+
 
 
 @NgModule({
@@ -32,7 +34,8 @@ import { SaleListActiveInfoComponent } from './sale-list-active-info/sale-list-a
     MatSortModule,
     MatDialogModule,
     MatOptionModule,
-    MatSelectModule
+    MatSelectModule,
+    MatButtonModule
   ]
 })
 export class SaleModule { }
