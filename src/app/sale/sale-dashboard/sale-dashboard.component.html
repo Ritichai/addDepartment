@@ -9,39 +9,67 @@
           <div class="card-body">
             <div class="table-search-input ml-auto">
             </div>
-            <table #SaleForeCastActiveSort mat-table [dataSource]="dataSourceOfSaleForeCastActiveTable"
-              multiTemplateDataRows matSort style="width: 100%;" class="table-striped table-hover">
+            <table #SaleForeCastActiveSort mat-table [dataSource]="dataSourceOfSaleForeCastActiveTable" multiTemplateDataRows
+              matSort style="width: 100%;" class="table-striped table-hover">
+
 
               <ng-container matColumnDef="list_data">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> list_data </th>
-                <td mat-cell *matCellDef="let element"> {{ element.list_data }} ประจำเดือน {{
-                  getMonthName(element.createAt) }}</td>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> รายการ </th>
+                <td mat-cell *matCellDef="let element">
+                  <div *ngFor="let data of element.dataSaleForeCast">
+                      {{ data.id }}
+                  </div>
+                </td>
               </ng-container>
 
+              <ng-container matColumnDef="month">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> เดือน </th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.month }}
+                </td>
+              </ng-container>
+
+
               <ng-container matColumnDef="status">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> status </th>
-                <td mat-cell *matCellDef="let element"> {{ element.status }} </td>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> สถานะ </th>
+                <td mat-cell *matCellDef="let element">
+                  <div *ngFor="let data of element.dataSaleForeCast">
+                    {{data.saleforecast_status === 1 ? 'Active' : 'Inactive'}}
+                  </div>
+                </td>
               </ng-container>
 
               <ng-container matColumnDef="createAt">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> createAt </th>
-                <td mat-cell *matCellDef="let element"> {{ element.createAt }} </td>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> วันที่เปิด </th>
+                <td mat-cell *matCellDef="let element">
+                  <div *ngFor="let data of element.dataSaleForeCast">
+                    {{formatDate(data.createdAt)}}
+                  </div>
+                </td>
               </ng-container>
 
               <ng-container matColumnDef="dueDate">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> dueDate </th>
-                <td mat-cell *matCellDef="let element"> {{ element.dueDate }} </td>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> วันสิ้นสุด </th>
+                <td mat-cell *matCellDef="let element">
+                  <div *ngFor="let data of element.dataSaleForeCast">
+                    {{formatDate(data.saleforecast_duedate)}}
+                  </div>
+                </td>
               </ng-container>
 
               <ng-container matColumnDef="view">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> view </th>
                 <td mat-cell *matCellDef="let element">
-                  <button mat-raised-button mat-min-fab (click)="saleForCastActiveInfo(element)">View</button>
+                  <div *ngFor="let data of element.dataSaleForeCast">
+
+                  </div>
                 </td>
               </ng-container>
 
-              <tr mat-header-row *matHeaderRowDef="columnsSaleForeCastActiveTable"></tr>
-              <tr mat-row *matRowDef="let row; columns: columnsSaleForeCastActiveTable;"></tr>
+
+
+              <tr mat-header-row *matHeaderRowDef="columnsSalecoActiveTable"></tr>
+              <tr mat-row *matRowDef="let row; columns: columnsSalecoActiveTable;"></tr>
             </table>
             <mat-paginator #SaleForeCastActivePaginator [pageSizeOptions]="[10, 20, 50]"
               showFirstLastButtons></mat-paginator>
@@ -55,9 +83,9 @@
       <div class="container-fluid">
         <div class="card">
           <div class="card-header card-header-primary">
-              <div class="col-md-6">
-                <h3 class="card-title text-primary">ตารางรายการ SaleForcast ทั้งหมด </h3>
-              </div>
+            <div class="col-md-6">
+              <h3 class="card-title text-primary">ตารางรายการ SaleForcast ทั้งหมด </h3>
+            </div>
           </div>
           <div class="card-body">
             <table mat-table multiTemplateDataRows [dataSource]="dataSourceOfSaleCoTable" matSort style="width: 100%;"
@@ -105,7 +133,7 @@
                 (click)="expandedElement = expandedElement === element ? null : element"></tr>
               <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
             </table>
-            <mat-paginator [pageSizeOptions]="[5, 20, 50]" showFirstLastButtons></mat-paginator>
+            <mat-paginator [pageSizeOptions]="[3, 20, 50]" showFirstLastButtons></mat-paginator>
           </div>
         </div>
       </div>

@@ -87,112 +87,121 @@ export class SaleDashboardComponent {
     "view"
   ];
 
-  dataSaleForeCastActive = [
-    {
-      id: 1,
-      list_data: "แผนการขายล่วงหน้า คร้้งที่ 1",
-      status: "1",
-      createAt: "2023/04/19",
-      dueDate: "",
-      customer: [
-        {
-          id: 1,
-          customer_name: "บริษัท ลิ้มศักดากุลเคมีเกษตร จำกัด",
-          productInCast: [
-            {
-              id: 1,
-              product_id: 1,
-              product_name: "สินค้า 1",
-              strategy_grop: "skyrocket",
-              product_grop: "Insecticide",
-              pack_size: "1L",
-              unit: 500,
-              quantity_y: 1000,
-              quantity_m: 1000,
-            },
-            {
-              id: 2,
-              product_id: 2,
-              product_name: "สินค้า 2",
-              strategy_grop: "skyrocket",
-              product_grop: "Insecticide",
-              pack_size: "1L",
-              unit: 500,
-              quantity_y: 1000,
-              quantity_m: 1000,
-            }
-          ]
-        },
-        {
-          id: 2,
-          customer_name: "บริษัท ลิ้มศักดากุลเคมีเกษตร จำกัด",
-          productInCast: [
-            {
-              id: 1,
-              product_id: 1,
-              product_name: "สินค้า 1",
-              strategy_grop: "skyrocket",
-              product_grop: "Insecticide",
-              pack_size: "1L",
-              unit: 500,
-              quantity_y: 1000,
-              quantity_m: 1000,
-            },
-            {
-              id: 2,
-              product_id: 2,
-              product_name: "สินค้า 2",
-              strategy_grop: "skyrocket",
-              product_grop: "Insecticide",
-              pack_size: "1L",
-              unit: 500,
-              quantity_y: 1000,
-              quantity_m: 1000,
-            }
-          ]
-        }
-      ]
-    },
-    {
-      id: 2,
-      list_data: "แผนการขายล่วงหน้า คร้้งที่ 5",
-      status: "2",
-      createAt: "2023/06/19",
-      dueDate: "",
-      customer: [
-        {
-          id: 1,
-          customer_name: "บริษัท ลิ้มศักดากุลเคมีเกษตร จำกัด",
-          productInCast: [
-            {
-              id: 1,
-              product_id: 1,
-              product_name: "สินค้า 1",
-              strategy_grop: "skyrocket",
-              product_grop: "Insecticide",
-              pack_size: "1L",
-              unit: 500,
-              quantity_y: 1000,
-              quantity_m: 1000,
-            }
-          ]
-        }
-      ]
-    }
-  ];
-
-  columnsSaleForeCastActiveTable: string[] = [
+  columnsSalecoActiveTable: string[] = [
     "list_data",
+    "month",
     "status",
     "createAt",
     "dueDate",
     "view"
   ];
 
+  // dataSaleForeCastActive = [
+  //   {
+  //     id: 1,
+  //     list_data: "แผนการขายล่วงหน้า คร้้งที่ 1",
+  //     status: "1",
+  //     createAt: "2023/04/19",
+  //     dueDate: "",
+  //     customer: [
+  //       {
+  //         id: 1,
+  //         customer_name: "บริษัท ลิ้มศักดากุลเคมีเกษตร จำกัด",
+  //         productInCast: [
+  //           {
+  //             id: 1,
+  //             product_id: 1,
+  //             product_name: "สินค้า 1",
+  //             strategy_grop: "skyrocket",
+  //             product_grop: "Insecticide",
+  //             pack_size: "1L",
+  //             unit: 500,
+  //             quantity_y: 1000,
+  //             quantity_m: 1000,
+  //           },
+  //           {
+  //             id: 2,
+  //             product_id: 2,
+  //             product_name: "สินค้า 2",
+  //             strategy_grop: "skyrocket",
+  //             product_grop: "Insecticide",
+  //             pack_size: "1L",
+  //             unit: 500,
+  //             quantity_y: 1000,
+  //             quantity_m: 1000,
+  //           }
+  //         ]
+  //       },
+  //       {
+  //         id: 2,
+  //         customer_name: "บริษัท ลิ้มศักดากุลเคมีเกษตร จำกัด",
+  //         productInCast: [
+  //           {
+  //             id: 1,
+  //             product_id: 1,
+  //             product_name: "สินค้า 1",
+  //             strategy_grop: "skyrocket",
+  //             product_grop: "Insecticide",
+  //             pack_size: "1L",
+  //             unit: 500,
+  //             quantity_y: 1000,
+  //             quantity_m: 1000,
+  //           },
+  //           {
+  //             id: 2,
+  //             product_id: 2,
+  //             product_name: "สินค้า 2",
+  //             strategy_grop: "skyrocket",
+  //             product_grop: "Insecticide",
+  //             pack_size: "1L",
+  //             unit: 500,
+  //             quantity_y: 1000,
+  //             quantity_m: 1000,
+  //           }
+  //         ]
+  //       }
+  //     ]
+  //   },
+  //   {
+  //     id: 2,
+  //     list_data: "แผนการขายล่วงหน้า คร้้งที่ 5",
+  //     status: "2",
+  //     createAt: "2023/06/19",
+  //     dueDate: "",
+  //     customer: [
+  //       {
+  //         id: 1,
+  //         customer_name: "บริษัท ลิ้มศักดากุลเคมีเกษตร จำกัด",
+  //         productInCast: [
+  //           {
+  //             id: 1,
+  //             product_id: 1,
+  //             product_name: "สินค้า 1",
+  //             strategy_grop: "skyrocket",
+  //             product_grop: "Insecticide",
+  //             pack_size: "1L",
+  //             unit: 500,
+  //             quantity_y: 1000,
+  //             quantity_m: 1000,
+  //           }
+  //         ]
+  //       }
+  //     ]
+  //   }
+  // ];
+
+  // columnsSaleForeCastActiveTable: string[] = [
+  //   "list_data",
+  //   "status",
+  //   "createAt",
+  //   "dueDate",
+  //   "view"
+  // ];
 
 
 
-  dataSourceOfSaleForeCastActiveTable = new MatTableDataSource<saleForCastActiveModel>();
+
+  dataSourceOfSaleForeCastActiveTable = new MatTableDataSource<saleCoModel>();
   dataSourceOfSaleCoTable = new MatTableDataSource<saleCoModel>();
   @ViewChildren(MatPaginator) paginator!: QueryList<MatPaginator>;
   @ViewChildren(MatSort) sort!: QueryList<MatSort>;
@@ -211,16 +220,18 @@ export class SaleDashboardComponent {
   ngAfterViewInit(): void {
     this.dataSourceOfSaleForeCastActiveTable.paginator = this.paginator.toArray()[0];
     this.dataSourceOfSaleForeCastActiveTable.sort = this.sort.toArray()[0];
-    this.dataSourceOfSaleForeCastActiveTable.data = [
-      ...this.dataSaleForeCastActive
-    ];
+    this.saleCoService.getSaleCoByStatus().subscribe((res: any) => {
+      console.log(res.body.data);
+      this.dataSourceOfSaleForeCastActiveTable.data = res.body.data;
+   });
+
 
     this.dataSourceOfSaleCoTable.paginator = this.paginator.toArray()[1];
     this.dataSourceOfSaleCoTable.sort = this.sort.toArray()[1];
 
-    this.saleCoService.getSaleCo().subscribe((res :any) => {
-      console.log(res);
+    this.saleCoService.getSaleCo().subscribe((res: any) => {
       this.dataSourceOfSaleCoTable.data = res.body.data;
+      console.log(res.body.data);
     });
 
 
@@ -282,5 +293,5 @@ export interface saleCoModel {
   id: number;
   month: string;
   year: string;
-  dataSaleForeCast:object;
+  dataSaleForeCast: object;
 }
