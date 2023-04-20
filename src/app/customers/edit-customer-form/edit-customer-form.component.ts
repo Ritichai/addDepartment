@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {CustomerService} from "../../services/customers.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import Swal from "sweetalert2";
+import {CustomerGroupModel} from "../customers.module";
+import {CustomerGroupService} from "../../services/customer-group.service";
 
 @Component({
   selector: 'app-edit-customer-form',
@@ -16,15 +18,27 @@ export class EditCustomerFormComponent implements OnInit {
     customer_province: '',
     customer_group: '',
   }
+  customerGroupList: CustomerGroupModel[] = [];
 
   constructor(
     private customerService: CustomerService,
+    private customerGroupService: CustomerGroupService,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {
   }
 
   ngOnInit(): void {
+    this.customerGroupService.getCustomerGroupList().subscribe(
+      (data: any) => {
+        this.customerGroupList = data.body;
+        console.log(data.body);
+      },
+      (error: any) => {
+        console.log('error', error);
+      }
+    );
+
     this.activatedRoute.params.subscribe((params) => {
       this.customerId = params['customer_id'];
       if (this.customerId == undefined) {
@@ -34,6 +48,7 @@ export class EditCustomerFormComponent implements OnInit {
       this.customerService.getCustomerById(this.customerId).subscribe((response) => {
         if (response['status'] == 200 || response['status'] == 201) {
           this.customerInfo = response['body'];
+          this.customerInfo.customer_group = response['body']['customer_group']['name'];
         } else {
           console.log('fail');
         }
