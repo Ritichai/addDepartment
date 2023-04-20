@@ -78,7 +78,6 @@ export class EditUserAccountComponent implements OnInit {
         Validators.pattern('[0-9]*')]],
       username: ['', [Validators.required,Validators.minLength(8)]],
     });
-
    }
 
   ngOnInit() {

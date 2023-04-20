@@ -5,37 +5,48 @@
               <div class="card">
                   <div class="card-header card-header-primary">
                       <h3 class="card-title">
-                        เปิด sale Forecast {{data.month}}
+                        เปิด sale Forecast {{data.year}}/{{data.month}}
                       </h3>
                       <p class="card-contegory">
                           กรุณาระบุข้อมูลต่าง ๆ ให้ครบถ้วน และตรวจสอบความถูกต้องก่อนกดปุ่มเปิด
                       </p>
                   </div>
                   <div class="card-body">
-                      <form>
+                      <form [formGroup]="form">
                           <div class="row mt-3">
                               <div class="col-md-4 col-6">
                                   <label for="start_date" class="form-label">วันที่เริ่ม</label>
-                                  <input type="date" class="form-control" ngModel name="start_date" id="start_date" [(ngModel)]="start_date" (change)="calculateTime()">
-                              </div>
-                              <div class="col-md-4 col-6">
-                                  <label for="end_date" class="form-label">วันสิ้นสุด</label>
-                                  <input type="date" class="form-control" ngModel name="end_date" id="end_date" [(ngModel)]="end_date" (change)="calculateTime()">
+                                  <input type="date" class="form-control" formControlName="start_date" name="start_date" id="start_date"  (ngModelChange)="start_date = $event" (change)="calculateTime()">
                               </div>
                               <div class="col-md-4 col-6">
                                 <label for="leadtime " class="form-label">ระยะเวลาที่ต้องใช้</label>
-                                <input type="text" class="form-control" ngModel name="leadtime " id="leadtime" [(ngModel)]="leadtime">
+                                <input type="number" formControlName="leadtime" class="form-control" name="leadtime"
+                                id="leadtime" [ngClass]="{ 'is-invalid': submitted && f['leadtime'].errors }" [(ngModel)]="leadtime" (change)="calculateTime()">
+                                <div *ngIf="submitted && f['leadtime'].errors" class="invalid-feedback">
+                                  <div *ngIf="f['leadtime'].errors['required']">กรุณากรอก leadtime</div>
+                                </div>
                             </div>
+
+                              <div class="col-md-4 col-6">
+                                  <label for="end_date" class="form-label">วันสิ้นสุด</label>
+                                  <input type="date" class="form-control" ngModel formControlName="end_date" name="end_date" id="end_date" [(ngModel)]="end_date" (change)="calculateTime()" [readOnly]="true">
+                              </div>
+
                           </div>
+
+
                           <div class="row mt-3">
                             <div class="col-md-4 col-6">
                               <div class="form-group">
                                 <label>ประเภทเมนู</label>
-                                <mat-select formControlName="sale_co_type" name="sale_co_type" id="sale_co_type"
-                                class="form-control">
+                                <mat-select formControlName="sale_co_type"  name="sale_co_type" id="sale_co_type"
+                                class="form-control"  [ngClass]="{ 'is-invalid': submitted && f['sale_co_type'].errors }">
                                   <mat-option value="">None</mat-option>
-                                  <mat-option *ngFor="let userRole of sale_co_type" [value]="userRole.id">{{userRole.type_name}}</mat-option>
+                                  <mat-option *ngFor="let saleForecast_type of sale_co_type" [value]="saleForecast_type.id">{{saleForecast_type.type_name}}</mat-option>
                                 </mat-select>
+                                <div *ngIf="submitted && f['sale_co_type'].errors" class="invalid-feedback">
+                                  <div *ngIf="f['sale_co_type'].errors['required']">กรุณากเลือกประเภท </div>
+                                </div>
                               </div>
                             </div>
                         </div>
@@ -44,7 +55,7 @@
                               <span>เมื่อตรวจสอบข้อมูลแล้วเห็นว่าถูกต้อง ให้กดเปิด</span>
                               <div>
                                   <button type="button" (click)="closeDialog()" class="btn btn-danger">ยกเลิก</button>
-                                  <button type="submit" class="btn btn-primary">เปิด</button>
+                                  <button type="submit" (click)="opneSaleForeCast()"   class="btn btn-primary">เปิด</button>
                               </div>
                           </div>
                       </form>
