@@ -105,6 +105,63 @@
             <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
           </div>
         </div>
+
+
+
+
+        <div class="card mt-5">
+          <div class="card-header card-header-primary">
+            <h3 class="card-title">Customer Group</h3>
+            <div class="card-header-btn col-md-12">
+              <button mat-raised-button style="margin-right: .3em" mat-min-fab (click)="addingCustomerGroup = true"
+                      class="btn btn-info btn-round btn-fab" *ngIf="!addingCustomerGroup">
+                <i class="material-icons">add</i>
+              </button>
+
+
+              <mat-form-field *ngIf="addingCustomerGroup">
+                <input matInput placeholder="Customer Group Name" [(ngModel)]="customerGroupName">
+              </mat-form-field>
+              <button mat-raised-button style="margin-right: .3em" mat-min-fab (click)="saveNewCustomerGroup()"
+                      class="btn btn-success btn-round btn-fab" *ngIf="addingCustomerGroup">
+                save
+              </button>
+              <button mat-raised-button style="margin-right: .3em" mat-min-fab (click)="cancelCreateCustomerGroup()"
+                      class="btn btn-danger btn-round btn-fab" *ngIf="addingCustomerGroup">
+                cancel
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+
+            <!-- Customers Table -->
+            <table mat-table [dataSource]="dataSourceOfCustomerGroupTable" matSort style="width: 100%;"
+                   class="table-striped table-hover">
+
+              <ng-container matColumnDef="customer_group_name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>customer group</th>
+                <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
+              </ng-container>
+
+              <!-- Edit Button Column -->
+              <ng-container matColumnDef="edit">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Edit</th>
+                <td mat-cell *matCellDef="let element">
+                  <button mat-raised-button mat-min-fab
+                          (click)="gotoEditCustomerGroupItem(element.id)"
+                          class="btn btn-sm btn-primary btn-round btn-fab">
+                    <i class="material-icons">edit</i>
+                  </button>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row class="text-center" *matHeaderRowDef="columnsCustomerGroupTable"></tr>
+              <tr mat-row *matRowDef="let row; columns: columnsCustomerGroupTable;"></tr>
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
+          </div>
+        </div>
       </div>
     </div>
   </div>

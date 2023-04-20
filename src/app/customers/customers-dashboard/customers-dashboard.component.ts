@@ -28,9 +28,18 @@ export class CustomersDashboardComponent implements OnInit {
     'remove',
     'info',
   ];
+
+  columnsCustomerGroupTable: string[] = [
+    'customer_group_name',
+    'edit',
+  ];
+
   dataSourceOfCustomerTable = new MatTableDataSource<CustomerManagementModel>();
+  dataSourceOfCustomerGroupTable = new MatTableDataSource<CustomerGroupModel>();
   selectedFile: File | undefined;
   customerGroupList: CustomerGroupModel[] = [];
+  addingCustomerGroup = false;
+  customerGroupName: string = '';
 
   constructor(
     private router: Router,
@@ -41,6 +50,7 @@ export class CustomersDashboardComponent implements OnInit {
 
   ngOnInit() {
     this.dataSourceOfCustomerTable.data = [];
+    this.dataSourceOfCustomerGroupTable.data = [];
     this.customerService.getCustomerList().subscribe(
       (data: any) => {
         this.dataSourceOfCustomerTable.data = data.body;
@@ -54,6 +64,7 @@ export class CustomersDashboardComponent implements OnInit {
     this.customerGroupService.getCustomerGroupList().subscribe(
       (data: any) => {
         this.customerGroupList = data.body;
+        this.dataSourceOfCustomerGroupTable.data = data.body;
         console.log(data.body);
       },
       (error: any) => {
@@ -245,5 +256,38 @@ export class CustomersDashboardComponent implements OnInit {
         );
       }
     });
+  }
+
+  cancelCreateCustomerGroup() {
+    this.addingCustomerGroup = false;
+    this.customerGroupName = '';
+  }
+
+  saveNewCustomerGroup() {
+    this.customerGroupService.createNewCustomerGroup(this.customerGroupName).subscribe(
+      (response: any) => {
+        console.log(response);
+        this.customerGroupList.push(response.body);
+
+        this.customerGroupService.getCustomerGroupList().subscribe(
+          (data: any) => {
+            this.customerGroupList = data.body;
+            this.dataSourceOfCustomerGroupTable.data = data.body;
+            console.log(data.body);
+            this.addingCustomerGroup = false;
+          },
+          (error: any) => {
+            console.log('error', error);
+          }
+        );
+      },
+      (err: any) => {
+        console.log(err);
+      }
+    );
+  }
+
+  gotoEditCustomerGroupItem(customer_group_id: number) {
+    console.log('gotoEditCustomerGroupItem', customer_group_id);
   }
 }

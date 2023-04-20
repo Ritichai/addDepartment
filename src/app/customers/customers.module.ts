@@ -9,6 +9,7 @@ import {MatTableModule} from "@angular/material/table";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {FormsModule} from "@angular/forms";
+import {MatInputModule} from "@angular/material/input";
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import {FormsModule} from "@angular/forms";
     MatTableModule,
     MatSlideToggleModule,
     MatPaginatorModule,
-    FormsModule
+    FormsModule,
+    MatInputModule
   ]
 })
 export class CustomersModule { }
