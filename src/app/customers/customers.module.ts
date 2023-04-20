@@ -36,3 +36,8 @@ export interface CustomerManagementModel {
   customer_group: string;
   enabled: boolean;
 }
+
+export interface CustomerGroupModel {
+  id: number;
+  name: string;
+}
