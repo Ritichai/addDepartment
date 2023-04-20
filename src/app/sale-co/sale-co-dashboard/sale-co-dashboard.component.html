@@ -81,14 +81,12 @@
 <div class="main-content">
   <div class="container-fluid">
     <div class="card">
-      <div class="card-header">
-        <div class="row">
-          <div class="col-md-6">
-            <h3 class="card-title text-primary">ตารางรายการ SaleCo </h3>
-          </div>
+      <div class="card-header card-header-primary">
+        <div class="col-md-6">
+          <h3 class="card-title text-primary">ตารางรายการ SaleForcast ทั้งหมด </h3>
         </div>
+    </div>
         <div class="card-body">
-
           <table mat-table multiTemplateDataRows [dataSource]="dataSourceOfSaleCoTable" matSort style="width: 100%;"
             class="table-striped table-hover">
 
@@ -97,15 +95,16 @@
               <td mat-cell *matCellDef="let element"> {{ element.year }} / {{ element.month }} </td>
             </ng-container>
 
-            <ng-container matColumnDef="action">
-              <th mat-header-cell *matHeaderCellDef>เปิด sale forecast</th>
-              <td mat-cell *matCellDef="let element">
+            <ng-container matColumnDef="action" >
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element" class="header-container">
                 <button mat-raised-button mat-min-fab (click)="openDialog(element)"
-                  class="btn btn-sm btn-primary btn-round btn-fab">
+                  class="btn btn-sm btn-primary btn-round btn-fab" style="margin-right: 10px;">
                   <i class="material-icons">add</i>
                 </button>
+
                 <button mat-raised-button mat-min-fab (click)="viewdata(element)"
-                  class="btn btn-sm btn-primary btn-round btn-fab">
+                  class="btn btn-sm btn-info btn-round btn-fab">
                   <i class="material-icons">visibility</i>
                 </button>
               </td>
@@ -155,4 +154,4 @@
 
     </div>
   </div>
-</div>
+

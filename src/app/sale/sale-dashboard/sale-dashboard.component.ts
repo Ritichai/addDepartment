@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ViewChildren, QueryList } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { SaleCoService } from 'src/app/services/saleco.service';
 
 
 @Component({
@@ -21,61 +22,59 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 })
 export class SaleDashboardComponent {
 
-
-
-
   expandedElement: saleCoModel | null = null;
-  data = [
-    {
-      id: 1,
-      month: "12/2565",
-      dataSaleForeCast: [
-        {
-          id: 1,
-          list_data: "แผนการขายล่วงหน้า คร้้งที่ 1",
-          type_sale_co: 1,
-          status: "วางแผนวัตถุดิบ",
-          createAt: "",
-          dueDate: "",
-          approval_data: ""
-        },
-        {
-          id: 3,
-          list_data: "แผนการขายล่วงหน้า คร้้งที่ 2",
-          type_sale_co: 1,
-          status: "วางแผนวัตถุดิบ",
-          createAt: "",
-          dueDate: "",
-          approval_data: ""
-        }, {
-          id: 3,
-          list_data: "แผนการขายล่วงหน้า คร้้งที่ 3",
-          type_sale_co: 1,
-          status: "วางแผนวัตถุดิบ",
-          createAt: "",
-          dueDate: "",
-          approval_data: ""
-        }
-      ],
-    }, {
-      id: 2,
-      month: "11/2565",
-      dataSaleForeCast: [
-        {
-          id: 2,
-          list_data: "แผนการขายล่วงหน้า คร้้งที่ 1",
-          type_sale_co: 2,
-          status: "อนุมัติสั่งซื้อวัตถุดิบ",
-          createAt: "",
-          dueDate: "",
-          approval_data: ""
-        }
-      ],
-    },
-  ];
+  // data = [
+  //   {
+  //     id: 1,
+  //     month: "12/2565",
+  //     dataSaleForeCast: [
+  //       {
+  //         id: 1,
+  //         list_data: "แผนการขายล่วงหน้า คร้้งที่ 1",
+  //         type_sale_co: 1,
+  //         status: "วางแผนวัตถุดิบ",
+  //         createAt: "",
+  //         dueDate: "",
+  //         approval_data: ""
+  //       },
+  //       {
+  //         id: 3,
+  //         list_data: "แผนการขายล่วงหน้า คร้้งที่ 2",
+  //         type_sale_co: 1,
+  //         status: "วางแผนวัตถุดิบ",
+  //         createAt: "",
+  //         dueDate: "",
+  //         approval_data: ""
+  //       }, {
+  //         id: 3,
+  //         list_data: "แผนการขายล่วงหน้า คร้้งที่ 3",
+  //         type_sale_co: 1,
+  //         status: "วางแผนวัตถุดิบ",
+  //         createAt: "",
+  //         dueDate: "",
+  //         approval_data: ""
+  //       }
+  //     ],
+  //   }, {
+  //     id: 2,
+  //     month: "11/2565",
+  //     dataSaleForeCast: [
+  //       {
+  //         id: 2,
+  //         list_data: "แผนการขายล่วงหน้า คร้้งที่ 1",
+  //         type_sale_co: 2,
+  //         status: "อนุมัติสั่งซื้อวัตถุดิบ",
+  //         createAt: "",
+  //         dueDate: "",
+  //         approval_data: ""
+  //       }
+  //     ],
+  //   },
+  // ];
   columnsSalecoTableHeader = [
     "month",
   ];
+
   columnsSalecoTable: string[] = [
     "month",
     "list_data",
@@ -87,7 +86,6 @@ export class SaleDashboardComponent {
     "action",
     "view"
   ];
-
 
   dataSaleForeCastActive = [
     {
@@ -195,7 +193,7 @@ export class SaleDashboardComponent {
 
 
   dataSourceOfSaleForeCastActiveTable = new MatTableDataSource<saleForCastActiveModel>();
-  dataSourceOfSaleForeCastAllTable = new MatTableDataSource<saleCoModel>();
+  dataSourceOfSaleCoTable = new MatTableDataSource<saleCoModel>();
   @ViewChildren(MatPaginator) paginator!: QueryList<MatPaginator>;
   @ViewChildren(MatSort) sort!: QueryList<MatSort>;
 
@@ -203,23 +201,32 @@ export class SaleDashboardComponent {
   constructor(
     private router: Router,
     private ActivatedRoute: ActivatedRoute,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private saleCoService: SaleCoService
   ) { }
 
+
+
+
   ngAfterViewInit(): void {
-    this.dataSourceOfSaleForeCastActiveTable.paginator = this.paginator.toArray()[0];;
+    this.dataSourceOfSaleForeCastActiveTable.paginator = this.paginator.toArray()[0];
     this.dataSourceOfSaleForeCastActiveTable.sort = this.sort.toArray()[0];
     this.dataSourceOfSaleForeCastActiveTable.data = [
       ...this.dataSaleForeCastActive
     ];
-    this.dataSourceOfSaleForeCastAllTable.paginator = this.paginator.toArray()[1];;
-    this.dataSourceOfSaleForeCastAllTable.sort = this.sort.toArray()[1];
-    this.dataSourceOfSaleForeCastAllTable.data = this.data
 
+    this.dataSourceOfSaleCoTable.paginator = this.paginator.toArray()[1];
+    this.dataSourceOfSaleCoTable.sort = this.sort.toArray()[1];
+
+    this.saleCoService.getSaleCo().subscribe((res :any) => {
+      console.log(res);
+      this.dataSourceOfSaleCoTable.data = res.body.data;
+    });
 
 
     this.cd.detectChanges();
   }
+
 
 
   saleForCastActiveInfo(item: saleForCastActiveModel) {
@@ -230,6 +237,29 @@ export class SaleDashboardComponent {
   getMonthName(createAt: string): string {
     const date = new Date(createAt);
     return new Intl.DateTimeFormat('th-TH', { month: 'long' }).format(date);
+  }
+
+  formatDate(dateString: string): string {
+    const englishMonths = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ];
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = englishMonths[date.getMonth()];
+    //const month = ('0' + (date.getMonth() + 1)).slice(-2);
+    const day = ('0' + date.getDate()).slice(-2);
+    return `${day}-${month}-${year}`;
   }
 }
 
@@ -251,5 +281,6 @@ export interface saleForCastActiveModel {
 export interface saleCoModel {
   id: number;
   month: string;
-  dataSaleForeCast: object;
+  year: string;
+  dataSaleForeCast:object;
 }
