@@ -78,76 +78,36 @@
     </div>
   </div> -->
 
-  <div class="main-content">
-    <div class="container-fluid">
-      <div class="card">
-        <div class="card-header">
-          <div class="row">
-            <div class="col-md-6">
-              <h3 class="card-title text-primary">ตารางรายการ SaleCo  </h3>
-
-              <hr>
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-md-6">
+            <h3 class="card-title text-primary">ตารางรายการ SaleCo </h3>
           </div>
         </div>
-
         <div class="card-body">
-          <!--  Table -->
           <table mat-table multiTemplateDataRows [dataSource]="dataSourceOfSaleCoTable" matSort style="width: 100%;"
             class="table-striped table-hover">
 
-            <!-- Product_code Column -->
             <ng-container matColumnDef="month">
               <th mat-header-cell *matHeaderCellDef mat-sort-header> month </th>
-              <td mat-cell *matCellDef="let element"> {{ element.month }} </td>
+              <td mat-cell *matCellDef="let element"> {{ element.year }} / {{ element.month }} </td>
             </ng-container>
-
-            <!-- Product_name Column -->
-            <ng-container matColumnDef="list_data">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> list_data </th>
-              <td mat-cell *matCellDef="let element"> {{ element.list_data }} </td>
-            </ng-container>
-
-            <!-- Quantity_of_lot Column -->
-            <ng-container matColumnDef="type_sale_co">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> type_sale_co </th>
-              <td mat-cell *matCellDef="let element"> {{ element.type_sale_co }} </td>
-            </ng-container>
-
-            <!-- Bag_quantity Column -->
-            <ng-container matColumnDef="status">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> status </th>
-              <td mat-cell *matCellDef="let element"> {{ element.status }} </td>
-            </ng-container>
-
-            <!-- Bag_quantity Column -->
-            <ng-container matColumnDef="createAt">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> createAt </th>
-              <td mat-cell *matCellDef="let element"> {{ element.createAt }} </td>
-            </ng-container>
-
-            <!-- Export_weight Column -->
-            <ng-container matColumnDef="dueDate">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> dueDate </th>
-              <td mat-cell *matCellDef="let element"> {{ element.dueDate }} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="approval_data">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> approval_data </th>
-              <td mat-cell *matCellDef="let element"> {{ element.approval_data }} </td>
-            </ng-container>
-
 
             <ng-container matColumnDef="action">
               <th mat-header-cell *matHeaderCellDef>เปิด sale forecast</th>
               <td mat-cell *matCellDef="let element">
-                <button mat-raised-button color="primary" (click)="openDialog(element)"
-                class="btn btn-sm btn-primary btn-round btn-fab">เปิด</button>
+                <button mat-raised-button mat-min-fab (click)="openDialog(element)"
+                  class="btn btn-sm btn-primary btn-round btn-fab">
+                  <i class="material-icons">add</i>
+                </button>
+                <button mat-raised-button mat-min-fab (click)="viewdata(element)"
+                class="btn btn-sm btn-primary btn-round btn-fab">
+                <i class="material-icons">visibility</i>
+              </button>
               </td>
-            </ng-container>
-
-            <ng-container matColumnDef="view">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> view </th>
-              <td mat-cell *matCellDef="let element"> {{ element.view }} </td>
             </ng-container>
 
             <ng-container matColumnDef="expandedDetail">
@@ -158,31 +118,21 @@
                   [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
                   <table class="ml-auto" style="width: 83%; background-color: white;">
                     <thead>
-                      <tr  style="background-color: white;">
-                        <td class="text-primary" style="width: auto; font-weight: bold;">list_data</td>
-                        <td class="text-primary" style="width: auto; font-weight: bold;">type_sale_co</td>
-                        <td class="text-primary" style="width: auto; font-weight: bold;">status</td>
-                        <td class="text-primary" style="width: auto; font-weight: bold;">createAt</td>
-                        <td class="text-primary" style="width: auto; font-weight: bold;">dueDate</td>
-                        <td class="text-primary" style="width: auto; font-weight: bold;">approval_data</td>
+                      <tr style="background-color: white;">
+                        <td class="text-primary" style="width: auto; font-weight: bold;">id</td>
                       </tr>
                     </thead>
-                    <tbody  style="background-color: white;">
-                      <tr *ngFor="let lot of element.dataSaleForeCast"  style="background-color: white;">
-                        <td style="width: auto;">{{ lot.list_data }}</td>
-                        <td style="width: auto;">{{ lot.type_sale_co }}</td>
-                        <td style="width: auto;">{{ lot.status}}</td>
-                        <td style="width: auto;">{{ lot.createAt }}</td>
-                        <td style="width: auto;">{{ lot.dueDate }}</td>
-                        <td style="width: auto;">{{ lot.approval_data}}</td>
+                    <!-- <tbody style="background-color: white;">
+                      <tr *ngFor="let lot of element.dataSaleForeCast" style="background-color: white;">
+                        <td style="width: auto;">{{ lot.id }}</td>
                       </tr>
-                    </tbody>
+                    </tbody> -->
                   </table>
                 </div>
               </td>
             </ng-container>
-            <tr mat-header-row *matHeaderRowDef="columnsSalecoTable"></tr>
-            <tr mat-row *matRowDef="let element; columns: columnsSalecoTable;" class="example-element-row"
+            <tr mat-header-row *matHeaderRowDef="columnsSalecoTableHeader"></tr>
+            <tr mat-row *matRowDef="let element; columns: columnsSalecoTableHeader;" class="example-element-row"
               [class.example-expanded-row]="expandedElement === element" [class.shadow]="expandedElement === element"
               (click)="expandedElement = expandedElement === element ? null : element"></tr>
             <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
@@ -194,3 +144,4 @@
 
     </div>
   </div>
+</div>

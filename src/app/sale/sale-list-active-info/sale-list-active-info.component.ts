@@ -7,8 +7,8 @@ import {
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
-import {animate, state, style, transition, trigger} from '@angular/animations';
+import { ActivatedRoute, Router } from '@angular/router';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-sale-list-active-info',
@@ -16,8 +16,8 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
   styleUrls: ['./sale-list-active-info.component.scss'],
   animations: [
     trigger('detailExpand', [
-      state('collapsed', style({height: '0px', minHeight: '0'})),
-      state('expanded', style({height: '*'})),
+      state('collapsed', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
       transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     ]),
   ],
@@ -25,264 +25,193 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 export class SaleListActiveInfoComponent {
   //data
 
-
-
-  dataSaleListActiveInfo = [
+  saleForceCastId: number | undefined;
+  dataHeader = ''
+  dataSaleForeCastActive = [
     {
       id: 1,
-      sale_forcast_order: 1,
-      grop: 1,
+      list_data: "แผนการขายล่วงหน้า คร้้งที่ 1",
+      status: "1",
+      createAt: "2023/04/19",
+      dueDate: "",
       customer: [
         {
           id: 1,
-          customer_name: 'บริษัท ไทยเอฟเอ็ม1 จำกัด',
-          customer_code: 'THFM1',
-          customer_products: [
+          customer_name: "บริษัท A1 จำกัด",
+          productInCast: [
             {
               id: 1,
-              product_name: 'สินค้า 1',
-              product_code: 'P001',
-              product_qty: 100,
-            },
-          ],
-        },
-        {
-          id: 2,
-          customer_name: 'บริษัท ไทยเอฟเอ็ม2 จำกัด',
-          customer_code: 'THFM2',
-          customer_products: [
-            {
-              id: 1,
-              product_name: 'สินค้า 2',
-              product_code: 'P002',
-              product_qty: 3,
+              product_id: 1,
+              product_name: "สินค้า 1",
+              strategy_grop: "skyrocket",
+              product_grop: "Insecticide",
+              pack_size: "1L",
+              unit: 500,
+              quantity_y: 1000,
+              quantity_m: 1000,
             },
             {
               id: 2,
-              product_name: 'สินค้า 3',
-              product_code: 'P003',
-              product_qty: 5,
+              product_id: 2,
+              product_name: "สินค้า 2",
+              strategy_grop: "skyrocket",
+              product_grop: "Insecticide",
+              pack_size: "1L",
+              unit: 500,
+              quantity_y: 1000,
+              quantity_m: 1000,
+            }
+          ]
+        },
+        {
+          id: 2,
+          customer_name: "บริษัท B1 จำกัด",
+          productInCast: [
+            {
+              id: 1,
+              product_id: 1,
+              product_name: "สินค้า 1",
+              strategy_grop: "skyrocket",
+              product_grop: "Insecticide",
+              pack_size: "1L",
+              unit: 500,
+              quantity_y: 1000,
+              quantity_m: 1000,
             },
             {
-              id: 3,
-              product_name: 'สินค้า 4',
-              product_code: 'P004',
-              product_qty: 10,
-            },
-          ],
-        },
-      ],
-    },
-  ];
-  dataSaleInfo: saleInfoModel[] = [];
-  dataStrategyGroup: strategyGroupModel[] = [
-    {
-      id: 1,
-      strategy_group_name: 'Skyrocket',
-      strategy_group_goal: 5000,
-      strategy_group_forecast: 10000,
+              id: 2,
+              product_id: 2,
+              product_name: "สินค้า 2",
+              strategy_grop: "skyrocket",
+              product_grop: "Insecticide",
+              pack_size: "1L",
+              unit: 500,
+              quantity_y: 1000,
+              quantity_m: 1000,
+            }
+          ]
+        }
+      ]
     },
     {
       id: 2,
-      strategy_group_name: 'Natural',
-      strategy_group_goal: 4000,
-      strategy_group_forecast: 4000,
-    },
-    {
-      id: 3,
-      strategy_group_name: 'Expand',
-      strategy_group_goal: 600,
-      strategy_group_forecast: 5000,
-    },
-    {
-      id: 4,
-      strategy_group_name: 'Orther',
-      strategy_group_goal: 500,
-      strategy_group_forecast: 2000,
-    },
-  ];
-  dataProductPoppular: productPoppularModel[] = [
-
+      list_data: "แผนการขายล่วงหน้า คร้้งที่ 5",
+      status: "2",
+      createAt: "2023/06/19",
+      dueDate: "",
+      customer: [
         {
           id: 1,
-          product_name: 'สินค้า 1',
-          monthly_sales: {
-            product_top_sale_m7: 100,
-            product_top_sale_m8: 200,
-            product_top_sale_m9: 300,
-          },
-          totle_sales: 600,
-        },
-        {
-          id: 2,
-          product_name: 'สินค้า 2',
-          monthly_sales: {
-            product_top_sale_m7: 100,
-            product_top_sale_m8: 200,
-            product_top_sale_m9: 300,
-          },
-          totle_sales: 600,
+          customer_name: "บริษัท A2 จำกัด",
+          productInCast: [
+            {
+              id: 1,
+              product_id: 1,
+              product_name: "สินค้า 1",
+              strategy_grop: "skyrocket",
+              product_grop: "Insecticide",
+              pack_size: "1L",
+              unit: 500,
+              quantity_y: 1000,
+              quantity_m: 1000,
+            }
+          ]
         }
-
-
+      ]
+    }
   ];
-  dataSaleForCastOrder: saleForcastOrderModel[] = [
-    {
-      id: 1,
-      customer_name: 'ลูกค้า A',
-      product: [
-        {
-          id: 1,
-          product_name: 'สินค้า 1',
-          product_strategy: 'กลุ่มสินค้า A',
-          product_group: 'สินค้าชนิด 1',
-          product_size: 'S',
-          product_price: 100,
-          product_unit: 'ชิ้น',
-          product_quantity_year: 1200,
-          product_quantity_month: 100,
-          product_total: 120000,
-        },
-        {
-          id: 2,
-          product_name: 'สินค้า 2',
-          product_strategy: 'กลุ่มสินค้า A',
-          product_group: 'สินค้าชนิด 2',
-          product_size: 'M',
-          product_price: 150,
-          product_unit: 'ชิ้น',
-          product_quantity_year: 1000,
-          product_quantity_month: 80,
-          product_total: 150000,
-        },
-        {
-          id: 3,
-          product_name: 'สินค้า 3',
-          product_strategy: 'กลุ่มสินค้า B',
-          product_group: 'สินค้าชนิด 3',
-          product_size: 'L',
-          product_price: 200,
-          product_unit: 'ชิ้น',
-          product_quantity_year: 800,
-          product_quantity_month: 70,
-          product_total: 160000,
-        },
-      ],
-    },
-  ];
-  columnsSaleInfo: string[] = ['sale_name', 'sale_grop', 'sale_department'];
-
-
-  //colums
-  columnsSaleForcastOrder: string[] = [
+  columnsInfo = [
+    'sale_name',
+    'sale_grop',
+    'sale_department',
+  ]
+  columnsMonthlySalesTarget = [
+    'strategy_group',
+    'target',
+    'forecast',
+  ]
+  columnsPoppularProductInMonthly = [
+    'add_now',
+    'product_name',
+    'monthly_7',
+    'monthly_8',
+    'monthly_9',
+    'all_month',
+  ]
+  columnsSaleForeCast = [
     'customer_name',
     'product_name',
-    'product_strategy',
-    'product_grop',
-    'product_size',
-    'product_price',
-    'product_unit',
-    'product_quantity_year',
-    'product_quantity_month',
-    'product_totle',
+    'strategy_group',
+    'product_group',
+    'pack_size',
+    'unit',
+    'quantity_m',
+    'quantity_y',
+    'total',
   ]
 
-  columnsStrategyGroup: string[] = [
-    'strategy_group_name',
-    'strategy_group_goal',
-    'strategy_group_forecast',
-  ];
-  columnsProductPoppular: string[] = [
-    'product_name',
-    'product_top_sale_m7',
-    'product_top_sale_m8',
-    'product_top_sale_m9',
-    'totle_sales',
-  ];
-
-
-
-
-  dataSourceOfSaleInfoTable = new MatTableDataSource<saleInfoModel>();
-  dataSourceOfStrategyGroupTable = new MatTableDataSource<strategyGroupModel>();
-  dataSourceOfSaleForcastOrderTable = new MatTableDataSource<saleForcastOrderModel>();
-  dataSourceOfProductPoppularTable =new MatTableDataSource<productPoppularModel>();
+  dataSourceOfSaleForeCastTable = new MatTableDataSource<saleForCastActiveModel>();
   @ViewChildren(MatPaginator) paginator!: QueryList<MatPaginator>;
   @ViewChildren(MatSort) sort!: QueryList<MatSort>;
 
-  constructor(private router: Router, private cd: ChangeDetectorRef) {}
+  constructor(
+    private router: Router,
+    private cd: ChangeDetectorRef,
+    private activatedRoute: ActivatedRoute,
+  ) { }
 
 
-  ngAfterViewInit() {
-    this.dataSourceOfSaleInfoTable.paginator = this.paginator.toArray()[0];
-    this.dataSourceOfSaleInfoTable.sort = this.sort.toArray()[0];
-    this.dataSourceOfSaleInfoTable.data = [...this.dataSaleInfo];
+  ngOnInit() {
+    this.activatedRoute.params.subscribe((params) => {
+      this.saleForceCastId = params['id'];
+      const filterData = this.dataSaleForeCastActive.filter((data) => data.id == this.saleForceCastId);
+      const dataMap = filterData.map((data) => {
+        this.dataHeader = data.list_data;
+        return data
+      });
 
-    this.dataSourceOfStrategyGroupTable.paginator = this.paginator.toArray()[1];
-    this.dataSourceOfStrategyGroupTable.sort = this.sort.toArray()[1];
-    this.dataSourceOfStrategyGroupTable.data = [...this.dataStrategyGroup];
+      const dataMapCustomer = dataMap.flatMap((data) =>
+        data.customer.flatMap((customer) =>
+          customer.productInCast.map((product) => ({
+            id: data.id,
+            list_data: data.list_data,
+            status: data.status,
+            createAt: data.createAt,
+            dueDate: data.dueDate,
+            customer_name: customer.customer_name,
+            product_name: product.product_name,
+            strategy_group: product.strategy_grop,
+            product_group: product.product_grop,
+            pack_size: product.pack_size,
+            unit: product.unit,
+            quantity_m: product.quantity_m,
+            quantity_y: product.quantity_y,
+          }))
+        )
+      );
 
-    this.dataSourceOfProductPoppularTable.paginator = this.paginator.toArray()[2];
-    this.dataSourceOfProductPoppularTable.sort = this.sort.toArray()[2];
-    this.dataSourceOfProductPoppularTable.data = [...this.dataProductPoppular];
-
-    this.dataSourceOfSaleForcastOrderTable.paginator = this.paginator.toArray()[3];
-    this.dataSourceOfSaleForcastOrderTable.sort = this.sort.toArray()[3];
-    this.dataSourceOfSaleForcastOrderTable.data = [...this.dataSaleForCastOrder];
-
-    this.cd.detectChanges();
+      console.log(dataMapCustomer);
+      this.dataSourceOfSaleForeCastTable.data = dataMapCustomer;
+    });
   }
 
-
-
-}
-export interface saleInfoModel {
-  id: number;
-  sale_name: string;
-  sale_grop: string;
-  sale_department: string;
+  ngAfterViewInit() {
+    this.cd.detectChanges();
+  }
 }
 
-export interface strategyGroupModel {
+export interface saleForCastActiveModel {
   id: number;
-  strategy_group_name: string;
-  strategy_group_goal: number;
-  strategy_group_forecast: number;
-}
-
-export interface productPoppularModel {
-  id: number;
-  product_name: string;
-  monthly_sales: {
-    product_top_sale_m7: number;
-    product_top_sale_m8: number;
-    product_top_sale_m9: number;
-  };
-  totle_sales: number;
-}
-
-
-
-export interface saleForcastOrderModel {
-  id: number;
+  list_data: string;
+  status: string;
+  createAt: string;
+  dueDate: string;
   customer_name: string;
-  product: ProductModel[];
-}
-
-export interface ProductModel {
-  id: number;
   product_name: string;
-  product_strategy: string;
+  strategy_group: string;
   product_group: string;
-  product_size: string;
-  product_price: number;
-  product_unit: string;
-  product_quantity_year: number;
-  product_quantity_month: number;
-  product_total: number;
-}
-
-export interface TableElement {
-  saleForcastOrder: saleForcastOrderModel | null;
-  product: ProductModel | null;
+  pack_size: string;
+  unit: number;
+  quantity_y: number;
+  quantity_m: number;
 }

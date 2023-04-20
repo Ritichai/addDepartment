@@ -13,7 +13,7 @@
 
               <ng-container matColumnDef="list_data">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> list_data </th>
-                <td mat-cell *matCellDef="let element"> {{ element.list_data }} </td>
+                <td mat-cell *matCellDef="let element"> {{ element.list_data }} ประจำเดือน {{ getMonthName(element.createAt) }}</td>
               </ng-container>
 
               <ng-container matColumnDef="status">
@@ -34,9 +34,7 @@
               <ng-container matColumnDef="view">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> view </th>
                 <td mat-cell *matCellDef="let element">
-                  <button mat-raised-button mat-min-fab (click)="saleForCastActiveInfo(element)"
-                >View</button>
-
+                  <button mat-raised-button mat-min-fab (click)="saleForCastActiveInfo(element)">View</button>
                 </td>
               </ng-container>
 
@@ -49,76 +47,67 @@
       </div>
     </div>
   </div>
-
   <div class="container-fluid mt-5">
     <div class="row">
-      <div class="col-md-12 col-12">
+      <div class="container-fluid">
         <div class="card">
-
-          <div class="card-header card-header-primary">
-            <h3 class="card-title">Sale Co</h3>
-            <p class="card-category">รายการ Sale ForCast ล่วงหน้ารายเดือน</p>
-          </div>
-
-          <div class="card-body">
-            <div class="table-search-input ml-auto">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-md-6">
+                <h3 class="card-title text-primary">ตารางรายการ SaleForcast ทั้งหมด </h3>
+              </div>
             </div>
-            <table #SaleForeCastAllSort mat-table [dataSource]="dataSourceOfSaleForeCastAllTable" multiTemplateDataRows matSort style="width: 100%;" class="table-striped table-hover">
+            <div class="card-body">
+              <table mat-table multiTemplateDataRows [dataSource]="dataSourceOfSaleForeCastAllTable" matSort style="width: 100%;"
+                class="table-striped table-hover">
 
+                <ng-container matColumnDef="month">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> month </th>
+                  <td mat-cell *matCellDef="let element"> {{ element.month }}</td>
+                </ng-container>
 
+                <ng-container matColumnDef="expandedDetail">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Detail </th>
+                  <td mat-cell *matCellDef="let element" style="background-color: white;"
+                    [attr.colspan]="columnsSalecoTable.length">
+                    <div class="example-element-detail"
+                      [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                      <table class="ml-auto" style="width: 83%; background-color: white;">
+                        <thead>
+                          <tr style="background-color: white;">
+                            <td class="text-primary" style="width: auto; font-weight: bold;">list_data</td>
+                            <td class="text-primary" style="width: auto; font-weight: bold;">type_sale_co</td>
+                            <td class="text-primary" style="width: auto; font-weight: bold;">status</td>
+                            <td class="text-primary" style="width: auto; font-weight: bold;">createAt</td>
+                            <td class="text-primary" style="width: auto; font-weight: bold;">dueDate</td>
+                            <td class="text-primary" style="width: auto; font-weight: bold;">approval_data</td>
+                          </tr>
+                        </thead>
+                        <tbody style="background-color: white;">
+                          <tr *ngFor="let lot of element.dataSaleForeCast" style="background-color: white;">
+                            <td style="width: auto;">{{ lot.list_data }}</td>
+                            <td style="width: auto;">{{ lot.type_sale_co }}</td>
+                            <td style="width: auto;">{{ lot.status}}</td>
+                            <td style="width: auto;">{{ lot.createAt }}</td>
+                            <td style="width: auto;">{{ lot.dueDate }}</td>
+                            <td style="width: auto;">{{ lot.approval_data}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="columnsSalecoTableHeader"></tr>
+                <tr mat-row *matRowDef="let element; columns: columnsSalecoTableHeader;" class="example-element-row"
+                  [class.example-expanded-row]="expandedElement === element" [class.shadow]="expandedElement === element"
+                  (click)="expandedElement = expandedElement === element ? null : element"></tr>
+                <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
 
-              <ng-container matColumnDef="month">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> month </th>
-                <td mat-cell *matCellDef="let element"> {{ element.month }} </td>
-              </ng-container>
-
-              <ng-container matColumnDef="list_data">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> list_data </th>
-                <td mat-cell *matCellDef="let element"> {{ element.list_data }} </td>
-              </ng-container>
-
-
-              <ng-container matColumnDef="type_sale_co">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> type_sale_co </th>
-                <td mat-cell *matCellDef="let element">
-                  {{ element.type_sale_co == 1 ? 'วัถุดิบ' : (element.type_sale_co == 2 ? 'อนุมัติ' : 'ปรับ') }}
-                </td>
-              </ng-container>
-
-              <ng-container matColumnDef="status">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> status </th>
-                <td mat-cell *matCellDef="let element"> {{ element.status }} </td>
-              </ng-container>
-
-              <ng-container matColumnDef="createAt">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> createAt </th>
-                <td mat-cell *matCellDef="let element"> {{ element.createAt }} </td>
-              </ng-container>
-
-              <ng-container matColumnDef="dueDate">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> dueDate </th>
-                <td mat-cell *matCellDef="let element"> {{ element.dueDate }} </td>
-              </ng-container>
-
-              <ng-container matColumnDef="approval_data">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> approval_data </th>
-                <td mat-cell *matCellDef="let element"> {{ element.approval_data }} </td>
-              </ng-container>
-              <ng-container matColumnDef="action">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> action </th>
-                <td mat-cell *matCellDef="let element"> {{ element.action }} </td>
-              </ng-container>
-
-              <ng-container matColumnDef="view">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> view </th>
-                <td mat-cell *matCellDef="let element"> {{ element.view }} </td>
-              </ng-container>
-
-              <tr mat-header-row class="text-center" *matHeaderRowDef="columnsSaleForeCastAllTable"></tr>
-              <tr mat-row *matRowDef="let row; columns: columnsSaleForeCastAllTable;"></tr>
-            </table>
-            <mat-paginator #SaleForeCastAllPaginator [pageSizeOptions]="[5, 20, 50]" showFirstLastButtons></mat-paginator>
+              </table>
+              <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
+            </div>
           </div>
+
         </div>
       </div>
     </div>
