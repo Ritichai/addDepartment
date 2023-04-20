@@ -202,7 +202,7 @@ export class UsersService {
   }
 
   getMyImg() {
-    return this.http.get(this.host + this.partUsers + "picture", {
+    return this.http.get(this.host + this.partUsers + "/picture", {
       headers: new HttpHeaders()
         .set("Authorization", 'Bearer ' + localStorage.getItem("token"))
         .set("Content-Type", "application/json"),
