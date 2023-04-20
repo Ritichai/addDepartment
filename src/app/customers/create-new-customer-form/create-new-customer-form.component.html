@@ -28,8 +28,10 @@
 
               <div class="form-group row mt-3">
                 <div class="col-md-4 col-6">
-                  <label for="customer_group" class="col-form-label">customer group</label>
-                  <input type="text" class="form-control" name="customer_group" ngModel id="customer_group">
+                  <label for="customer_group" class="col-form-label">Customer group</label>
+                  <select class="form-control" name="customer_group" ngModel id="customer_group">
+                    <option *ngFor="let group of customerGroupList" [value]="group.name">{{ group.name }}</option>
+                  </select>
                 </div>
               </div>
 
