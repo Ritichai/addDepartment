@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SaleCoService } from 'src/app/services/saleco.service';
-import Validation from 'src/app/users-account-management/reset-password/passwordmatch';
+
 
 @Component({
   selector: 'app-open-saleforecast',
@@ -10,7 +10,6 @@ import Validation from 'src/app/users-account-management/reset-password/password
   styleUrls: ['./open-saleforecast.component.scss']
 })
 export class OpenSaleforecastComponent {
-
 
   form: FormGroup = new FormGroup({
     start_date: new FormControl(''),
@@ -32,19 +31,14 @@ export class OpenSaleforecastComponent {
 
 
 
+
   constructor(
     public dialogRef: MatDialogRef<OpenSaleforecastComponent>,
     public saleCoService: SaleCoService,
     private formBuilder: FormBuilder,
+
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) {
-    this.form = this.formBuilder.group({
-      start_date: ["", Validators.required],
-      end_date: ["", Validators.required],
-      sale_co_type: ["", Validators.required],
-      leadtime: ["", Validators.required],
-    })
-  }
+  ) { }
 
 
 
@@ -60,19 +54,22 @@ export class OpenSaleforecastComponent {
       this.form.value["sale_co_type"],
     ).subscribe((res: any) => {
       console.log(res)
-      this.ngOnInit();
       this.dialogRef.close();
+
     }), (err: any) => {
       console.log(err)
     }
   }
 
 
-
-
-
   ngOnInit(): void {
     this.start_date = this.getCurrentDateString();
+    this.form = this.formBuilder.group({
+      start_date: [this.start_date, Validators.required],
+      end_date: ["", Validators.required],
+      sale_co_type: ["", Validators.required],
+      leadtime: ["", Validators.required],
+    })
   }
 
 
@@ -81,7 +78,7 @@ export class OpenSaleforecastComponent {
   closeDialog(): void {
     this.dialogRef.close();
   }
-
+  // ทำให้ start_date เป็นวันที่ปัจจุบัน
   getCurrentDateString(): string {
     const currentDate = new Date();
     const year = currentDate.getFullYear();
@@ -89,9 +86,7 @@ export class OpenSaleforecastComponent {
     const day = ('0' + currentDate.getDate()).slice(-2);
     return `${year}-${month}-${day}`;
   }
-
-
-
+  //ใช้คำนวณวันที่ โดยใช้ start_date กับ leadtime + กันจะได้ end_date
   calculateTime() {
     if (this.start_date && this.leadtime) {
       const startDate = new Date(this.start_date);

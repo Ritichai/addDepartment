@@ -88,6 +88,7 @@
           </div>
         </div>
         <div class="card-body">
+
           <table mat-table multiTemplateDataRows [dataSource]="dataSourceOfSaleCoTable" matSort style="width: 100%;"
             class="table-striped table-hover">
 
@@ -104,9 +105,9 @@
                   <i class="material-icons">add</i>
                 </button>
                 <button mat-raised-button mat-min-fab (click)="viewdata(element)"
-                class="btn btn-sm btn-primary btn-round btn-fab">
-                <i class="material-icons">visibility</i>
-              </button>
+                  class="btn btn-sm btn-primary btn-round btn-fab">
+                  <i class="material-icons">visibility</i>
+                </button>
               </td>
             </ng-container>
 
@@ -132,8 +133,8 @@
                         <td style="width: auto;">{{ saleForceCast.id }}</td>
                         <td style="width: auto;">{{ saleForceCast.saleforecast_types }}</td>
                         <td style="width: auto;">{{ saleForceCast.saleforecast_status }}</td>
-                        <td style="width: auto;">{{ saleForceCast.createdAt }}</td>
-                        <td style="width: auto;">{{ saleForceCast.saleforecast_duedate }}</td>
+                        <td style="width: auto;">{{ formatDate(saleForceCast.createdAt) }}</td>
+                        <td style="width: auto;">{{ formatDate(saleForceCast.saleforecast_duedate)}}</td>
                         <td style="width: auto;">{{ saleForceCast.saleforecast_approvaldate }}</td>
                       </tr>
                     </tbody>

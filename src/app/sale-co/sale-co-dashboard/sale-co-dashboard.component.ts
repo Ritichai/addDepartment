@@ -120,7 +120,54 @@ export class SaleCoDashboardComponent {
       }
     });
   }
+  formatDate(dateString: string): string {
+    const englishMonths = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ];
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = englishMonths[date.getMonth()];
+    //const month = ('0' + (date.getMonth() + 1)).slice(-2);
+    const day = ('0' + date.getDate()).slice(-2);
+    return `${day}-${month}-${year}`;
+  }
+
+  formatDateTH(dateString: string): string {
+    const thaiMonths = [
+      'มกราคม',
+      'กุมภาพันธ์',
+      'มีนาคม',
+      'เมษายน',
+      'พฤษภาคม',
+      'มิถุนายน',
+      'กรกฎาคม',
+      'สิงหาคม',
+      'กันยายน',
+      'ตุลาคม',
+      'พฤศจิกายน',
+      'ธันวาคม',
+    ];
+
+    const date = new Date(dateString);
+    const year = date.getFullYear() + 543;
+    const month = thaiMonths[date.getMonth()];
+    const day = ('0' + date.getDate()).slice(-2);
+    return `${day} ${month} ${year}`;
+  }
 }
+
+
 
 export interface saleCoModel {
   id: number;
