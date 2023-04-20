@@ -119,14 +119,24 @@
                   <table class="ml-auto" style="width: 83%; background-color: white;">
                     <thead>
                       <tr style="background-color: white;">
-                        <td class="text-primary" style="width: auto; font-weight: bold;">id</td>
+                        <td class="text-primary" style="width: auto; font-weight: bold;">รายการ</td>
+                        <td class="text-primary" style="width: auto; font-weight: bold;">ประเภท</td>
+                        <td class="text-primary" style="width: auto; font-weight: bold;">สถานะ</td>
+                        <td class="text-primary" style="width: auto; font-weight: bold;">วันที่สร้าง</td>
+                        <td class="text-primary" style="width: auto; font-weight: bold;">วันที่ครบกำหนด</td>
+                        <td class="text-primary" style="width: auto; font-weight: bold;">วันที่อนุมัติ</td>
                       </tr>
                     </thead>
-                    <!-- <tbody style="background-color: white;">
-                      <tr *ngFor="let lot of element.dataSaleForeCast" style="background-color: white;">
-                        <td style="width: auto;">{{ lot.id }}</td>
+                    <tbody style="background-color: white;">
+                      <tr *ngFor="let saleForceCast of element.dataSaleForeCast" style="background-color: white;">
+                        <td style="width: auto;">{{ saleForceCast.id }}</td>
+                        <td style="width: auto;">{{ saleForceCast.saleforecast_types }}</td>
+                        <td style="width: auto;">{{ saleForceCast.saleforecast_status }}</td>
+                        <td style="width: auto;">{{ saleForceCast.createdAt }}</td>
+                        <td style="width: auto;">{{ saleForceCast.saleforecast_duedate }}</td>
+                        <td style="width: auto;">{{ saleForceCast.saleforecast_approvaldate }}</td>
                       </tr>
-                    </tbody> -->
+                    </tbody>
                   </table>
                 </div>
               </td>

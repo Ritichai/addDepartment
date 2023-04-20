@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SaleCoService } from 'src/app/services/saleco.service';
@@ -48,7 +48,8 @@ export class OpenSaleforecastComponent {
 
 
 
-  opneSaleForeCast() {
+
+  opneSaleForeCast(): void {
     this.submitted = true;
     if (this.form.invalid) {
       return;
@@ -59,6 +60,7 @@ export class OpenSaleforecastComponent {
       this.form.value["sale_co_type"],
     ).subscribe((res: any) => {
       console.log(res)
+      this.ngOnInit();
       this.dialogRef.close();
     }), (err: any) => {
       console.log(err)
