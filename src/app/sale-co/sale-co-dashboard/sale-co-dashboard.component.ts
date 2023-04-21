@@ -22,54 +22,7 @@ import { SaleCoService } from 'src/app/services/saleco.service';
 })
 export class SaleCoDashboardComponent {
   expandedElement: saleCoModel | null = null;
-  // data = [
-  //   {
-  //     id: 1,
-  //     month: "12/2565",
-  //     dataSaleForeCast: [
-  //       {
-  //         id: 1,
-  //         list_data: "แผนการขายล่วงหน้า คร้้งที่ 1",
-  //         type_sale_co: 1,
-  //         status: "วางแผนวัตถุดิบ",
-  //         createAt: "",
-  //         dueDate: "",
-  //         approval_data: ""
-  //       },
-  //       {
-  //         id:3,
-  //         list_data: "แผนการขายล่วงหน้า คร้้งที่ 2",
-  //         type_sale_co: 1,
-  //         status: "วางแผนวัตถุดิบ",
-  //         createAt: "",
-  //         dueDate: "",
-  //         approval_data: ""
-  //       },{
-  //         id:3,
-  //         list_data: "แผนการขายล่วงหน้า คร้้งที่ 3",
-  //         type_sale_co: 1,
-  //         status: "วางแผนวัตถุดิบ",
-  //         createAt: "",
-  //         dueDate: "",
-  //         approval_data: ""
-  //       }
-  //     ],
-  //   }, {
-  //     id: 2,
-  //     month: "11/2565",
-  //     dataSaleForeCast: [
-  //       {
-  //         id: 2,
-  //         list_data: "แผนการขายล่วงหน้า คร้้งที่ 1",
-  //         type_sale_co: 2,
-  //         status: "อนุมัติสั่งซื้อวัตถุดิบ",
-  //         createAt: "",
-  //         dueDate: "",
-  //         approval_data: ""
-  //       }
-  //     ],
-  //   },
-  // ];
+
   columnsSalecoTableHeader = [
     "month",
     "action",
@@ -113,14 +66,16 @@ export class SaleCoDashboardComponent {
   }
 
 
+
   checkDisableAddButton(dataSaleForeCast: any[]): boolean {
     for (const data of dataSaleForeCast) {
-      if (data.saleforecast_status === 0) {
+      if (data.saleforecast_status === 0 || data.saleforecast_status === 1) {
         return true;
       }
     }
     return false;
   }
+
 
 
   openDialog(data: saleCoModel): void {

@@ -220,7 +220,7 @@ export class SaleDashboardComponent {
   ngAfterViewInit(): void {
     this.dataSourceOfSaleForeCastActiveTable.paginator = this.paginator.toArray()[0];
     this.dataSourceOfSaleForeCastActiveTable.sort = this.sort.toArray()[0];
-    this.saleCoService.getSaleCoByStatus().subscribe((res: any) => {
+    this.saleCoService.getSaleForeCastActive().subscribe((res: any) => {
       console.log(res.body.data);
       this.dataSourceOfSaleForeCastActiveTable.data = res.body.data;
    });

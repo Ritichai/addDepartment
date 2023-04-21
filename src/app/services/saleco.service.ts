@@ -46,7 +46,7 @@ export class SaleCoService {
   }
 
   getSaleForeCastActive() {
-    return this.http.get(this.hostURL + '/selco/getDataStatus', {
+    return this.http.get(this.hostURL + '/selco/getDataSaleForeCastActive', {
       headers: new HttpHeaders()
         .set('Authorization', 'Bearer ' + localStorage.getItem('token'))
         .set('Content-Type', 'application/json'),

@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SaleCoService } from 'src/app/services/saleco.service';
 import { SaleCoDashboardComponent } from '../sale-co-dashboard/sale-co-dashboard.component';
+import swal from "sweetalert2";
 
 
 @Component({
@@ -53,9 +54,13 @@ export class OpenSaleforecastComponent {
       this.form.value["end_date"],
       this.form.value["sale_co_type"],
     ).subscribe((res: any) => {
-      console.log(res)
-      this.dialogRef.close();
-      this.refreshEvent.emit();
+      if(res.status == 200){
+         this.createFail(res.body.message);
+      }else{
+        console.log(res)
+        this.dialogRef.close();
+        this.refreshEvent.emit();
+      }
     }), (err: any) => {
       console.log(err)
     }
@@ -108,5 +113,14 @@ export class OpenSaleforecastComponent {
 
   get f(): { [key: string]: AbstractControl } {
     return this.form.controls;
+  }
+
+  createFail(data:any) {
+    swal.fire({
+      title: 'บันทึกไม่สำเร็จ!',
+      text: data,
+      icon: 'error',
+      confirmButtonText: 'ปิด',
+    });
   }
 }
