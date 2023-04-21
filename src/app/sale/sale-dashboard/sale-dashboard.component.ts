@@ -245,9 +245,13 @@ export class SaleDashboardComponent {
     this.router.navigateByUrl('/sale/sale-forecast-info/' + item['id']);
   }
 
-  getMonthName(createAt: string): string {
+  getMonthNameTH(createAt: string): string {
     const date = new Date(createAt);
     return new Intl.DateTimeFormat('th-TH', { month: 'long' }).format(date);
+  }
+  getMonthNameEN(createAt: string): string {
+    const date = new Date(createAt);
+    return new Intl.DateTimeFormat('en-EN', { month: 'long' }).format(date);
   }
 
   formatDate(dateString: string): string {

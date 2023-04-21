@@ -45,4 +45,13 @@ export class SaleCoService {
     });
   }
 
+  getSaleForeCastActive() {
+    return this.http.get(this.hostURL + '/selco/getDataStatus', {
+      headers: new HttpHeaders()
+        .set('Authorization', 'Bearer ' + localStorage.getItem('token'))
+        .set('Content-Type', 'application/json'),
+      observe: 'response',
+    });
+  }
+
 }

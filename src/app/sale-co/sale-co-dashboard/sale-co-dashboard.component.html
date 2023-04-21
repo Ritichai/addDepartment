@@ -97,7 +97,7 @@
 
           <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef></th>
-            <td mat-cell *matCellDef="let element" class="header-container">
+            <td mat-cell *matCellDef="let element" class="header-container mt-1">
               <button *ngIf="!checkDisableAddButton(element.dataSaleForeCast)" mat-raised-button mat-min-fab
                 (click)="openDialog(element)" class="btn btn-sm btn-primary btn-round btn-fab"
                 style="margin-right: 10px;">
