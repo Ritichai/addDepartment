@@ -85,73 +85,73 @@
         <div class="col-md-6">
           <h3 class="card-title text-primary">ตารางรายการ SaleForcast ทั้งหมด </h3>
         </div>
-    </div>
-        <div class="card-body">
-          <table mat-table multiTemplateDataRows [dataSource]="dataSourceOfSaleCoTable" matSort style="width: 100%;"
-            class="table-striped table-hover">
-
-            <ng-container matColumnDef="month">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> month </th>
-              <td mat-cell *matCellDef="let element"> {{ element.year }} / {{ element.month }} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="action" >
-              <th mat-header-cell *matHeaderCellDef></th>
-              <td mat-cell *matCellDef="let element" class="header-container">
-                <button mat-raised-button mat-min-fab (click)="openDialog(element)"
-                  class="btn btn-sm btn-primary btn-round btn-fab" style="margin-right: 10px;">
-                  <i class="material-icons">add</i>
-                </button>
-                <button mat-raised-button mat-min-fab (click)="viewdata(element)"
-                  class="btn btn-sm btn-info btn-round btn-fab">
-                  <i class="material-icons">visibility</i>
-                </button>
-              </td>
-            </ng-container>
-
-
-            <ng-container matColumnDef="expandedDetail">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Detail </th>
-              <td mat-cell *matCellDef="let element" style="background-color: white;"
-                [attr.colspan]="columnsSalecoTable.length">
-                <div class="example-element-detail"
-                  [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-                  <table class="ml-auto" style="width: 83%; background-color: white;">
-                    <thead>
-                      <tr style="background-color: white;">
-                        <td class="text-primary" style="width: auto; font-weight: bold;">รายการ</td>
-                        <td class="text-primary" style="width: auto; font-weight: bold;">ประเภท</td>
-                        <td class="text-primary" style="width: auto; font-weight: bold;">สถานะ</td>
-                        <td class="text-primary" style="width: auto; font-weight: bold;">วันที่สร้าง</td>
-                        <td class="text-primary" style="width: auto; font-weight: bold;">วันที่ครบกำหนด</td>
-                        <td class="text-primary" style="width: auto; font-weight: bold;">วันที่อนุมัติ</td>
-                      </tr>
-                    </thead>
-                    <tbody style="background-color: white;">
-                      <tr *ngFor="let saleForceCast of element.dataSaleForeCast" style="background-color: white;">
-                        <td style="width: auto;">{{ saleForceCast.id }}</td>
-                        <td style="width: auto;">{{ saleForceCast.saleforecast_types }}</td>
-                        <td style="width: auto;">{{ saleForceCast.saleforecast_status }}</td>
-                        <td style="width: auto;">{{ formatDate(saleForceCast.createdAt) }}</td>
-                        <td style="width: auto;">{{ formatDate(saleForceCast.saleforecast_duedate)}}</td>
-                        <td style="width: auto;">{{ saleForceCast.saleforecast_approvaldate }}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </td>
-            </ng-container>
-            <tr mat-header-row *matHeaderRowDef="columnsSalecoTableHeader"></tr>
-            <tr mat-row *matRowDef="let element; columns: columnsSalecoTableHeader;" class="example-element-row"
-              [class.example-expanded-row]="expandedElement === element" [class.shadow]="expandedElement === element"
-              (click)="expandedElement = expandedElement === element ? null : element"></tr>
-            <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
-
-          </table>
-          <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
-        </div>
       </div>
+      <div class="card-body">
+        <table mat-table multiTemplateDataRows [dataSource]="dataSourceOfSaleCoTable" matSort style="width: 100%;"
+          class="table-striped table-hover">
 
+          <ng-container matColumnDef="month">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> month </th>
+            <td mat-cell *matCellDef="let element"> {{ element.year }} / {{ element.month }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element" class="header-container">
+              <button *ngIf="!checkDisableAddButton(element.dataSaleForeCast)" mat-raised-button mat-min-fab
+                (click)="openDialog(element)" class="btn btn-sm btn-primary btn-round btn-fab"
+                style="margin-right: 10px;">
+                <i class="material-icons">add</i>
+              </button>
+              <button mat-raised-button mat-min-fab (click)="viewdata(element)"
+                class="btn btn-sm btn-info btn-round btn-fab">
+                <i class="material-icons">visibility</i>
+              </button>
+            </td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="expandedDetail">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Detail </th>
+            <td mat-cell *matCellDef="let element" style="background-color: white;"
+              [attr.colspan]="columnsSalecoTable.length">
+              <div class="example-element-detail"
+                [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                <table class="ml-auto" style="width: 83%; background-color: white;">
+                  <thead>
+                    <tr style="background-color: white;">
+                      <td class="text-primary" style="width: auto; font-weight: bold;">รายการ</td>
+                      <td class="text-primary" style="width: auto; font-weight: bold;">ประเภท</td>
+                      <td class="text-primary" style="width: auto; font-weight: bold;">สถานะ</td>
+                      <td class="text-primary" style="width: auto; font-weight: bold;">วันที่สร้าง</td>
+                      <td class="text-primary" style="width: auto; font-weight: bold;">วันที่ครบกำหนด</td>
+                      <td class="text-primary" style="width: auto; font-weight: bold;">วันที่อนุมัติ</td>
+                    </tr>
+                  </thead>
+                  <tbody style="background-color: white;">
+                    <tr *ngFor="let saleForceCast of element.dataSaleForeCast" style="background-color: white;">
+                      <td style="width: auto;">{{ saleForceCast.id }}</td>
+                      <td style="width: auto;">{{ saleForceCast.saleforecast_types }}</td>
+                      <td style="width: auto;">{{ saleForceCast.saleforecast_status === 0 ? 'อยู่ระหว่างการดำเนินงาน':'เสร็จ' }}</td>
+                      <td style="width: auto;">{{ formatDate(saleForceCast.createdAt) }}</td>
+                      <td style="width: auto;">{{ formatDate(saleForceCast.saleforecast_duedate)}}</td>
+                      <td style="width: auto;">{{ saleForceCast.saleforecast_approvaldate }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="columnsSalecoTableHeader"></tr>
+          <tr mat-row *matRowDef="let element; columns: columnsSalecoTableHeader;" class="example-element-row"
+            [class.example-expanded-row]="expandedElement === element" [class.shadow]="expandedElement === element"
+            (click)="expandedElement = expandedElement === element ? null : element"></tr>
+          <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+
+        </table>
+        <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
+      </div>
     </div>
-  </div>
 
+  </div>
+</div>

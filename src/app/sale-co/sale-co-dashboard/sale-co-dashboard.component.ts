@@ -112,6 +112,17 @@ export class SaleCoDashboardComponent {
     console.log(data);
   }
 
+
+  checkDisableAddButton(dataSaleForeCast: any[]): boolean {
+    for (const data of dataSaleForeCast) {
+      if (data.saleforecast_status === 0) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+
   openDialog(data: saleCoModel): void {
     const dialogRef = this.dialog.open(OpenSaleforecastComponent, {
       data: {
