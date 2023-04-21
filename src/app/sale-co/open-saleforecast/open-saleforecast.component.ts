@@ -1,7 +1,8 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SaleCoService } from 'src/app/services/saleco.service';
+import { SaleCoDashboardComponent } from '../sale-co-dashboard/sale-co-dashboard.component';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { SaleCoService } from 'src/app/services/saleco.service';
   styleUrls: ['./open-saleforecast.component.scss']
 })
 export class OpenSaleforecastComponent {
-
+  @Output() refreshEvent = new EventEmitter<void>();
   form: FormGroup = new FormGroup({
     start_date: new FormControl(''),
     end_date: new FormControl(''),
@@ -36,7 +37,6 @@ export class OpenSaleforecastComponent {
     public dialogRef: MatDialogRef<OpenSaleforecastComponent>,
     public saleCoService: SaleCoService,
     private formBuilder: FormBuilder,
-
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
@@ -55,7 +55,7 @@ export class OpenSaleforecastComponent {
     ).subscribe((res: any) => {
       console.log(res)
       this.dialogRef.close();
-
+      this.refreshEvent.emit();
     }), (err: any) => {
       console.log(err)
     }

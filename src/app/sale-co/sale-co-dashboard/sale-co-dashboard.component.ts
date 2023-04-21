@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog , MatDialogRef  } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -111,13 +111,18 @@ export class SaleCoDashboardComponent {
   viewdata(data:saleCoModel): void {
     console.log(data);
   }
-  openDialog(data:saleCoModel): void {
-    this.dialog.open(OpenSaleforecastComponent,{
-      data:{
+
+  openDialog(data: saleCoModel): void {
+    const dialogRef = this.dialog.open(OpenSaleforecastComponent, {
+      data: {
         id: data.id,
         month: data.month,
         year: data.year,
-      }
+      },
+    });
+
+    dialogRef.componentInstance.refreshEvent.subscribe(() => {
+      this.ngOnInit();
     });
   }
   formatDate(dateString: string): string {
