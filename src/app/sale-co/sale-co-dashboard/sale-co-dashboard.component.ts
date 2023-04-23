@@ -25,6 +25,7 @@ export class SaleCoDashboardComponent {
 
   columnsSalecoTableHeader = [
     "month",
+    "status",
     "action",
   ];
   columnsSalecoTable: string[] = [
@@ -66,6 +67,14 @@ export class SaleCoDashboardComponent {
   }
 
 
+  checkStatusSaleForecast(dataSaleForeCast: any[]): boolean {
+    for (const data of dataSaleForeCast) {
+      if (data.saleforecast_status === 0 || data.saleforecast_status === 1) {
+        return true;
+      }
+    }
+    return false;
+  }
 
   checkDisableAddButton(dataSaleForeCast: any[]): boolean {
     for (const data of dataSaleForeCast) {

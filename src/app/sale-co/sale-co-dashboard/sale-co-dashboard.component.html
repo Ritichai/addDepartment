@@ -1,83 +1,3 @@
-<!-- <div class="main-content">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-12 col-12">
-        <div class="card">
-
-          <div class="card-header card-header-primary">
-            <h3 class="card-title">Sale Co</h3>
-            <p class="card-category">รายการ Sale ForCast ล่วงหน้ารายเดือน</p>
-          </div>
-
-          <div class="card-body">
-            <div class="table-search-input ml-auto">
-            </div>
-            <table mat-table [dataSource]="dataSourceOfSaleCoTable" multiTemplateDataRows matSort style="width: 100%;" class="table-striped table-hover">
-
-
-
-              <ng-container matColumnDef="month">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> month </th>
-                <td mat-cell *matCellDef="let element"> {{ element.month }} </td>
-              </ng-container>
-
-              <ng-container matColumnDef="list_data">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> list_data </th>
-                <td mat-cell *matCellDef="let element"> {{ element.list_data }} </td>
-              </ng-container>
-
-
-              <ng-container matColumnDef="type_sale_co">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> type_sale_co </th>
-                <td mat-cell *matCellDef="let element">
-                  {{ element.type_sale_co == 1 ? 'วัถุดิบ' : (element.type_sale_co == 2 ? 'อนุมัติ' : 'ปรับ') }}
-                </td>
-              </ng-container>
-
-              <ng-container matColumnDef="status">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> status </th>
-                <td mat-cell *matCellDef="let element"> {{ element.status }} </td>
-              </ng-container>
-
-              <ng-container matColumnDef="createAt">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> createAt </th>
-                <td mat-cell *matCellDef="let element"> {{ element.createAt }} </td>
-              </ng-container>
-
-              <ng-container matColumnDef="dueDate">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> dueDate </th>
-                <td mat-cell *matCellDef="let element"> {{ element.dueDate }} </td>
-              </ng-container>
-
-              <ng-container matColumnDef="approval_data">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> approval_data </th>
-                <td mat-cell *matCellDef="let element"> {{ element.approval_data }} </td>
-              </ng-container>
-
-
-              <ng-container matColumnDef="action">
-                <th mat-header-cell *matHeaderCellDef>เปิด sale forecast</th>
-                <td mat-cell *matCellDef="let element">
-                  <button mat-raised-button color="primary" (click)="openDialog(element)"
-                  class="btn btn-sm btn-primary btn-round btn-fab">เปิด</button>
-                </td>
-              </ng-container>
-
-              <ng-container matColumnDef="view">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> view </th>
-                <td mat-cell *matCellDef="let element"> {{ element.view }} </td>
-              </ng-container>
-
-              <tr mat-header-row class="text-center" *matHeaderRowDef="columnsSalecoTable"></tr>
-              <tr mat-row *matRowDef="let row; columns: columnsSalecoTable;"></tr>
-            </table>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
-
 <div class="main-content">
   <div class="container-fluid">
     <div class="card">
@@ -93,6 +13,20 @@
           <ng-container matColumnDef="month">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> month </th>
             <td mat-cell *matCellDef="let element"> {{ element.year }} / {{ element.month }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> status </th>
+            <td mat-cell *matCellDef="let element">
+              <ng-template [ngIf]="!checkStatusSaleForecast(element.dataSaleForeCast)">
+                <span class="status-circle status-red"></span>
+                <span class="status-text">ยังไม่ได้เปิด saleForceCast</span>
+              </ng-template>
+              <ng-template [ngIf]="checkStatusSaleForecast(element.dataSaleForeCast)">
+                <span class="status-circle status-green"></span>
+                <span class="status-text">เปิด saleForceCast แล้ว</span>
+              </ng-template>
+            </td>
           </ng-container>
 
           <ng-container matColumnDef="action">
