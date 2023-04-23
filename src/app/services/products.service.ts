@@ -111,4 +111,17 @@ export class ProductsService {
       observe: 'response',
     });
   }
+
+  uploadBatchProduct(data: any[]): Observable<any> {
+    return this.http.post(
+      this.hostURL + '/product/batch',
+      data,
+      {
+        headers: new HttpHeaders()
+          .set('Authorization', 'Bearer ' + localStorage.getItem('token'))
+          .set('Content-Type', 'application/json'),
+        observe: 'response'
+      }
+    );
+  }
 }

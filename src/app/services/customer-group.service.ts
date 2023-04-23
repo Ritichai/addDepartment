@@ -6,14 +6,14 @@ import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class CustomerService {
+export class CustomerGroupService {
 
   hostURL = environment.HOST_URL;
 
   constructor(private http: HttpClient) { }
 
-  getCustomerList(): Observable<any> {
-    return this.http.get(this.hostURL + '/customer', {
+  getCustomerGroupList(): Observable<any> {
+    return this.http.get(this.hostURL + '/customer-group', {
       headers: new HttpHeaders()
         .set('Authorization', 'Bearer ' + localStorage.getItem('token'))
         .set('Content-Type', 'application/json'),
@@ -21,8 +21,8 @@ export class CustomerService {
     });
   }
 
-  getCustomerById(customerId: number): Observable<any> {
-    return this.http.get(this.hostURL + '/customer/' + customerId, {
+  getCustomerGroupById(customerGroupId: number): Observable<any> {
+    return this.http.get(this.hostURL + '/customer-group/' + customerGroupId, {
       headers: new HttpHeaders()
         .set('Authorization', 'Bearer ' + localStorage.getItem('token'))
         .set('Content-Type', 'application/json'),
@@ -30,19 +30,13 @@ export class CustomerService {
     });
   }
 
-  createNewCustomer(
-    customer_code: string,
-    customer_name: string,
-    customer_province: string,
-    customer_group: string,
+  createNewCustomerGroup(
+    groupName: string,
   ): Observable<any> {
     return this.http.post(
-      this.hostURL + '/customer',
+      this.hostURL + '/customer-group',
       {
-        customer_code,
-        customer_name,
-        customer_province,
-        customer_group,
+        name: groupName,
       },
       {
         headers: new HttpHeaders()
@@ -53,21 +47,14 @@ export class CustomerService {
     );
   }
 
-  updateCustomer(
-    customerId: number,
-    customer_code: string,
-    customer_name: string,
-    customer_province: string,
-    customer_group: string,
+  updateCustomerGroup(
+    customerGroupId: number,
+    groupName: string,
   ): Observable<any> {
     return this.http.put(
-      this.hostURL + '/customer',
+      this.hostURL + '/customer-group/' + customerGroupId,
       {
-        id: customerId,
-        customer_code,
-        customer_name,
-        customer_province,
-        customer_group,
+        name: groupName,
       },
       {
         headers: new HttpHeaders()
@@ -78,8 +65,8 @@ export class CustomerService {
     );
   }
 
-  deleteCustomer(customerId: number): Observable<any> {
-    return this.http.delete(this.hostURL + '/customer/' + customerId, {
+  deleteCustomerGroup(customerGroupId: number): Observable<any> {
+    return this.http.delete(this.hostURL + '/customer-group/' + customerGroupId, {
       headers: new HttpHeaders()
         .set('Authorization', 'Bearer ' + localStorage.getItem('token'))
         .set('Content-Type', 'application/json'),
@@ -87,9 +74,9 @@ export class CustomerService {
     });
   }
 
-  uploadBatchCustomer(data: any[]): Observable<any> {
+  uploadBatchCustomerGroup(data: any[]): Observable<any> {
     return this.http.post(
-      this.hostURL + '/customer/batch',
+      this.hostURL + '/customer-group/batch',
       data,
       {
         headers: new HttpHeaders()
