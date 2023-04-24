@@ -49,7 +49,7 @@ export class UserAccountsDashboardComponent implements OnInit {
           m['lastname'] = m['lastname'];
           m['employee_code'] = m['employee_code'];
           m['user_role'] = m['role_id'];
-          m['department'] = m['department_id'];
+
           return m;
         })
         this.dataSourceOfUserAccountsManagementTable.paginator = this.MatPaginator;

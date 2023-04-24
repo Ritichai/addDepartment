@@ -1,6 +1,5 @@
 <div class="main-content">
   <div class="container-fluid">
-    {{dataHeader}}
     <div class="row mt-3">
       <div class="col-md-5 col-5">
         <div class="card">
@@ -10,32 +9,22 @@
           <div class="card-body">
             <div class="table-search-input ml-auto">
             </div>
-            <table #SaleForeCastActiveSort mat-table  multiTemplateDataRows
-              matSort style="width: 100%;" class="table-striped table-hover">
-
+            <table #SaleForeCastActiveSort mat-table [dataSource]="dataInfo" multiTemplateDataRows matSort style="width: 100%;"
+              class="table-striped table-hover">
               <ng-container matColumnDef="sale_name">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> sale_name </th>
-                <td mat-cell *matCellDef="let element"> {{ element.sale_name }} </td>
+                <td mat-cell *matCellDef="let element">{{element.firstname}} {{element.lastname}} </td>
               </ng-container>
 
               <ng-container matColumnDef="sale_grop">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> sale_grop </th>
-                <td mat-cell *matCellDef="let element"> {{ element.sale_grop }} </td>
+                <td mat-cell *matCellDef="let element"> {{element.employee_position}} </td>
               </ng-container>
 
-              <ng-container matColumnDef="sale_department">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> sale_department </th>
-                <td mat-cell *matCellDef="let element"> {{ element.sale_department }} </td>
-              </ng-container>
 
-              <ng-container matColumnDef="dueDate">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> dueDate </th>
-                <td mat-cell *matCellDef="let element"> {{ element.dueDate }} </td>
-              </ng-container>
 
               <tr mat-header-row *matHeaderRowDef="columnsInfo"></tr>
               <tr mat-row *matRowDef="let row; columns: columnsInfo;"></tr>
-
             </table>
           </div>
         </div>
@@ -50,8 +39,8 @@
           <div class="card-body">
             <div class="table-search-input ml-auto">
             </div>
-            <table #MonthlySalesTarget mat-table  multiTemplateDataRows
-              matSort style="width: 100%;" class="table-striped table-hover">
+            <table #MonthlySalesTarget mat-table multiTemplateDataRows matSort style="width: 100%;"
+              class="table-striped table-hover">
               <ng-container matColumnDef="strategy_group">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> strategy_group </th>
                 <td mat-cell *matCellDef="let element"> {{ element.strategy_group }} </td>
@@ -81,8 +70,8 @@
           <div class="card-body">
             <div class="table-search-input ml-auto">
             </div>
-            <table #MonthlySalesTarget mat-table  multiTemplateDataRows
-              matSort style="width: 100%;" class="table-striped table-hover">
+            <table #MonthlySalesTarget mat-table multiTemplateDataRows matSort style="width: 100%;"
+              class="table-striped table-hover">
 
               <ng-container matColumnDef="add_now">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> add_now </th>
@@ -130,9 +119,10 @@
         <div class="card">
           <div class="card-body">
             <div class="table-search-input ml-auto">
+             <h3> ข้อมูล Sale ForeCaet หมายเลย {{infoID}} ของแผนก {{departmentId}}  </h3>
             </div>
-            <table mat-table multiTemplateDataRows [dataSource]="dataSourceOfSaleForeCastTable" matSort style="width: 100%;"
-            class="table-striped table-hover">
+            <table mat-table multiTemplateDataRows [dataSource]="dataSourceOfSaleForeCastTable" matSort
+              style="width: 100%;" class="table-striped table-hover">
 
               <ng-container matColumnDef="customer_name">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> customer_name </th>
@@ -144,40 +134,7 @@
                 <td mat-cell *matCellDef="let element"> {{ element.product_name }} </td>
               </ng-container>
 
-              <ng-container matColumnDef="strategy_group">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> strategy_group </th>
-                <td mat-cell *matCellDef="let element"> {{ element.strategy_group }} </td>
-              </ng-container>
 
-              <ng-container matColumnDef="product_group">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> product_group </th>
-                <td mat-cell *matCellDef="let element"> {{ element.product_group }} </td>
-              </ng-container>
-
-              <ng-container matColumnDef="pack_size">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> pack_size </th>
-                <td mat-cell *matCellDef="let element"> {{ element.pack_size }} </td>
-              </ng-container>
-
-              <ng-container matColumnDef="unit">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> unit </th>
-                <td mat-cell *matCellDef="let element"> {{ element.unit }} </td>
-              </ng-container>
-
-              <ng-container matColumnDef="quantity_m">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> quantity_m </th>
-                <td mat-cell *matCellDef="let element"> {{ element.quantity_m }} </td>
-              </ng-container>
-
-              <ng-container matColumnDef="quantity_y">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> quantity_y </th>
-                <td mat-cell *matCellDef="let element"> {{ element.quantity_y }} </td>
-              </ng-container>
-
-              <ng-container matColumnDef="total">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> total </th>
-                <td mat-cell *matCellDef="let element"> {{ element.total }} </td>
-              </ng-container>
 
               <tr mat-header-row *matHeaderRowDef="columnsSaleForeCast"></tr>
               <tr mat-row *matRowDef="let row; columns: columnsSaleForeCast;"></tr>

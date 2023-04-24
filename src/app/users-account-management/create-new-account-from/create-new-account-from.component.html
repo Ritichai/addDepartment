@@ -64,7 +64,7 @@
                 </div>
               </div>
               <div class="row mt-3">
-                <div class="col-md-3">
+                <div class="col-md-4">
                   <div class="form-group">
                     <label>รหัสพนักงาน</label>
                     <input
@@ -80,7 +80,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                   <div class="form-group">
                     <label>ตำแหน่ง</label>
                     <input
@@ -96,7 +96,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                   <div class="form-group">
                     <label>ระดับสิทธิ์</label>
                       <mat-select formControlName="user_role" name="user_role" id="user_role"
@@ -106,19 +106,6 @@
                       </mat-select>
                     <div *ngIf="submitted && f['user_role'].errors" class="invalid-feedback">
                       <div *ngIf="f['user_role'].errors['required']">กรุณากเลือกสิทธิ์</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="form-group">
-                    <label>แผนก</label>
-                      <mat-select formControlName="department_id" name="department_id" id="department_id"
-                      class="form-control" [ngClass]="{ 'is-invalid': submitted && f['department_id'].errors }">
-                        <mat-option value="">None</mat-option>
-                        <mat-option *ngFor="let departMents of departMents_list" [value]="departMents.id">{{departMents.value}}</mat-option>
-                      </mat-select>
-                    <div *ngIf="submitted && f['department_id'].errors" class="invalid-feedback">
-                      <div *ngIf="f['department_id'].errors['required']">กรุณากเลือกแผนก</div>
                     </div>
                   </div>
                 </div>

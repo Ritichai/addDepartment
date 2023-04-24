@@ -26,7 +26,7 @@ export class EditProfileComponent {
     employee_position: new FormControl(''),
     email: new FormControl(''),
     phone_number: new FormControl(''),
-    department_id: new FormControl(''),
+
   });
   submitted = false;
 
@@ -48,7 +48,7 @@ export class EditProfileComponent {
         Validators.required,
         Validators.minLength(10),
         Validators.pattern('[0-9]*')]],
-      department_id: ['', [Validators.required]],
+
     });
   }
 
@@ -80,7 +80,7 @@ export class EditProfileComponent {
         this.form.value['phone_number'],
         this.form.value['employee_code'],
         this.form.value['employee_position'],
-        this.form.value['department_id']
+
       )
       .subscribe(
         (response: any) => {},

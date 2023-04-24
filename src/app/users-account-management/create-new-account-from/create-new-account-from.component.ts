@@ -23,7 +23,7 @@ export class CreateNewAccountFromComponent {
     phone_number: new FormControl(''),
     username: new FormControl(''),
     password: new FormControl(''),
-    department_id: new FormControl('')
+
   });
   submitted = false;
 
@@ -72,7 +72,7 @@ export class CreateNewAccountFromComponent {
         Validators.pattern('[0-9]*')]],
       username: ['', [Validators.required,Validators.minLength(8)]],
       password: ['', [Validators.required, Validators.minLength(8)]],
-      department_id: ['', [Validators.required]]
+
     });
 
   }
@@ -133,7 +133,7 @@ export class CreateNewAccountFromComponent {
         this.form.value['phone_number'],
         this.form.value['username'],
         this.form.value['password'],
-        this.form.value['department_id']
+
       )
       .subscribe((response) => {
           console.log("ss",response);

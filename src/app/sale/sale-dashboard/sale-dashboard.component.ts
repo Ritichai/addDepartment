@@ -6,6 +6,7 @@ import { ViewChildren, QueryList } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { SaleCoService } from 'src/app/services/saleco.service';
+import { UsersService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -21,6 +22,7 @@ import { SaleCoService } from 'src/app/services/saleco.service';
   ]
 })
 export class SaleDashboardComponent {
+
 
   expandedElement: saleCoModel | null = null;
   // data = [
@@ -211,7 +213,8 @@ export class SaleDashboardComponent {
     private router: Router,
     private ActivatedRoute: ActivatedRoute,
     private cd: ChangeDetectorRef,
-    private saleCoService: SaleCoService
+    private saleCoService: SaleCoService,
+    private userService: UsersService,
   ) { }
 
 
@@ -234,15 +237,14 @@ export class SaleDashboardComponent {
       console.log(res.body.data);
     });
 
-
     this.cd.detectChanges();
   }
 
 
 
-  saleForCastActiveInfo(item: saleForCastActiveModel) {
-    console.log(item);
-    this.router.navigateByUrl('/sale/sale-forecast-info/' + item['id']);
+  saleForCastActiveInfo(id: number) {
+
+    this.router.navigateByUrl('/sale/sale-forecast-info/' + id);
   }
 
   getMonthNameTH(createAt: string): string {
@@ -276,8 +278,9 @@ export class SaleDashboardComponent {
     const day = ('0' + date.getDate()).slice(-2);
     return `${day}-${month}-${year}`;
   }
-}
 
+
+}
 
 
 
