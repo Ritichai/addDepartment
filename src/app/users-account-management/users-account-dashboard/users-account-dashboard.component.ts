@@ -15,10 +15,21 @@ declare var $: any;
   styleUrls: ['./users-account-dashboard.component.scss']
 })
 export class UserAccountsDashboardComponent implements OnInit {
-  columnsUserAccountsManagementTable: string[] = ['username', 'firstname', 'lastname', 'employee_code', 'employee_position', 'user_role', 'reset_password', 'edit', 'remove', 'info'];
+  columnsUserAccountsManagementTable: string[] =
+    ['username',
+      'firstname',
+      'lastname',
+      'employee_code',
+      'employee_position',
+      'user_role',
+      'department',
+      'reset_password',
+      'edit',
+      'remove',
+      'info'];
   dataSourceOfUserAccountsManagementTable = new MatTableDataSource<UserAccountsManagementModel>();
-  @ViewChild(MatPaginator, {static: true}) MatPaginator!: MatPaginator;
-  @ViewChild(MatSort, {static: true}) MatSort!: MatSort;
+  @ViewChild(MatPaginator, { static: true }) MatPaginator!: MatPaginator;
+  @ViewChild(MatSort, { static: true }) MatSort!: MatSort;
 
   constructor(
     private router: Router,
@@ -31,12 +42,14 @@ export class UserAccountsDashboardComponent implements OnInit {
     this.dataSourceOfUserAccountsManagementTable.data = [];
 
     this.userService.getUsersAll().subscribe(response => {
-      if(response['status'] == 200) {
-        this.dataSourceOfUserAccountsManagementTable.data = JSON.parse(JSON.stringify(response.body)).map((m:any) => {
+      if (response['status'] == 200) {
+        this.dataSourceOfUserAccountsManagementTable.data = JSON.parse(JSON.stringify(response.body)).map((m: any) => {
+          console.log(m);
           m['firstname'] = m['titlename'] + m['firstname'];
           m['lastname'] = m['lastname'];
           m['employee_code'] = m['employee_code'];
           m['user_role'] = m['role_id'];
+          m['department'] = m['department_id'];
           return m;
         })
         this.dataSourceOfUserAccountsManagementTable.paginator = this.MatPaginator;
@@ -73,7 +86,7 @@ export class UserAccountsDashboardComponent implements OnInit {
       cancelButtonText: 'ยกเลิก',
 
     }).then((result) => {
-      if(result['value']) {
+      if (result['value']) {
         this.userService.deleteUserAccount(item.id).subscribe((response) => {
           // console.log(response);
         }, (err) => {
@@ -97,7 +110,7 @@ export class UserAccountsDashboardComponent implements OnInit {
   /* Event when info button was clicked. */
   routeToItemInfo(item: UserAccountsManagementModel) {
     console.log('The info button was clicked.', item)
-    this.router.navigateByUrl('/users-account-management/view/'+item['id']);
+    this.router.navigateByUrl('/users-account-management/view/' + item['id']);
   }
 
 

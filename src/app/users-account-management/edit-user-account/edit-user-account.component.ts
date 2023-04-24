@@ -30,6 +30,20 @@ export class EditUserAccountComponent implements OnInit {
     }
   ]
 
+  departMents_list = [
+    {
+      id: 1,
+      value: 'Sale1',
+    },
+    {
+      id: 2,
+      value: 'Sale2',
+    },
+    {
+      id: 3,
+      value: 'Sale3',
+    }
+  ];
   user_id: any;
   user_info: any = {
     titlename: '',
@@ -41,7 +55,8 @@ export class EditUserAccountComponent implements OnInit {
     email: '',
     phone_number: '',
     username: '',
-    password: ''
+    password: '',
+    department_id: ''
   };
 
   form: FormGroup = new FormGroup({
@@ -54,6 +69,7 @@ export class EditUserAccountComponent implements OnInit {
     email: new FormControl(''),
     phone_number: new FormControl(''),
     username: new FormControl(''),
+    department_id: new FormControl('')
   });
   submitted = false;
 
@@ -77,6 +93,7 @@ export class EditUserAccountComponent implements OnInit {
         Validators.minLength(10),
         Validators.pattern('[0-9]*')]],
       username: ['', [Validators.required,Validators.minLength(8)]],
+      department_id: ['', [Validators.required]]
     });
    }
 
@@ -117,7 +134,8 @@ export class EditUserAccountComponent implements OnInit {
       this.form.value['email'],
       this.form.value['phone_number'],
       this.form.value['username'],
-      this.user_id
+      this.user_id,
+      this.form.value['department_id']
     ).subscribe((response) => {
       //console.log(response);
     }, (err) => {

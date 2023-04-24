@@ -22,9 +22,11 @@ export class CreateNewAccountFromComponent {
     email: new FormControl(''),
     phone_number: new FormControl(''),
     username: new FormControl(''),
-    password: new FormControl('')
+    password: new FormControl(''),
+    department_id: new FormControl('')
   });
   submitted = false;
+
   userRoles = [
     {
       id: 1,
@@ -35,6 +37,22 @@ export class CreateNewAccountFromComponent {
       value: 'นักจัดการระบบ',
     },
   ];
+
+  departMents_list = [
+    {
+      id: 1,
+      value: 'Sale1',
+    },
+    {
+      id: 2,
+      value: 'Sale2',
+    },
+    {
+      id: 3,
+      value: 'Sale3',
+    }
+  ];
+
   constructor(
     private userService: UsersService,
     private router: Router,
@@ -53,7 +71,8 @@ export class CreateNewAccountFromComponent {
         Validators.minLength(10),
         Validators.pattern('[0-9]*')]],
       username: ['', [Validators.required,Validators.minLength(8)]],
-      password: ['', [Validators.required, Validators.minLength(8)]]
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      department_id: ['', [Validators.required]]
     });
 
   }
@@ -113,7 +132,8 @@ export class CreateNewAccountFromComponent {
         this.form.value['email'],
         this.form.value['phone_number'],
         this.form.value['username'],
-        this.form.value['password']
+        this.form.value['password'],
+        this.form.value['department_id']
       )
       .subscribe((response) => {
           console.log("ss",response);

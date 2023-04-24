@@ -37,7 +37,8 @@ export class UsersService {
     email : string,
     phone_number : string,
     username : string,
-    id : number
+    id : number,
+    department_id : number
   ) {
     const dataUser = {
       titlename: titleName,
@@ -49,7 +50,8 @@ export class UsersService {
       email: email,
       phone_number: phone_number,
       username: username,
-      id: id
+      id: id,
+      department_id: department_id
     };
     return this.http.put(
       this.host + this.partUsers,
@@ -135,7 +137,8 @@ export class UsersService {
     email : string,
     phone_number : string,
     username : string,
-    password : string
+    password : string,
+    department_id : number
   ) {
     const dataUser = {
       titlename: titleName,
@@ -147,7 +150,8 @@ export class UsersService {
       email: email,
       phone_number: phone_number,
       username: username,
-      password: password
+      password: password,
+      department_id: department_id
     };
     //console.log('data for createing', dataUser);
     return this.http.post(
@@ -278,6 +282,7 @@ export class UsersService {
     phone_number:string,
     employee_code:string,
     employee_position:string,
+    department_id :number,
 
     ) {
     const data = {
@@ -289,6 +294,7 @@ export class UsersService {
       phone_number: phone_number,
       employee_code: employee_code,
       employee_position: employee_position,
+      department_id: department_id,
     };
     return this.http.put(this.host + this.partUsers + id, data, {
       headers: new HttpHeaders()
