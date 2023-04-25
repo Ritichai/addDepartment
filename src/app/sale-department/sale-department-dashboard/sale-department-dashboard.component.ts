@@ -32,6 +32,10 @@ export class SaleDepartmentDashboardComponent {
   createNewSaleDepartment(){
     this.router.navigate(['sale-department/create-new-sale-department']);
   }
+  editSaleDepartment(sale_department_id:number){
+    console.log(sale_department_id);
+    this.router.navigate(['sale-department/edit-sale-department/'+sale_department_id]);
+  }
 }
 
 

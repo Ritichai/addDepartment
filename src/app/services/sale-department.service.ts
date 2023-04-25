@@ -35,4 +35,29 @@ export class SaleDepartmentService {
       }
     );
   }
+  getSaleDepartmentById(sale_department_id:number) {
+    return this.http.get(this.hostURL + '/sale-department/getSaleDepartmentById/' + sale_department_id, {
+      headers: new HttpHeaders()
+        .set('Authorization', 'Bearer ' + localStorage.getItem('token'))
+        .set('Content-Type', 'application/json'),
+      observe: 'response',
+    });
+  }
+  editSaleDepartment(
+    sale_department_id:number,
+    sale_department_name:string,
+  ){
+    return this.http.put(
+      this.hostURL + '/sale-department/editSaleDepartment/'+sale_department_id,
+      {
+        sale_department_name:sale_department_name,
+      },
+      {
+        headers: new HttpHeaders()
+          .set('Authorization', 'Bearer ' + localStorage.getItem('token'))
+          .set('Content-Type', 'application/json'),
+        observe: 'response',
+      }
+    );
+  }
 }

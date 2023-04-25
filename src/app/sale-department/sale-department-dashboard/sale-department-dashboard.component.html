@@ -37,7 +37,7 @@
                               <th mat-header-cell *matHeaderCellDef mat-sort-header>Edit</th>
                               <td mat-cell *matCellDef="let element">
                                   <button mat-raised-button mat-min-fab
-
+                                          (click)="editSaleDepartment(element.id)"
                                           class="btn btn-sm btn-primary btn-round btn-fab">
                                       <i class="material-icons">edit</i>
                                   </button>
