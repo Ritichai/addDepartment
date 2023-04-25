@@ -46,7 +46,6 @@ export class AddDepartmentForSaleComponent {
     if (this.form.invalid) {
       return;
     }
-    console.log(this.form.value['department_id']);
     this.SaleManagementService.setDepartmentForSaleBySaleID(
       this.sale_id,
       this.form.value['department_id'],

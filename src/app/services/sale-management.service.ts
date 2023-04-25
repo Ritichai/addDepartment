@@ -37,5 +37,15 @@ export class SaleManagementService {
       observe: 'response',
     });
   }
+  editUserRoleSaleByID(id: number, department_id: number) {
+    return this.http.put(this.hostURL + '/user_department/updateDepartmentForSaleByID/' + id, {
+      id: department_id
+    }, {
+      headers: new HttpHeaders()
+        .set('Authorization', 'Bearer ' + localStorage.getItem('token'))
+        .set('Content-Type', 'application/json'),
+      observe: 'response',
+    });
+  }
 
 }

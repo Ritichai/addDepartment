@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
 import { ActivatedRoute, Router } from '@angular/router';
 import { SaleDepartmentService } from 'src/app/services/sale-department.service';
 import { SaleManagementService } from 'src/app/services/sale-management.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-department-for-sale',
@@ -31,9 +32,9 @@ export class EditDepartmentForSaleComponent {
     this.form = this.FormBuilder.group({
       department_id: ['', Validators.required],
     });
-   }
+  }
 
-   ngOnInit() {
+  ngOnInit() {
     this.activatedRoute.params.subscribe((params) => {
       this.sale_id = parseInt(atob(params['id']));
     });
@@ -48,8 +49,32 @@ export class EditDepartmentForSaleComponent {
       this.sale_department_id = res.body.user_sale.department_id;
       console.log(this.sale_department_id);
     });
-
+    this.form.controls['department_id'].setValue(this.sale_department_id);
   }
+
+  editDepartmentForSale() {
+    this.submitted = true;
+    if (this.form.invalid) {
+      return;
+    }
+    this.SaleManagementService.editUserRoleSaleByID(
+      this.sale_id,
+      this.form.value['department_id'],
+    ).subscribe((res: any) => {
+      if (res.status == 201) {
+        swal.fire({
+          title: 'สำเร็จ',
+          text: res.body.message,
+          icon: 'success',
+          confirmButtonAriaLabel: 'OK'
+        }).then(() => {
+          this.router.navigateByUrl('/sale-management/dashboard');
+        }
+        );
+      }
+    });
+  }
+
 
   cancel() {
     this.router.navigateByUrl('/sale-management/dashboard');
