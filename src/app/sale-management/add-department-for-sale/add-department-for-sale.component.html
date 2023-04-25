@@ -1,0 +1,45 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8 ml-auto mr-auto">
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <h3 class="card-title">
+              ฟอร์มสำหรับเพิ่ม แผนกให้กับ Sale
+            </h3>
+            <p class="card-contegory">
+              กรุณาระบุข้อมูลต่าง ๆ ให้ครบถ้วน และตรวจสอบความถูกต้องก่อนกดปุ่มบันทึก
+            </p>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="form">
+              <div class="row">
+                <div class="col-sm-4 col-md-4 col-4">
+                  <div class="form-group">
+                    <label>ประเภท SaleForcast</label>
+                    <mat-select formControlName="department_id"  name="department_id" id="department_id"
+                    class="form-control"  [ngClass]="{ 'is-invalid': submitted && f['department_id'].errors }">
+                      <mat-option value="">None</mat-option>
+                      <mat-option *ngFor="let sale_departments_list of sale_departments" [value]="sale_departments_list.id">{{sale_departments_list.sale_department_name}}</mat-option>
+                    </mat-select>
+                    <div *ngIf="submitted && f['department_id'].errors" class="invalid-feedback">
+                      <div *ngIf="f['department_id'].errors['required']">กรุณากเลือกประเภท SaleForcast </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <div class="d-flex justify-content-between">
+                <span>เมื่อตรวจสอบข้อมูลแล้วเห็นว่าถูกต้อง ให้กดปุ่มสร้างบัญชีผู้ใช้</span>
+                <div>
+                  <button (click)="cancel()" class="btn btn-danger">ยกเลิก</button>
+                  <button type="submit" (click)="addDepartmentForSale()" class="btn btn-primary">สร้างวันหยุด</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

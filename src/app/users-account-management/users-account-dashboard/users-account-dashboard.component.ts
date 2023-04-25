@@ -22,7 +22,6 @@ export class UserAccountsDashboardComponent implements OnInit {
       'employee_code',
       'employee_position',
       'user_role',
-      'department',
       'reset_password',
       'edit',
       'remove',
