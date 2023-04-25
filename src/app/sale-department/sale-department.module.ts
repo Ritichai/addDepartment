@@ -5,6 +5,9 @@ import { SaleDepartmentRoutingModule } from './sale-department.routing';
 import { SaleDepartmentDashboardComponent } from './sale-department-dashboard/sale-department-dashboard.component';
 import { CreateNewSaleDepartmentComponent } from './create-new-sale-department/create-new-sale-department.component';
 import { EditSaleDepartmentComponent } from './edit-sale-department/edit-sale-department.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,7 +18,11 @@ import { EditSaleDepartmentComponent } from './edit-sale-department/edit-sale-de
   ],
   imports: [
     CommonModule,
-    SaleDepartmentRoutingModule
+    SaleDepartmentRoutingModule,
+    MatPaginatorModule,
+    MatTableModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class SaleDepartmentModule { }

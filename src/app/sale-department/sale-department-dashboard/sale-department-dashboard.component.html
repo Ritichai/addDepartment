@@ -1,1 +1,59 @@
-<p>sale-department-dashboard works!</p>
+
+<div class="main-content">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-12 col-12">
+              <div class="card">
+                  <div class="card-header card-header-primary">
+                      <h3 class="card-title">การจัดการรายการ Sale Department</h3>
+                      <p class="card-category">
+                          คุณสามารถจัดการรายการ Sale Department
+                      </p>
+                      <div class="card-header-btn col-md-12">
+                          <button mat-raised-button style="margin-right: .3em" mat-mini-fab
+                                  (click)="createNewSaleDepartment()"
+                                  class="btn btn-info btn-round btn-fab">
+                              <i class="material-icons">add</i>
+                          </button>
+                          <button mat-raised-button style="margin-right: .3em" [disabled]="true"
+                                  class="btn btn-success btn-round">
+                              <i class="material-icons">arrow_downward</i> Excel
+                          </button>
+                      </div>
+                  </div>
+
+                  <div class="card-body">
+                      <table mat-table [dataSource]="dataSourceOfSaleDepartmentTable" matSort style="width: 100%;"
+                             class="table-striped table-hover">
+
+                          <ng-container matColumnDef="sale_department_name">
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header>Device Number</th>
+                              <td mat-cell *matCellDef="let element"> {{ element.sale_department_name }} </td>
+                          </ng-container>
+
+
+                          <!-- Edit Button Column -->
+                          <ng-container matColumnDef="edit">
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header>Edit</th>
+                              <td mat-cell *matCellDef="let element">
+                                  <button mat-raised-button mat-min-fab
+
+                                          class="btn btn-sm btn-primary btn-round btn-fab">
+                                      <i class="material-icons">edit</i>
+                                  </button>
+                              </td>
+                          </ng-container>
+
+
+                          <tr mat-header-row class="text-center"
+                              *matHeaderRowDef="columsSaleDepartmentTable"></tr>
+                          <tr mat-row *matRowDef="let row; columns: columsSaleDepartmentTable;"></tr>
+                      </table>
+
+                      <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

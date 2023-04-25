@@ -1,1 +1,44 @@
-<p>create-new-sale-department works!</p>
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8 ml-auto mr-auto">
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <h3 class="card-title">
+              ฟอร์มสำหรับสร้าง วันหยุด
+            </h3>
+
+            <p class="card-contegory">
+              กรุณาระบุข้อมูลต่าง ๆ ให้ครบถ้วน และตรวจสอบความถูกต้องก่อนกดปุ่มบันทึก
+            </p>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="form">
+              <div class="row">
+                <div class="col-sm-4 col-md-4 col-4">
+                  <div class="form-group">
+                    <label>ชื่อ Sale Department</label>
+                    <input type="text" formControlName="sale_department_name" class="form-control" name="sale_department_name"
+                      id="sale_department_name" [ngClass]="{ 'is-invalid': submitted && f['sale_department_name'].errors }" />
+                    <div *ngIf="submitted && f['sale_department_name'].errors" class="invalid-feedback">
+                      <div *ngIf="f['sale_department_name'].errors['required']">กรุณากรอกชื่อ Sale Department</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <hr>
+              <div class="d-flex justify-content-between">
+                <span>เมื่อตรวจสอบข้อมูลแล้วเห็นว่าถูกต้อง ให้กดปุ่มสร้างบัญชีผู้ใช้</span>
+                <div>
+                  <button (click)="cancel()" class="btn btn-danger">ยกเลิก</button>
+                  <button type="submit" (click)="createSaleDepartment()" class="btn btn-primary">สร้างวันหยุด</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
