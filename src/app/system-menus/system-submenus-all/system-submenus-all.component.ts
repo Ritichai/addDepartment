@@ -45,12 +45,12 @@ export class SystemSubmenusAllComponent implements OnInit {
         this.dataSourceOfSubSystemMenuTable.data = JSON.parse(JSON.stringify(response.body));
         //console.log(this.dataSourceOfSubSystemMenuTable.data)
       } else {
-        console.log("ไม่มี Sub Menu ในระบบ");
+       // console.log("ไม่มี Sub Menu ในระบบ");
       }
     }),() => {
-      console.log("get all system menu fail");
+     // console.log("get all system menu fail");
     },() => {
-      console.log("Complete");
+    //  console.log("Complete");
     };
   }
 
@@ -59,8 +59,8 @@ export class SystemSubmenusAllComponent implements OnInit {
   }
 
   onChangeDisableAndEnable(enable :number, id: number) {
-    console.log(enable);
-    console.log(id);
+   // console.log(enable);
+   // console.log(id);
     if (enable == 1) {
       this.systemMenusService.setSubMenuEnabled(0, id).subscribe(response => {
         if (response['status'] == 200) {
@@ -68,9 +68,9 @@ export class SystemSubmenusAllComponent implements OnInit {
           this.ngOnInit();
         }
       }), () => {
-        console.log("Set Sub Menu Enabled 0 Fail");
+       // console.log("Set Sub Menu Enabled 0 Fail");
       }, () => {
-        console.log("Complete");
+      //  console.log("Complete");
       }
     } else{
       this.systemMenusService.setSubMenuDisable(1, id).subscribe(response => {
@@ -79,9 +79,9 @@ export class SystemSubmenusAllComponent implements OnInit {
           this.ngOnInit();
         }
       }), () => {
-        console.log("Set Sub Menu Enabled 1 Fail");
+     //   console.log("Set Sub Menu Enabled 1 Fail");
       }, () => {
-        console.log("Complete");
+     //   console.log("Complete");
       }
     }
   }

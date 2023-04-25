@@ -104,12 +104,12 @@ export class EditUserAccountComponent implements OnInit {
         if (response['status'] == 200) {
           this.user_info = response['body'];
         } else {
-          console.log('fail');
+        //  console.log('fail');
         }
       }, (err) => {
-        console.log('get a user info for edit fail', err);
+   //     console.log('get a user info for edit fail', err);
       }, () => {
-        console.log('get a user info for edit complete.', this.user_info);
+    //    console.log('get a user info for edit complete.', this.user_info);
       });
     });
   }
@@ -139,9 +139,9 @@ export class EditUserAccountComponent implements OnInit {
     ).subscribe((response) => {
       //console.log(response);
     }, (err) => {
-      console.log('Creating a new user account is an error', err);
+     // console.log('Creating a new user account is an error', err);
     }, () => {
-      console.log("Creating a new user account complete.");
+    //  console.log("Creating a new user account complete.");
       swal.fire({
         title: 'สำเร็จ',
         text: 'แก้ไขข้อมูลบัญชีผู้ใช้แล้ว',
@@ -160,7 +160,7 @@ export class EditUserAccountComponent implements OnInit {
     if (file) {
       this.file = file;
       this.filename = file.name || '';
-      console.log(this.file);
+     // console.log(this.file);
     }
   }
 

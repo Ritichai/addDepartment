@@ -56,9 +56,9 @@ export class SystemMenusAllComponent implements OnInit {
           this.dataSourceOfSystemMenuTable.data = JSON.parse(JSON.stringify(response.body));
         }
       }), () => {
-        console.log('get all system menu fail');
+       // console.log('get all system menu fail');
       }, () => {
-        console.log('get all system menu complete');
+      //  console.log('get all system menu complete');
       }
   }
 
@@ -66,25 +66,25 @@ export class SystemMenusAllComponent implements OnInit {
 
   onChangeTypeMenu(menu_type: boolean, item: SystemMenuModel) {
     item.menu_type = menu_type ? 'link' : 'sub';
-    console.log('ทำการเปลียน', item.id + ' ' + item.menu_type);
+   // console.log('ทำการเปลียน', item.id + ' ' + item.menu_type);
     if(item.menu_type == 'link'){
       this.systemMenusService.changeSysTemMenuType(item.id, 'sub').subscribe(response => {
-        console.log('response ', response);
+      //  console.log('response ', response);
         if(response['status'] == 200){
-          console.log('เปลียนเป็น sub เมนู ', item.id);
+      //    console.log('เปลียนเป็น sub เมนู ', item.id);
           this.ngOnInit();
         }else{
-          console.log('ไม่สามารถเปลียนเป็น sub เมนู ', item.id);
+     //     console.log('ไม่สามารถเปลียนเป็น sub เมนู ', item.id);
         }
       });
     }else{
       this.systemMenusService.changeSysTemMenuType(item.id, 'link').subscribe(response => {
-        console.log('response ', response);
+      //  console.log('response ', response);
         if(response['status'] == 200){
-          console.log('เปลียนเป็น link เมนู ', item.id);
+      //    console.log('เปลียนเป็น link เมนู ', item.id);
           this.ngOnInit();
         }else{
-          console.log('ไม่สามารถเปลียนเป็น link เมนู ', item.id);
+      //    console.log('ไม่สามารถเปลียนเป็น link เมนู ', item.id);
         }
       });
     }

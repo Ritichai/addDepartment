@@ -34,7 +34,7 @@ export class UserDashboardComponent {
         }
       },
       (error: any) => {
-        console.log(error);
+     //   console.log(error);
       }
     );
 

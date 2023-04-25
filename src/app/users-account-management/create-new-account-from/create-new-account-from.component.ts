@@ -136,13 +136,13 @@ export class CreateNewAccountFromComponent {
 
       )
       .subscribe((response) => {
-          console.log("ss",response);
+      //    console.log("ss",response);
         },
         (err) => {
-          console.log('Creating a new user account is an error', err);
+    //      console.log('Creating a new user account is an error', err);
         },
         () => {
-          console.log('Creating a new user account complete.');
+   //       console.log('Creating a new user account complete.');
           Swal.fire({
             title: 'สำเร็จ',
             text: 'สร้างบัญชีผู้ใช้เรียบร้อยแล้ว',

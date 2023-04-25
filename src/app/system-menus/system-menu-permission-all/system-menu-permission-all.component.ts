@@ -41,10 +41,10 @@ export class SystemMenuPermissionAllComponent implements OnInit {
 
 
     this.userRoleManagementService.getRoleList().subscribe((data:any) => {
-      console.log("data",data);
+    //  console.log("data",data);
       if(data.status == 200){
         this.dataSourceOfSystemMenuPermissionTable.data = data.body['roles'].map((role:any) => {
-          console.log("role",role);
+      //    console.log("role",role);
           return {
             role_id: role.id,
             role_name: role.role_name,
@@ -59,9 +59,9 @@ export class SystemMenuPermissionAllComponent implements OnInit {
     this.activeElementId = role_id;
     this.systemMenusService.getMenuPermissionByRole(item.role_id).subscribe((dataMenuPermission:any) => {
 
-        console.log("Click Role ID", item.role_id);
+      //  console.log("Click Role ID", item.role_id);
         this.role_id = item.role_id;
-        console.log("dataMenuPermission", dataMenuPermission.body);
+      //  console.log("dataMenuPermission", dataMenuPermission.body);
         this.dataMenuByRoleID.data = dataMenuPermission.body['menuList'].map((menuPermission:any) => {
           return {
             system_menu_id: menuPermission.id,
@@ -77,20 +77,20 @@ export class SystemMenuPermissionAllComponent implements OnInit {
             })
           }
         });
-        console.log("dataMenuByRoleID", this.dataMenuByRoleID.data);
+      //  console.log("dataMenuByRoleID", this.dataMenuByRoleID.data);
     });
   }
 
   setPermissionMenu(role_id:number,system_menu_id:number) {
-    console.log("ทำการเพิ่มสิทธิ์เมนู"+system_menu_id+"ให้กับ Role ID"+role_id + "สำเร็จ");
+   // console.log("ทำการเพิ่มสิทธิ์เมนู"+system_menu_id+"ให้กับ Role ID"+role_id + "สำเร็จ");
     this.systemMenusService.createSetMenuForRole(role_id,system_menu_id).subscribe(data => {
-      console.log("data",data);
+   //   console.log("data",data);
     });
   }
   unSetPermissionMenu(role_id:number,system_menu_id:number) {
-    console.log("ทำการลบเมนู"+system_menu_id+"ให้กับ Role ID"+role_id + "สำเร็จ");
+   // console.log("ทำการลบเมนู"+system_menu_id+"ให้กับ Role ID"+role_id + "สำเร็จ");
     this.systemMenusService.deleteSetMenupermission(role_id,system_menu_id).subscribe(data => {
-      console.log("data",data);
+   //   console.log("data",data);
     });
   }
 
@@ -105,16 +105,16 @@ export class SystemMenuPermissionAllComponent implements OnInit {
 
 
   setPermissionSubMenu(role_id:number,system_sub_menu_id:number) {
-    console.log("ทำการเพิ่มสิทธิ์เมนูให้ ซัพ เมนู"+system_sub_menu_id+"ให้กับ Role ID"+role_id + "สำเร็จ");
+ //   console.log("ทำการเพิ่มสิทธิ์เมนูให้ ซัพ เมนู"+system_sub_menu_id+"ให้กับ Role ID"+role_id + "สำเร็จ");
     this.systemMenusService.createPermissionSubMenu(role_id,system_sub_menu_id).subscribe(data => {
-      console.log("data",data);
+  //    console.log("data",data);
     });
   }
 
   unSetPermissionSubMenu(role_id:number,system_sub_menu_id:number) {
-    console.log("ทำการลบสิทธิ์ซัพเมนู"+system_sub_menu_id+"ให้กับ Role ID"+role_id + "สำเร็จ");
+  //  console.log("ทำการลบสิทธิ์ซัพเมนู"+system_sub_menu_id+"ให้กับ Role ID"+role_id + "สำเร็จ");
     this.systemMenusService.deletePermissionSubMenu(role_id,system_sub_menu_id).subscribe(data => {
-      console.log("data",data);
+  //    console.log("data",data);
     });
   }
 

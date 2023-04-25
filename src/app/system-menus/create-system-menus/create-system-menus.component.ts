@@ -63,7 +63,7 @@ export class CreateSystemMenusComponent implements OnInit {
       )
       .subscribe(
         (response) => {
-          console.log(response);
+      //    console.log(response);
         },
         (err) => {
         },

@@ -39,22 +39,22 @@ export class LoginComponent {
       if (response['status'] == 200) {
         if (response['body']['isMember'] == true) {
           // redirect to member dashboard
-          console.log("member");
+          //console.log("member");
           localStorage.setItem('token', response['body']['token']);
           this.router.navigate(['user-profile']);
         } else {
-          console.log("guest");
+          //console.log("guest");
           localStorage.clear();
         }
       } else {
         localStorage.clear();
       }
     }, (error) => {
-      console.log(error);
+      //console.log(error);
       this.loginWrang = true;
       localStorage.clear();
     }, () => {
-      console.log("completed");
+      //console.log("completed");
 
     });
 

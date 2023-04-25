@@ -33,13 +33,13 @@ export class DevicesDashboardComponent implements OnInit {
         this.dataSourceOfDevicesManagementTable.data = data.body;
       },
       (error: any) => {
-        console.log('error', error);
+        //console.log('error', error);
       }
     );
   }
 
   gotoCreateNewDevicePage() {
-    console.log('gotoCreateNewDevicePage');
+    //console.log('gotoCreateNewDevicePage');
     this.router.navigateByUrl('/devices/create-new-device');
   }
 
@@ -48,7 +48,7 @@ export class DevicesDashboardComponent implements OnInit {
   }
 
   gotoDeviceDetailPage(item: DevicesManagementModel) {
-    console.log('gotoDeviceDetailPage', item);
+    //console.log('gotoDeviceDetailPage', item);
     // this.router.navigateByUrl('/devices/device-detail/' + item.id);
   }
 

@@ -16,12 +16,12 @@
               <div class="row">
                 <div class="col-sm-6 col-md-4">
                   <div class="form-group">
-                    <label>ชื่อวันหยุด</label>
+                    <label>ชื่อ Sale Department</label>
                     <input type="text" formControlName="sale_department_name" class="form-control" name="sale_department_name"
                       id="sale_department_name" [ngClass]="{ 'is-invalid': submitted && f['sale_department_name'].errors }"
                       [(ngModel)]="saleDepart_info.sale_department_name" />
                     <div *ngIf="submitted && f['sale_department_name'].errors" class="invalid-feedback">
-                      <div *ngIf="f['sale_department_name'].errors['required']">กรุณากรอกชื่อ holiday_name</div>
+                      <div *ngIf="f['sale_department_name'].errors['required']">กรุณากรอก Sale Department </div>
                     </div>
                   </div>
                 </div>

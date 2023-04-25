@@ -60,7 +60,7 @@ export class EditProfileComponent {
     this.userService.getMyUserinfo().subscribe((response: any) => {
       const data = response.data;
       this.dataUsers.push(data);
-      console.log(this.dataUsers);
+     // console.log(this.dataUsers);
     });
   }
 
@@ -85,10 +85,10 @@ export class EditProfileComponent {
       .subscribe(
         (response: any) => {},
         (err) => {
-          console.log('Creating a new user account is an error', err);
+        //  console.log('Creating a new user account is an error', err);
         },
         () => {
-          console.log('Creating a new user account complete.');
+       //   console.log('Creating a new user account complete.');
           swal
             .fire({
               title: 'สำเร็จ',
@@ -110,7 +110,7 @@ export class EditProfileComponent {
     if (file) {
       this.file = file;
       this.filename = file.name || '';
-      console.log(this.file);
+    //  console.log(this.file);
     }
   }
   getImgUrl(file: File): any {

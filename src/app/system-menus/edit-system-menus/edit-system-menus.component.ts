@@ -58,24 +58,24 @@ export class EditSystemMenusComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params) => {
-      console.log('params', params['id']);
+    //  console.log('params', params['id']);
       this.systemMenusService.getSysteMenusForEdit(params['id']).subscribe(
         (response: any) => {
           this.menu_id = params['id'];
           if (response['status'] == 200) {
             this.menu_info = response['body']['data'][0];
           } else {
-            console.log('ไม่พบข้อมูลที่ต้องการแก้ไข');
+      //      console.log('ไม่พบข้อมูลที่ต้องการแก้ไข');
           }
         },
         (err) => {
-          console.log('เรียกข้อมูลของผู้ใช้งานมาแก้ไขไม่สำเร็จ', err);
+      //    console.log('เรียกข้อมูลของผู้ใช้งานมาแก้ไขไม่สำเร็จ', err);
         },
         () => {
-          console.log(
-            'เรียกข้อมูลของผู็ใช้งานมาแก้ไขสำเร็จแล้ว',
-            this.menu_info
-          );
+          // console.log(
+          //   'เรียกข้อมูลของผู็ใช้งานมาแก้ไขสำเร็จแล้ว',
+          //   this.menu_info
+          // );
         }
       );
     });
@@ -102,9 +102,9 @@ export class EditSystemMenusComponent implements OnInit {
       .subscribe((response) => {
         //console.log(response);
       }, (err) => {
-        console.log('Creating a new user account is an error', err);
+      //  console.log('Creating a new user account is an error', err);
       }, () => {
-        console.log("Creating a new user account complete.");
+     //   console.log("Creating a new user account complete.");
         swal.fire({
           title: 'สำเร็จ',
           text: 'แก้ไขข้อมูลเมนูเรียบร้อยแล้ว',

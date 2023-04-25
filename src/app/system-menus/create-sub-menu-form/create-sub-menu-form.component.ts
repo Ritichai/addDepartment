@@ -65,7 +65,7 @@ export class CreateSubMenuFormComponent implements OnInit {
       this.form.value['sub_type'],
     )    .subscribe(
       (response) => {
-        console.log(response);
+       // console.log(response);
       },
       (err) => {
       },

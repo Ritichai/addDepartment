@@ -41,12 +41,12 @@ export class EditDeviceFormComponent implements OnInit {
           this.deviceInfo.start_date = this.deviceInfo.start_date.split('T')[0];
           this.deviceInfo.end_date = this.deviceInfo.end_date.split('T')[0];
         } else {
-          console.log('fail');
+          //console.log('fail');
         }
       }, (err) => {
-        console.log('get a device info for edit fail', err);
+        //console.log('get a device info for edit fail', err);
       }, () => {
-        console.log('get a device info for edit complete.', this.deviceInfo);
+        //console.log('get a device info for edit complete.', this.deviceInfo);
       });
     });
   }

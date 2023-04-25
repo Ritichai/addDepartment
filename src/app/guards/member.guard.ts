@@ -21,7 +21,7 @@ export class MemberGuard {
       return new Promise((resolve, reject) => {
         //   resolve(true);
         this.authService.checkLoggedIn().subscribe((response: any) => {
-          console.log('check login ', response)
+          //console.log('check login ', response)
           // resolve(true);
           if (response['checking'] == 'OK') {
             resolve(true)
@@ -40,7 +40,7 @@ export class MemberGuard {
             this.router.navigate(['error-403']);
             resolve(false);
           } else {
-            console.log(err);
+            //console.log(err);
             localStorage.clear();
             this.router.navigate(['login']);
             reject(false);

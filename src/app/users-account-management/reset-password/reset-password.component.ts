@@ -43,12 +43,12 @@ export class ResetPasswordComponent {
         if (response['status'] == 200) {
           this.new_password = response['body'];
         } else {
-          console.log('fail');
+          //console.log('fail');
         }
       }, (err) => {
-        console.log('get a user info for edit fail', err);
+       // console.log('get a user info for edit fail', err);
       }, () => {
-        console.log('get a user info for edit complete.', this.new_password);
+      //  console.log('get a user info for edit complete.', this.new_password);
       });
     });
   }
@@ -85,9 +85,9 @@ export class ResetPasswordComponent {
         });
       }
     }, (err) => {
-      console.log('reset password fail', err);
+      //console.log('reset password fail', err);
     }, () => {
-      console.log('method resetPassword complete.');
+      //console.log('method resetPassword complete.');
     });
   }
   get f(): { [key: string]: AbstractControl } {

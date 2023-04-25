@@ -41,7 +41,7 @@ ngOnInit(): void {
     this.saleDepartmentService.getSaleDepartmentById(this.sale_department_id).subscribe((res: any) => {
       if (res.status == 201) {
         this.saleDepart_info = res.body;
-        console.log(this.saleDepart_info);
+        //console.log(this.saleDepart_info);
       }
     });
   });

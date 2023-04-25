@@ -32,10 +32,10 @@ export class EditCustomerFormComponent implements OnInit {
     this.customerGroupService.getCustomerGroupList().subscribe(
       (data: any) => {
         this.customerGroupList = data.body;
-        console.log(data.body);
+        //console.log(data.body);
       },
       (error: any) => {
-        console.log('error', error);
+        //console.log('error', error);
       }
     );
 
@@ -50,12 +50,12 @@ export class EditCustomerFormComponent implements OnInit {
           this.customerInfo = response['body'];
           this.customerInfo.customer_group = response['body']['customer_group']['name'];
         } else {
-          console.log('fail');
+          //console.log('fail');
         }
       }, (err) => {
-        console.log('get a customer info for edit fail', err);
+        //console.log('get a customer info for edit fail', err);
       }, () => {
-        console.log('get a customer info for edit complete.', this.customerInfo);
+        //console.log('get a customer info for edit complete.', this.customerInfo);
       });
     });
   }
@@ -102,9 +102,9 @@ export class EditCustomerFormComponent implements OnInit {
         });
       }
     }, (err: any) => {
-      console.log('update customer fail', err);
+      //console.log('update customer fail', err);
     }, () => {
-      console.log('update customer complete.');
+      //console.log('update customer complete.');
     });
   }
 }

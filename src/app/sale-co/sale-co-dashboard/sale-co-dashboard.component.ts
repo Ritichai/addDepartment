@@ -56,14 +56,14 @@ export class SaleCoDashboardComponent {
     // console.log(this.data);
     // this.dataSourceOfSaleCoTable.data = this.data;
     this.saleCoService.getSaleCo().subscribe((res :any) => {
-      console.log(res);
+     // console.log(res);
       this.dataSourceOfSaleCoTable.data = res.body.data;
     });
 
   }
 
   viewdata(data:saleCoModel): void {
-    console.log(data);
+  //  console.log(data);
   }
 
 

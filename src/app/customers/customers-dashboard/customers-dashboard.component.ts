@@ -54,10 +54,10 @@ export class CustomersDashboardComponent implements OnInit {
     this.customerService.getCustomerList().subscribe(
       (data: any) => {
         this.dataSourceOfCustomerTable.data = data.body;
-        console.log(data.body);
+        //console.log(data.body);
       },
       (error: any) => {
-        console.log('error', error);
+        //console.log('error', error);
       }
     );
 
@@ -65,10 +65,10 @@ export class CustomersDashboardComponent implements OnInit {
       (data: any) => {
         this.customerGroupList = data.body;
         this.dataSourceOfCustomerGroupTable.data = data.body;
-        console.log(data.body);
+        //console.log(data.body);
       },
       (error: any) => {
-        console.log('error', error);
+        //console.log('error', error);
       }
     );
   }
@@ -120,7 +120,7 @@ export class CustomersDashboardComponent implements OnInit {
       fileReader.onload = (event: any) => {
         const csv = event.target.result;
         parsedCsv = Papa.parse(csv).data;
-        console.log(parsedCsv);
+        //console.log(parsedCsv);
 
         const dataTable = parsedCsv.filter((item: any[], index) => item.length === 5 && index > 0);
 
@@ -180,7 +180,7 @@ export class CustomersDashboardComponent implements OnInit {
           if (result.isConfirmed) {
             this.customerService.uploadBatchCustomer(dataTableObject).subscribe(
               (response: any) => {
-                console.log(response);
+                //console.log(response);
                 this.dataSourceOfCustomerTable.data = response.body;
                 this.selectedFile = undefined;
                 if (this.fileInput) {
@@ -188,7 +188,7 @@ export class CustomersDashboardComponent implements OnInit {
                 }
               },
               (err: any) => {
-                console.log(err);
+                //console.log(err);
                 this.selectedFile = undefined;
                 if (this.fileInput) {
                   this.fileInput.nativeElement.value = '';
@@ -202,13 +202,13 @@ export class CustomersDashboardComponent implements OnInit {
       Swal.disableButtons();
 
       fileReader.onerror = (error) => {
-        console.log(error);
+        //console.log(error);
       };
     }
   }
 
   gotoCreateNewCustomerPage() {
-    console.log('gotoCreateNewCustomerPage');
+    //console.log('gotoCreateNewCustomerPage');
     this.router.navigateByUrl('/customers/create-new-customer');
   }
 
@@ -217,7 +217,7 @@ export class CustomersDashboardComponent implements OnInit {
   }
 
   gotoCustomerDetailPage(item: CustomerManagementModel) {
-    console.log('gotoCustomerDetailPage', item);
+    //console.log('gotoCustomerDetailPage', item);
 // this.router.navigateByUrl('/customers/customer-detail/' + item.id);
   }
 
@@ -241,7 +241,7 @@ export class CustomersDashboardComponent implements OnInit {
 // console.log(response);
           },
           (err: any) => {
-            console.log('delete customer item fail', err);
+            //console.log('delete customer item fail', err);
           },
           () => {
             Swal.fire({
@@ -266,28 +266,28 @@ export class CustomersDashboardComponent implements OnInit {
   saveNewCustomerGroup() {
     this.customerGroupService.createNewCustomerGroup(this.customerGroupName).subscribe(
       (response: any) => {
-        console.log(response);
+        //console.log(response);
         this.customerGroupList.push(response.body);
 
         this.customerGroupService.getCustomerGroupList().subscribe(
           (data: any) => {
             this.customerGroupList = data.body;
             this.dataSourceOfCustomerGroupTable.data = data.body;
-            console.log(data.body);
+            //console.log(data.body);
             this.addingCustomerGroup = false;
           },
           (error: any) => {
-            console.log('error', error);
+            //console.log('error', error);
           }
         );
       },
       (err: any) => {
-        console.log(err);
+        //console.log(err);
       }
     );
   }
 
   gotoEditCustomerGroupItem(customer_group_id: number) {
-    console.log('gotoEditCustomerGroupItem', customer_group_id);
+    //console.log('gotoEditCustomerGroupItem', customer_group_id);
   }
 }

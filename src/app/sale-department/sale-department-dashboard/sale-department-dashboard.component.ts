@@ -25,7 +25,7 @@ export class SaleDepartmentDashboardComponent {
         this.dataSourceOfSaleDepartmentTable.data = data.body;
       },
       (error: any) => {
-        console.log('error', error);
+       // console.log('error', error);
       }
     );
   }
@@ -33,7 +33,7 @@ export class SaleDepartmentDashboardComponent {
     this.router.navigate(['sale-department/create-new-sale-department']);
   }
   editSaleDepartment(sale_department_id:number){
-    console.log(sale_department_id);
+  //  console.log(sale_department_id);
     this.router.navigate(['sale-department/edit-sale-department/'+sale_department_id]);
   }
 }

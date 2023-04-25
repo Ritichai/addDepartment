@@ -28,7 +28,7 @@ export class ViewUserInfoComponent {
       this.userService.getUserInfoById(this.id).subscribe((data:any) => {
         //console.log("this data",data)
         this.profileData.push(data)
-        console.log("this profileData",this.profileData)
+        //console.log("this profileData",this.profileData)
       })
     });
         this.userService.getImgById(this.id).subscribe(
@@ -41,7 +41,7 @@ export class ViewUserInfoComponent {
         }
       },
       (error: any) => {
-        console.log(error);
+        //console.log(error);
       }
     );
   }

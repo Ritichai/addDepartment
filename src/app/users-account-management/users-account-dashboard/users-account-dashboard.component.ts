@@ -44,7 +44,7 @@ export class UserAccountsDashboardComponent implements OnInit {
     this.userService.getUsersAll().subscribe(response => {
       if (response['status'] == 200) {
         this.dataSourceOfUserAccountsManagementTable.data = JSON.parse(JSON.stringify(response.body)).map((m: any) => {
-          console.log(m);
+          //console.log(m);
           m['firstname'] = m['titlename'] + m['firstname'];
           m['lastname'] = m['lastname'];
           m['employee_code'] = m['employee_code'];
@@ -56,9 +56,9 @@ export class UserAccountsDashboardComponent implements OnInit {
         this.dataSourceOfUserAccountsManagementTable.sort = this.MatSort;
       }
     }, (err) => {
-      console.log('get all user fail ', err);
+      //console.log('get all user fail ', err);
     }, () => {
-      console.log('get all user complete');
+      //console.log('get all user complete');
     })
   }
 
@@ -90,7 +90,7 @@ export class UserAccountsDashboardComponent implements OnInit {
         this.userService.deleteUserAccount(item.id).subscribe((response) => {
           // console.log(response);
         }, (err) => {
-          console.log('delete user account fail', err);
+          //console.log('delete user account fail', err);
         }, () => {
           swal.fire({
             title: 'การลบบัญชี',
@@ -109,7 +109,7 @@ export class UserAccountsDashboardComponent implements OnInit {
 
   /* Event when info button was clicked. */
   routeToItemInfo(item: UserAccountsManagementModel) {
-    console.log('The info button was clicked.', item)
+    //console.log('The info button was clicked.', item)
     this.router.navigateByUrl('/users-account-management/view/' + item['id']);
   }
 

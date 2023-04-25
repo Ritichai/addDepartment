@@ -30,30 +30,30 @@ export class UserRolesDashboardComponent implements OnInit {
 
       this.userRoleManagementService.getRoleList().subscribe((response :any) => {
         if(response['code'] == 200) {
-          console.log('Success')
+      //    console.log('Success')
         } else {
-          console.log('request fail');
+     //     console.log('request fail');
         }
       }, (err) => {
-        console.log('request error', err)
+   //     console.log('request error', err)
       }, () => {
-        console.log("complete");
+   //     console.log("complete");
       })
     }
 
     /* Event when edit button was clicked. */
     editItem(item : UserRolesModel){
-      console.log('The edit button was clicked.', item)
+   //   console.log('The edit button was clicked.', item)
     }
 
     /* Event when delete button was clicked. */
     deleteAnItem(item: UserRolesModel){
-      console.log('The delete button was clicked.', item)
+   //   console.log('The delete button was clicked.', item)
     }
 
     /* Event when info button was clicked. */
     routeToItemInfo(item: UserRolesModel){
-      console.log('The info button was clicked.', item)
+   //   console.log('The info button was clicked.', item)
     }
 
 }

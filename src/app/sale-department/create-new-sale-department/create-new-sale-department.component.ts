@@ -36,7 +36,7 @@ export class CreateNewSaleDepartmentComponent {
     this.saleDepartmentService.createNewSaleDepartment(
       this.form.value['sale_department_name'],
     ).subscribe((res: any) => {
-      console.log(res);
+     // console.log(res);
       if(res.status === 200) {
         swal.fire({
           title: 'Error',

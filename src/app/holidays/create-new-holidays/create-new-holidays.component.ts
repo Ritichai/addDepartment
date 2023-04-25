@@ -47,7 +47,7 @@ export class CreateNewHolidaysComponent {
       this.form.value['holiday_name'],
       this.form.value['holiday_year']
     ).subscribe((res: any) => {
-      console.log(res);
+      //console.log(res);
       if(res.status === 200) {
         Swal.fire({
           title: 'Error',

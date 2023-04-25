@@ -24,10 +24,10 @@ export class CreateNewCustomerFormComponent implements OnInit {
     this.customerGroupService.getCustomerGroupList().subscribe(
       (data: any) => {
         this.customerGroupList = data.body;
-        console.log(data.body);
+        //console.log(data.body);
       },
       (error: any) => {
-        console.log('error', error);
+        //console.log('error', error);
       }
     );
   }
